@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 08:06:12 by user              #+#    #+#             */
-/*   Updated: 2024/02/11 16:39:28 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/02/11 17:58:13 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static int	get_map_start(char *input)
 	int		index;
 
 	index = 0;
+	if (input[index])
+		index++;
 	while (input[index])
 	{
 		if (input[index - 1] == '\n' && is_map_start(&input[index]))
@@ -56,6 +58,9 @@ static char	*get_file(char *argv[])
 
 void	free_map(t_map *map)
 {
+	int	index;
+
+	index = 0;
 	if (!map)
 		return ;
 	if (map->input)
@@ -64,6 +69,12 @@ void	free_map(t_map *map)
 		free_double(map->map);
 	if (map->types)
 		free_double(map->types);
+	while (index < 6)
+	{
+		if (map->types_info[index])
+			free(map->types_info[index]);
+		index++;
+	}
 }
 
 void	get_map(t_map *map, char *argv[])

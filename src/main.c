@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/02/11 17:17:01 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/02/11 18:01:08 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ int main(int argc, char *argv[])
 	mlx_hook(mlx.window, 2, (1L<<0), ft_loop, NULL);
 	mlx_loop(mlx.mlx);
 	printf("successs\n");
+	free_map(&map);
 	return (0);
 }
