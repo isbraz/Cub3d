@@ -42,6 +42,11 @@ typedef struct s_mlx {
 	void	*mlx;
 }	t_mlx;
 
+typedef struct s_game {
+	t_mlx mlx;
+	t_map map;
+}	t_game;
+
 void	exit_error(t_map *map, int status);
 
 int		ft_strlen(const char *s);
