@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/02/11 19:19:05 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/02/11 19:20:08 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,5 @@ int main(int argc, char *argv[])
 	mlx_hook(game.mlx.window, 17, (1L<<3), ft_close, &game);
 	mlx_hook(game.mlx.window, 2, (1L<<0), ft_loop, &game);
 	mlx_loop(game.mlx.mlx);
-	printf("successs\n");
-	free_map(&game.map);
 	return (0);
 }
