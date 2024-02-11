@@ -37,6 +37,11 @@ typedef struct s_map {
 	int		spawn_pos[2];
 }	t_map;
 
+typedef struct s_mlx {
+	void	*window;
+	void	*mlx;
+}	t_mlx;
+
 void	exit_error(t_map *map, int status);
 
 int		ft_strlen(const char *s);

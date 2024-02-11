@@ -1,3 +1,5 @@
+INC_DIR = ./includes
+
 SRCS = src/main.c                  \
 		src/utils/ft_strjoin.c     \
 		src/utils/ft_strlen.c      \
@@ -25,7 +27,7 @@ $(NAME): $(OBJS)
 
 %.o: %.c
 	@mkdir -p .objs
-	@$(CC) -Wall -Wextra -Werror -I.mlx  -c $< -o .objs/$(notdir $@)
+	@$(CC) -Wall -Wextra -Werror -I$(INC_DIR) -I.mlx  -c $< -o .objs/$(notdir $@)
 
 clean:
 	rm -rf $(OBJS_FINAL)

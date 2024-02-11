@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 07:41:59 by user              #+#    #+#             */
-/*   Updated: 2024/02/10 12:19:52 by user             ###   ########.fr       */
+/*   Updated: 2024/02/11 16:39:28 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include <cub3d.h>
 
 void	exit_error(t_map *map, int status)
 {

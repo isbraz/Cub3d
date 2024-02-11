@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   verify_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:49:26 by user              #+#    #+#             */
-/*   Updated: 2024/02/10 21:53:39 by user             ###   ########.fr       */
+/*   Updated: 2024/02/11 16:39:28 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include <cub3d.h>
 
 static int	is_valid_char(char c)
 {

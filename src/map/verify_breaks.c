@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   verify_breaks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:23:36 by user              #+#    #+#             */
-/*   Updated: 2024/02/10 12:24:07 by user             ###   ########.fr       */
+/*   Updated: 2024/02/11 16:39:28 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include <cub3d.h>
 
 static int	is_line_empty(char *line)
 {
