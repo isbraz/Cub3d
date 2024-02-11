@@ -1,4 +1,5 @@
-INC_DIR = ./includes
+INC_DIR = includes
+MLX_DIR = .mlx
 
 SRCS = src/main.c                  \
 		src/utils/ft_strjoin.c     \
@@ -23,11 +24,11 @@ NAME = cub3D
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS_FINAL) -L.mlx -lmlx -I.mlx -lXext -lX11 -lm -lz  -o $(NAME)
+	$(CC) $(OBJS_FINAL) -L$(MLX_DIR) -lmlx -I$(MLX_DIR) -lXext -lX11 -lm -lz  -o $(NAME)
 
 %.o: %.c
 	@mkdir -p .objs
-	@$(CC) -Wall -Wextra -Werror -I$(INC_DIR) -I.mlx  -c $< -o .objs/$(notdir $@)
+	@$(CC) -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR) -c $< -o .objs/$(notdir $@)
 
 clean:
 	rm -rf $(OBJS_FINAL)
