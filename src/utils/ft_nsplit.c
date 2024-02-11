@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_nsplit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:36:06 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/02/10 08:04:24 by user             ###   ########.fr       */
+/*   Updated: 2024/02/11 16:15:46 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static int	ft_strlcpy(char *dst, const char *src, int size)
+static size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	int	index;
-	int	length;
+	size_t	index;
+	size_t	length;
 
 	index = 0;
 	length = 0;
@@ -32,7 +32,7 @@ static int	ft_strlcpy(char *dst, const char *src, int size)
 	return (length);
 }
 
-static char	*free_full_array(char **array, int pos)
+static char	*free_full_array(char **array, size_t pos)
 {
 	if (array[pos] == NULL)
 	{
@@ -44,7 +44,7 @@ static char	*free_full_array(char **array, int pos)
 	return ("true");
 }
 
-static char	**fill_array(char const *s, char c, char **newstr, int n)
+static char	**fill_array(char const *s, char c, char **newstr, size_t n)
 {
 	size_t	index;	
 	size_t	start;
@@ -72,11 +72,11 @@ static char	**fill_array(char const *s, char c, char **newstr, int n)
 	return (newstr);
 }
 
-char	**ft_nsplit(char const *s, char c, int n)
+char	**ft_nsplit(char const *s, char c, size_t n)
 {
 	char	**array;
-	int		index;
-	int		words;
+	size_t		index;
+	size_t		words;
 
 	index = -1;
 	words = 0;

@@ -7,6 +7,8 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
+#include <mlx.h>
+
 #define INVALID_TYPE 6
 #define NO 0
 #define SO 1
@@ -46,7 +48,7 @@ char	*ft_strdup(char const *s1);
 void	free_double(char **array);
 
 char	**ft_split(char const *s, char c);
-char	**ft_nsplit(char const *s, char c, int n);
+char	**ft_nsplit(char const *s, char c, size_t n);
 
 void	get_map(t_map *map, char *argv[]);
 void	free_map(t_map *map);
