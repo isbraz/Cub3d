@@ -9,24 +9,26 @@ SRCS = src/main.c                  \
 		src/map/get_map.c          \
 		src/map/verify_map.c       \
 		src/map/verify_walls.c     \
+		src/map/verify_breaks.c    \
 		src/map/get_types.c        \
 		src/map/get_spawn.c        \
 
-OBJS = $(patsubst %.c,.objs/%.o,$(notdir $(SRCS)))
+OBJS = $(SRCS:%.c=%.o)
+OBJS_FINAL = $(patsubst %.c,.objs/%.o,$(notdir $(SRCS)))
 
 NAME = cub3D
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CC) $(OBJS_FINAL) -L.mlx -lmlx -I.mlx -lXext -lX11 -lm -lz  -o $(NAME)
 
-$(OBJS): 
-	mkdir -p .objs
-	cd .objs && $(CC) -c $(patsubst %,../%,$(SRCS))
+%.o: %.c
+	@mkdir -p .objs
+	@$(CC) -Wall -Wextra -Werror -I.mlx  -c $< -o .objs/$(notdir $@)
 
 clean:
-	rm -rf .objs
+	rm -rf $(OBJS_FINAL)
 
 fclean: clean
 	rm -f $(NAME)
