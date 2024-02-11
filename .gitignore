@@ -4,4 +4,4 @@ cub3D
 .mlx/obj
 .mlx/libmlx_Linux.a
 .mlx/libmlx.a
-.mlx/Makefile*
+.mlx/Makefile.gen
