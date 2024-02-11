@@ -1,5 +1,6 @@
 INC_DIR = includes
 MLX_DIR = .mlx
+CFLAGS = -g -Wall -Wextra -Werror
 
 SRCS = src/main.c                  \
 		src/utils/ft_strjoin.c     \
@@ -20,22 +21,28 @@ OBJS = $(SRCS:%.c=%.o)
 OBJS_FINAL = $(patsubst %.c,.objs/%.o,$(notdir $(SRCS)))
 
 NAME = cub3D
+NAME_MAP1 = cub3D testmap.cub
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	cd .mlx && ./configure
-	$(CC) $(OBJS_FINAL) -L$(MLX_DIR) -lmlx -I$(MLX_DIR) -lXext -lX11 -lm -lz  -o $(NAME)
+	@cd .mlx && ./configure 2>&1 >/dev/null
+	@echo "mlx compiled!"
+	@$(CC) $(OBJS_FINAL) -L$(MLX_DIR) -lmlx -I$(MLX_DIR) -lXext -lX11 -lm -lz  -o $(NAME)
+	@echo "cub3D compiled!"
 
 %.o: %.c
 	@mkdir -p .objs
-	@$(CC) -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR) -c $< -o .objs/$(notdir $@)
+	@$(CC) -I$(INC_DIR) -I$(MLX_DIR) -c $< -o .objs/$(notdir $@)
 
 clean:
-	rm -rf $(OBJS_FINAL)
+	@rm -rf $(OBJS_FINAL)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+
+v: $(NAME)
+	@valgrind --leak-check=full ./$(NAME_MAP1)
 
 re: fclean all
 
