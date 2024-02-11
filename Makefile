@@ -24,6 +24,7 @@ NAME = cub3D
 all: $(NAME)
 
 $(NAME): $(OBJS)
+	cd .mlx && ./configure
 	$(CC) $(OBJS_FINAL) -L$(MLX_DIR) -lmlx -I$(MLX_DIR) -lXext -lX11 -lm -lz  -o $(NAME)
 
 %.o: %.c
