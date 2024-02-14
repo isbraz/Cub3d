@@ -47,6 +47,16 @@ typedef struct s_game {
 	t_map map;
 }	t_game;
 
+typedef struct s_player
+{
+	double pos_x; //player position
+	double pos_y; //player position
+	double dir_x; //the direction of the player
+	double dir_y; //the direction of the player
+	double plane_x; //field of view
+	double plane_y; //field of view
+}	t_player;
+
 void	exit_error(t_map *map, int status);
 
 int		ft_strlen(const char *s);
