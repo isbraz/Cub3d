@@ -17,7 +17,7 @@ SRCS = src/main.c                  \
 		src/map/get_types.c        \
 		src/map/get_spawn.c        \
 
-OBJS = $(SRCS:%.c=%.o)
+OBJS = $(patsubst src/%,.objs/%,$(patsubst %.c,%.o,$(SRCS)))
 
 NAME = cub3D
 NAME_MAP1 = cub3D testmap.cub
@@ -30,12 +30,12 @@ $(NAME): $(OBJS)
 	@$(CC) $(OBJS) -L$(MLX_DIR) -lmlx -I$(MLX_DIR) -lXext -lX11 -lm -lz  -o $(NAME)
 	@echo "cub3D compiled!"
 
-%.o: %.c
-	@mkdir -p .objs
+.objs/%.o: src/%.c
+	@mkdir -p $(@D)
 	@$(CC) -I$(INC_DIR) -I$(MLX_DIR) -c $< -o $@
 
 clean:
-	@rm -rf $(OBJS)
+	@rm -rf .objs
 
 fclean: clean
 	@rm -f $(NAME)
