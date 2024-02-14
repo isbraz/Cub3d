@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/02/11 19:20:08 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:13:15 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 		exit_error(NULL, ARGUMENTS_ERROR);
 	get_map(&game.map, argv);
+	printf("C: %d, F: %d\n", game.map.ceiling_color, game.map.floor_color);
 	game.mlx.mlx = mlx_init();
 	game.mlx.window = mlx_new_window(game.mlx.mlx, 200, 200, "cub3D!");
 	mlx_hook(game.mlx.window, 17, (1L<<3), ft_close, &game);
