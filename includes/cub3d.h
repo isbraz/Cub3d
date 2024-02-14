@@ -60,6 +60,8 @@ void	free_double(char **array);
 char	**ft_split(char const *s, char c);
 char	**ft_nsplit(char const *s, char c, size_t n);
 
+int		get_trgb(int t, int r, int g, int b);
+
 void	get_map(t_map *map, char *argv[]);
 void	free_map(t_map *map);
 
