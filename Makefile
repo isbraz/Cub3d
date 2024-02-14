@@ -11,6 +11,8 @@ SRCS = src/main.c                  \
 		src/utils/free_double.c    \
 		src/utils/exit_error.c     \
 		src/utils/get_trgb.c       \
+		src/utils/ft_isnumeric.c   \
+		src/utils/ft_atoi.c        \
 		src/map/get_map.c          \
 		src/map/verify_map.c       \
 		src/map/verify_walls.c     \

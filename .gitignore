@@ -5,3 +5,4 @@ cub3D
 .mlx/Makefile.gen
 *.o
 *.a
+*.gen

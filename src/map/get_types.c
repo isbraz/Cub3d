@@ -3,16 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   get_types.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:58:26 by user              #+#    #+#             */
-/*   Updated: 2024/02/11 16:39:28 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:15:04 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static int	is_types_complete(t_map *map)
+static int	get_color(char *color)
+{
+	char	**split;
+	int		colors[3];
+	int		index;
+
+	index = 0;
+	split = ft_split(color, ',');
+	while (split[index])
+	{
+		if (!ft_isnumeric(split[index]))
+			return (free(split), -1);
+		colors[index] = ft_atoi(split[index]);
+		if (colors[index] > 255 || colors[index] < 0)
+			return (free(split), -1);
+		index++;
+	}
+	free(split);
+	if (index > 3)
+		return (-1);
+	return (get_trgb(0, colors[0], colors[1], colors[2]));
+}
+
+static int	is_types_correct(t_map *map)
 {
 	int	index;
 
@@ -21,8 +44,14 @@ static int	is_types_complete(t_map *map)
 	{
 		if (!map->types_info[index])
 			return (0);
+		if (index == 4)
+			map->floor_color = get_color(map->types_info[index]);
+		if (index == 5)
+			map->ceiling_color = get_color(map->types_info[index]);
 		index++;
 	}
+	if (map->ceiling_color == -1 || map->floor_color == -1)
+		return (0);
 	return (1);
 }
 
@@ -69,5 +98,5 @@ int	get_types(t_map *map)
 		}
 		j++;
 	}
-	return (is_types_complete(map));
+	return (is_types_correct(map));
 }

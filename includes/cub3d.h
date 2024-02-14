@@ -29,6 +29,8 @@
 
 typedef struct s_map {
 	char	*types_info[6];
+	int		ceiling_color;
+	int		floor_color;
 	char	**types;
 	char	*input;
 	char	**map;
@@ -48,23 +50,18 @@ typedef struct s_game {
 }	t_game;
 
 void	exit_error(t_map *map, int status);
-
 int		ft_strlen(const char *s);
-
 char	*ft_strjoin(char *s1, char *s2);
-
 char	*ft_strdup(char const *s1);
-
 void	free_double(char **array);
-
 char	**ft_split(char const *s, char c);
 char	**ft_nsplit(char const *s, char c, size_t n);
-
+int		ft_isnumeric(char *str);
+int		ft_atoi(const char *str);
 int		get_trgb(int t, int r, int g, int b);
 
 void	get_map(t_map *map, char *argv[]);
 void	free_map(t_map *map);
-
 void	verify_map(t_map *map);
 int		verify_breaks(t_map *map);
 int		verify_walls(t_map *map);
