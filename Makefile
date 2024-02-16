@@ -19,6 +19,7 @@ SRCS = src/main.c                  \
 		src/map/verify_breaks.c    \
 		src/map/get_types.c        \
 		src/map/get_spawn.c        \
+		src/minimap/minimap.c      \
 
 OBJS = $(patsubst src/%,.objs/%,$(patsubst %.c,%.o,$(SRCS)))
 

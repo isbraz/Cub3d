@@ -27,6 +27,17 @@
 #define TYPES_ERROR 404
 #define WALL_ERROR 405
 
+typedef struct s_image
+{
+	void	*id;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}	t_image;
+
 typedef struct s_map {
 	char	*types_info[6];
 	int		ceiling_color;
@@ -59,6 +70,9 @@ char	**ft_nsplit(char const *s, char c, size_t n);
 int		ft_isnumeric(char *str);
 int		ft_atoi(const char *str);
 int		get_trgb(int t, int r, int g, int b);
+void	put_pixel_canva(t_image *image, int x, int y, int pixel);
+int		get_pixel_canva(t_image *image, int x, int y);
+
 
 void	get_map(t_map *map, char *argv[]);
 void	free_map(t_map *map);
