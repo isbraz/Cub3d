@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/02/17 16:22:29 by user             ###   ########.fr       */
+/*   Updated: 2024/02/17 16:28:12 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ static void	print_minimap(t_game *game)
 		while (game->map.map[y][x])
 		{
 			if (game->map.map[y][x] == '1')
-				print_temp_obj(game, ((y * SIZE) + (WIN_HEIGTH / 2) - (game->player.position[Y] * SIZE)),
+				print_temp_obj(game, ((y * SIZE) + (WIN_HEIGHT / 2) - (game->player.position[Y] * SIZE)),
 				((x * SIZE) + (WIN_WIDTH / 2) - (game->player.position[X] * SIZE)), get_trgb(0, 255, 255, 255));
 			if (game->map.map[y][x] == '0' ||
 				game->map.map[y][x] == 'N' ||
 				game->map.map[y][x] == 'E' ||
 				game->map.map[y][x] == 'W' ||
 				game->map.map[y][x] == 'S')
-				print_temp_obj(game, ((y * SIZE) + (WIN_HEIGTH / 2) - (game->player.position[Y] * SIZE)),
+				print_temp_obj(game, ((y * SIZE) + (WIN_HEIGHT / 2) - (game->player.position[Y] * SIZE)),
 				((x * SIZE) + (WIN_WIDTH / 2) - (game->player.position[X] * SIZE)), get_trgb(0, 121, 122, 122));
 			x++;
 		}
@@ -74,12 +74,12 @@ static void	print_miniplayer(t_game *game)
 {
 	// int	y = game->player.position[Y];
 	// int x = game->player.position[X];
-	print_temp_obj(game, WIN_HEIGTH / 2, WIN_WIDTH / 2, get_trgb(0, 255, 226, 3));
+	print_temp_obj(game, WIN_HEIGHT / 2, WIN_WIDTH / 2, get_trgb(0, 255, 226, 3));
 }
 
 void	update_minimap(t_game *game)
 {
-	clear_canvas(&game->minimap, WIN_HEIGTH, WIN_WIDTH);
+	clear_canvas(&game->minimap, WIN_HEIGHT, WIN_WIDTH);
 	print_minimap(game);
 	print_miniplayer(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.window, game->minimap.id, 0, 0);

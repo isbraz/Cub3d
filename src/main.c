@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/02/17 16:25:24 by user             ###   ########.fr       */
+/*   Updated: 2024/02/17 16:28:12 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_key_listener(int key, t_game *game)
 	if (key == 65307)
 		ft_close(game);
 	move_player(key, game);
-	printf("key pressed: %d\n", key);
+	// printf("key pressed: %d\n", key);
 	return (0);
 }
 
@@ -68,8 +68,8 @@ int	ft_loop(t_game *game)
 void	new_game(t_game *game)
 {
 	game->mlx.mlx = mlx_init();
-	game->mlx.window = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGTH, "cub3D!");
-	new_canvas(&game->minimap, game->mlx.mlx, WIN_HEIGTH, WIN_WIDTH);
+	game->mlx.window = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D!");
+	new_canvas(&game->minimap, game->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
 	game->player.position[X] = game->map.spawn_pos[X];
 	game->player.position[Y] = game->map.spawn_pos[Y];
 }
