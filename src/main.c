@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/02/17 17:12:31 by user             ###   ########.fr       */
+/*   Updated: 2024/02/17 17:38:18 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	new_game(t_game *game)
 	game->mlx.mlx = mlx_init();
 	game->mlx.window = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D!");
 	new_canvas(&game->minimap, game->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
+	new_canvas(&game->scene, game->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
 	game->player.position[X] = game->map.spawn_pos[X];
 	game->player.position[Y] = game->map.spawn_pos[Y];
 }

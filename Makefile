@@ -24,6 +24,7 @@ SRCS = src/main.c                     \
 		src/map/get_types.c           \
 		src/map/get_spawn.c           \
 		src/minimap/minimap.c         \
+		src/scene/scene.c             \
 
 OBJS = $(patsubst src/%,.objs/%,$(patsubst %.c,%.o,$(SRCS)))
 

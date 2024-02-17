@@ -72,6 +72,7 @@ typedef struct s_game {
 	t_mlx		mlx;
 	t_map		map;
 	t_image		minimap;
+	t_image		scene;
 	t_player	player;
 }	t_game;
 
@@ -102,5 +103,7 @@ int		get_types(t_map *map);
 int		get_spawn(t_map *map);
 
 void	update_minimap(t_game *game);
+
+void	update_scene(t_game *game);
 
 #endif
