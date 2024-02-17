@@ -9,6 +9,9 @@
 
 #include <mlx.h>
 
+#define WIN_WIDTH 1200
+#define WIN_HEIGTH 600
+
 #define INVALID_TYPE 6
 #define NO 0
 #define SO 1
@@ -38,6 +41,13 @@ typedef struct s_image
 	int		height;
 }	t_image;
 
+typedef struct s_player
+{
+	t_image	sprite;
+	t_image	minimap_sprite;
+	double	position[2];
+}	t_player;
+
 typedef struct s_map {
 	char	*types_info[6];
 	int		ceiling_color;
@@ -56,8 +66,10 @@ typedef struct s_mlx {
 }	t_mlx;
 
 typedef struct s_game {
-	t_mlx mlx;
-	t_map map;
+	t_mlx		mlx;
+	t_map		map;
+	t_image		minimap;
+	t_player	player;
 }	t_game;
 
 void	exit_error(t_map *map, int status);
@@ -72,6 +84,7 @@ int		ft_atoi(const char *str);
 int		get_trgb(int t, int r, int g, int b);
 void	put_pixel_canva(t_image *image, int x, int y, int pixel);
 int		get_pixel_canva(t_image *image, int x, int y);
+void	new_canvas(t_image *canvas, void *mlx);
 
 
 void	get_map(t_map *map, char *argv[]);
@@ -81,5 +94,7 @@ int		verify_breaks(t_map *map);
 int		verify_walls(t_map *map);
 int		get_types(t_map *map);
 int		get_spawn(t_map *map);
+
+void	update_minimap(t_game *game);
 
 #endif
