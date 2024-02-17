@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/02/17 16:22:24 by user             ###   ########.fr       */
+/*   Updated: 2024/02/17 16:25:24 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,22 @@ void	move_player(int key, t_game *game)
 
 	x = game->player.position[X];
 	y = game->player.position[Y];
-	if (key == 119)
+	if (key == 119 || key == 65362)
 	{
 		if (y && game->map.map[y - 1][x] != '1')
 			game->player.position[Y] -= 1;
 	}
-	if (key == 115)
+	if (key == 115 || key == 65364)
 	{
 		if (game->map.map[y + 1][x] != '1')
 			game->player.position[Y] += 1;
 	}
-	if (key == 97)
+	if (key == 97 || key == 65361)
 	{
 		if (x && game->map.map[y][x - 1] != '1')
 			game->player.position[X] -= 1;
 	}
-	if (key == 100)
+	if (key == 100 || key == 65363)
 	{
 		if (game->map.map[y][x + 1] != '1')
 			game->player.position[X] += 1;
