@@ -2,27 +2,28 @@ INC_DIR = includes
 MLX_DIR = .mlx
 CFLAGS = -g -Wall -Wextra -Werror
 
-SRCS = src/main.c                  \
-		src/utils/ft_strjoin.c     \
-		src/utils/ft_strlen.c      \
-		src/utils/ft_split.c       \
-		src/utils/ft_nsplit.c      \
-		src/utils/ft_strdup.c      \
-		src/utils/free_double.c    \
-		src/utils/exit_error.c     \
-		src/utils/get_trgb.c       \
-		src/utils/new_canvas.c     \
-		src/utils/get_pixel.c      \
-		src/utils/put_pixel.c      \
-		src/utils/ft_isnumeric.c   \
-		src/utils/ft_atoi.c        \
-		src/map/get_map.c          \
-		src/map/verify_map.c       \
-		src/map/verify_walls.c     \
-		src/map/verify_breaks.c    \
-		src/map/get_types.c        \
-		src/map/get_spawn.c        \
-		src/minimap/minimap.c      \
+SRCS = src/main.c                     \
+		src/utils/ft_strjoin.c        \
+		src/utils/ft_strlen.c         \
+		src/utils/ft_split.c          \
+		src/utils/ft_nsplit.c         \
+		src/utils/ft_strdup.c         \
+		src/utils/free_double.c       \
+		src/utils/exit_error.c        \
+		src/utils/ft_isnumeric.c      \
+		src/utils/ft_atoi.c           \
+		src/mlx_utils/new_canvas.c    \
+		src/mlx_utils/get_pixel.c     \
+		src/mlx_utils/put_pixel.c     \
+		src/mlx_utils/get_trgb.c      \
+		src/mlx_utils/clear_canvas.c  \
+		src/map/get_map.c             \
+		src/map/verify_map.c          \
+		src/map/verify_walls.c        \
+		src/map/verify_breaks.c       \
+		src/map/get_types.c           \
+		src/map/get_spawn.c           \
+		src/minimap/minimap.c         \
 
 OBJS = $(patsubst src/%,.objs/%,$(patsubst %.c,%.o,$(SRCS)))
 

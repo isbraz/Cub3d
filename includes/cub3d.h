@@ -10,7 +10,10 @@
 #include <mlx.h>
 
 #define WIN_WIDTH 1200
-#define WIN_HEIGTH 600
+#define WIN_HEIGHT 600
+#define MINIMAP_WIDTH 300
+#define MINIMAP_HEIGHT 150
+
 
 #define INVALID_TYPE 6
 #define NO 0
@@ -81,10 +84,13 @@ char	**ft_split(char const *s, char c);
 char	**ft_nsplit(char const *s, char c, size_t n);
 int		ft_isnumeric(char *str);
 int		ft_atoi(const char *str);
+
+
 int		get_trgb(int t, int r, int g, int b);
 void	put_pixel_canva(t_image *image, int x, int y, int pixel);
 int		get_pixel_canva(t_image *image, int x, int y);
 void	new_canvas(t_image *canvas, void *mlx, int height, int width);
+void	clear_canvas(t_image *canvas, int height, int width);
 
 
 void	get_map(t_map *map, char *argv[]);
