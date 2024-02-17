@@ -84,7 +84,7 @@ int		ft_atoi(const char *str);
 int		get_trgb(int t, int r, int g, int b);
 void	put_pixel_canva(t_image *image, int x, int y, int pixel);
 int		get_pixel_canva(t_image *image, int x, int y);
-void	new_canvas(t_image *canvas, void *mlx, int height, int width)
+void	new_canvas(t_image *canvas, void *mlx, int height, int width);
 
 
 void	get_map(t_map *map, char *argv[]);
