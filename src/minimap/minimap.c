@@ -3,32 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/02/18 13:21:02 by user             ###   ########.fr       */
+/*   Updated: 2024/02/18 15:13:19 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-#define SIZE 9
-
 static void	print_temp_obj(t_game *game, int y, int x, int color)
 {
-	int i = x;
-	int j = y;
+	int	temp_x;
+	int	final_y;
+	int	final_x;
 
-	while (j < (y + SIZE) && j > 0 && j < MINIMAP_HEIGHT - 5)
+	final_y = y + MINIMAP_SCALE;
+	final_x = x + MINIMAP_SCALE;
+
+	while (y < final_y && (y >= 0 && y < MINIMAP_HEIGHT))
 	{
-		i = x;
-		while (i < (x + SIZE) && i > 0 && i < MINIMAP_WIDTH - 5)
-			put_pixel_canva(&game->scene, i++, j, color);
-		j++;
+		temp_x = x;
+		while (temp_x < final_x && (temp_x >= 0 && temp_x < MINIMAP_WIDTH))
+			put_pixel_canva(&game->scene, (temp_x++) + MINIMAP_MARGIN, y + MINIMAP_POSITIONY, color);
+		y++;
 	}
 }
 
-static void	print_minimap(t_game *game)
+static void	print_minimap_walls(t_game *game)
 {
 	int	y;
 	int	x;
@@ -40,51 +42,42 @@ static void	print_minimap(t_game *game)
 		x = 0;
 		while (game->map.map[y][x])
 		{
-			if (game->map.map[y][x] == '1')
-				print_temp_obj(game, ((y * SIZE) + (MINIMAP_HEIGHT / 2) - (game->player.position[Y] * SIZE)),
-				((x * SIZE) + (MINIMAP_WIDTH / 2) - (game->player.position[X] * SIZE)), get_trgb(0, 255, 255, 255));
-			if (game->map.map[y][x] == '0' ||
-				game->map.map[y][x] == 'N' ||
-				game->map.map[y][x] == 'E' ||
-				game->map.map[y][x] == 'W' ||
-				game->map.map[y][x] == 'S')
-				print_temp_obj(game, ((y * SIZE) + (MINIMAP_HEIGHT / 2) - (game->player.position[Y] * SIZE)),
-				((x * SIZE) + (MINIMAP_WIDTH / 2) - (game->player.position[X] * SIZE)), get_trgb(0, 121, 122, 122));
+			// print_temp_obj(game, ((y * MINIMAP_SCALE) - (game->player.position[Y] * MINIMAP_SCALE)),((x  * MINIMAP_SCALE) - (game->player.position[X] * MINIMAP_SCALE)), get_trgb(0, 255, 255, 255));
+			if (is_floor(game->map.map[y][x]))
+				print_temp_obj(game, ((y * MINIMAP_SCALE) + (MINIMAP_HEIGHT / 2) - (game->player.position[Y] * MINIMAP_SCALE)),
+				((x * MINIMAP_SCALE) + (MINIMAP_WIDTH / 2) - (game->player.position[X] * MINIMAP_SCALE)), get_trgb(0, 230, 230 ,230));
 			x++;
 		}
 		y++;
 	}
 }
 
-static void	print_miniplayer(t_game *game)
+static void	print_minimap_player(t_game *game)
 {
-	// int	y = game->player.position[Y];
-	// int x = game->player.position[X];
-	print_temp_obj(game, MINIMAP_HEIGHT / 2, MINIMAP_WIDTH / 2, get_trgb(0, 255, 226, 3));
+	print_temp_obj(game, MINIMAP_HEIGHT / 2, MINIMAP_WIDTH / 2, get_trgb(0, 255, 50, 50));
 }
 
-void print_border(t_game *game, int height, int width)
+static void print_minimap_background(t_game *game)
 {
-	int i = WIN_HEIGHT - MINIMAP_HEIGHT - 20;
-	// int i = 0;
-	int color = get_trgb(0, 0, 0, 255);
-	// while (i < width)
-	// 	put_pixel_canva(&game->scene, i++, 0,color);
-	// i = 0;
-	// while (i < width)
-	// 	put_pixel_canva(&game->scene, i++, height,color);
-	// i = 0;
-	while (i < height)
-		put_pixel_canva(&game->scene, WIN_HEIGHT - MINIMAP_HEIGHT - 20, i++,color);
-	// i = 0;
-	// while (i < height)
-	// 	put_pixel_canva(&game->scene, width, i++,color);
+	int y;
+	int x;
+
+	y = MINIMAP_POSITIONY;
+	while (y <= MINIMAP_POSITIONY + MINIMAP_HEIGHT)
+	{
+		x = MINIMAP_MARGIN;
+		while (x < MINIMAP_WIDTH + MINIMAP_MARGIN)
+		{
+			put_pixel_canva(&game->scene, x, y, get_trgb(0, 28, 28, 28));
+			x++;
+		}
+		y++;
+	}
 }
 
 void	update_minimap(t_game *game)
 {
-	// clear_canvas(&game->scene, WIN_HEIGHT, WIN_WIDTH);
-	// print_border(game, MINIMAP_HEIGHT, MINIMAP_WIDTH);
-	print_minimap(game);
-	print_miniplayer(game);
+	print_minimap_background(game);
+	print_minimap_walls(game);
+	print_minimap_player(game);
 }
