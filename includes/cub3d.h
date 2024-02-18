@@ -14,6 +14,7 @@
 #define MINIMAP_WIDTH 280
 #define MINIMAP_HEIGHT 150
 #define MINIMAP_MARGIN 20
+#define MINIMAP_SIZE 10
 #define MINIMAP_POSITIONY (WIN_HEIGHT - MINIMAP_HEIGHT - MINIMAP_MARGIN)
 
 #define INVALID_TYPE 6
@@ -92,7 +93,6 @@ int		get_trgb(int t, int r, int g, int b);
 void	put_pixel_canva(t_image *image, int x, int y, int pixel);
 int		get_pixel_canva(t_image *image, int x, int y);
 void	new_canvas(t_image *canvas, void *mlx, int height, int width);
-void	clear_canvas(t_image *canvas, int height, int width);
 
 
 void	get_map(t_map *map, char *argv[]);

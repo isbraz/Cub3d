@@ -17,7 +17,6 @@ SRCS = src/main.c                     \
 		src/mlx_utils/get_pixel.c     \
 		src/mlx_utils/put_pixel.c     \
 		src/mlx_utils/get_trgb.c      \
-		src/mlx_utils/clear_canvas.c  \
 		src/map/get_map.c             \
 		src/map/verify_map.c          \
 		src/map/verify_walls.c        \
