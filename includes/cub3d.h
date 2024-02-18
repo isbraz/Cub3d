@@ -9,11 +9,12 @@
 
 #include <mlx.h>
 
-#define WIN_WIDTH 1200
-#define WIN_HEIGHT 600
-#define MINIMAP_WIDTH 300
+#define WIN_WIDTH 1600
+#define WIN_HEIGHT 900
+#define MINIMAP_WIDTH 280
 #define MINIMAP_HEIGHT 150
-
+#define MINIMAP_MARGIN 20
+#define MINIMAP_POSITIONY (WIN_HEIGHT - MINIMAP_HEIGHT - MINIMAP_MARGIN)
 
 #define INVALID_TYPE 6
 #define NO 0
@@ -84,6 +85,7 @@ char	**ft_split(char const *s, char c);
 char	**ft_nsplit(char const *s, char c, size_t n);
 int		ft_isnumeric(char *str);
 int		ft_atoi(const char *str);
+int		is_floor(char c);
 
 
 int		get_trgb(int t, int r, int g, int b);
