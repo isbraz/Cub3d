@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/02/17 17:33:40 by user             ###   ########.fr       */
+/*   Updated: 2024/02/18 13:21:02 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	print_temp_obj(t_game *game, int y, int x, int color)
 	{
 		i = x;
 		while (i < (x + SIZE) && i > 0 && i < MINIMAP_WIDTH - 5)
-			put_pixel_canva(&game->minimap, i++, j, color);
+			put_pixel_canva(&game->scene, i++, j, color);
 		j++;
 	}
 }
@@ -65,26 +65,26 @@ static void	print_miniplayer(t_game *game)
 
 void print_border(t_game *game, int height, int width)
 {
-	int i = 0;
-	int color =  get_trgb(0, 0, 0, 255);
-	while (i < width)
-		put_pixel_canva(&game->minimap, i++, 0,color);
-	i = 0;
-	while (i < width)
-		put_pixel_canva(&game->minimap, i++, height,color);
-	i = 0;
+	int i = WIN_HEIGHT - MINIMAP_HEIGHT - 20;
+	// int i = 0;
+	int color = get_trgb(0, 0, 0, 255);
+	// while (i < width)
+	// 	put_pixel_canva(&game->scene, i++, 0,color);
+	// i = 0;
+	// while (i < width)
+	// 	put_pixel_canva(&game->scene, i++, height,color);
+	// i = 0;
 	while (i < height)
-		put_pixel_canva(&game->minimap, 0, i++,color);
-	i = 0;
-	while (i < height)
-		put_pixel_canva(&game->minimap, width, i++,color);
+		put_pixel_canva(&game->scene, WIN_HEIGHT - MINIMAP_HEIGHT - 20, i++,color);
+	// i = 0;
+	// while (i < height)
+	// 	put_pixel_canva(&game->scene, width, i++,color);
 }
 
 void	update_minimap(t_game *game)
 {
-	clear_canvas(&game->minimap, WIN_HEIGHT, WIN_WIDTH);
-	print_border(game, MINIMAP_HEIGHT, MINIMAP_WIDTH);
+	// clear_canvas(&game->scene, WIN_HEIGHT, WIN_WIDTH);
+	// print_border(game, MINIMAP_HEIGHT, MINIMAP_WIDTH);
 	print_minimap(game);
 	print_miniplayer(game);
-	mlx_put_image_to_window(game->mlx.mlx, game->mlx.window, game->minimap.id, 20, WIN_HEIGHT - MINIMAP_HEIGHT - 20);
 }

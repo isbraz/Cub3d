@@ -71,7 +71,6 @@ typedef struct s_mlx {
 typedef struct s_game {
 	t_mlx		mlx;
 	t_map		map;
-	t_image		minimap;
 	t_image		scene;
 	t_player	player;
 }	t_game;
