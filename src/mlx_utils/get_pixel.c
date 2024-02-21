@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_map.c                                       :+:      :+:    :+:   */
+/*   ft_get_pixel.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 08:08:59 by user              #+#    #+#             */
-/*   Updated: 2024/02/14 19:16:32 by user             ###   ########.fr       */
+/*   Created: 2024/02/16 12:08:52 by user              #+#    #+#             */
+/*   Updated: 2024/02/16 12:09:05 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	verify_map(t_map *map)
+int	get_pixel_canva(t_image *image, int x, int y)
 {
-	if (!get_types(map))
-		exit_error(map, TYPES_ERROR);
-	if (!get_spawn(map))
-		exit_error(map, SPAWN_ERROR);
-	if (!verify_breaks(map))
-		exit_error(map, BREAKS_ERROR);
-	if (!verify_walls(map))
-		exit_error(map, WALL_ERROR);
+	return (*(unsigned int *)(image->addr + (y * image->line_length + x
+			* (image->bits_per_pixel / 8))));
 }
