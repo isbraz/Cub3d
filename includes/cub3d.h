@@ -6,6 +6,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include <mlx.h>
 
@@ -78,15 +79,15 @@ typedef struct s_game {
 	t_player	player;
 }	t_game;
 
-typedef struct s_player
-{
-	double pos_x; //player position
-	double pos_y; //player position
-	double dir_x; //the direction of the player
-	double dir_y; //the direction of the player
-	double plane_x; //field of view
-	double plane_y; //field of view
-}	t_player;
+// typedef struct s_player
+// {
+// 	double pos_x; //player position
+// 	double pos_y; //player position
+// 	double dir_x; //the direction of the player
+// 	double dir_y; //the direction of the player
+// 	double plane_x; //field of view
+// 	double plane_y; //field of view
+// }	t_player;
 
 void	exit_error(t_map *map, int status);
 int		ft_strlen(const char *s);
@@ -117,5 +118,8 @@ int		get_spawn(t_map *map);
 void	update_minimap(t_game *game);
 
 void	update_scene(t_game *game);
+
+double	cast_ray(t_map map, double pos_x, double pos_y, double angle);
+
 
 #endif

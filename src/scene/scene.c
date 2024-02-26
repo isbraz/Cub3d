@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 17:41:34 by user              #+#    #+#             */
-/*   Updated: 2024/02/17 18:28:32 by user             ###   ########.fr       */
+/*   Updated: 2024/02/26 15:50:52 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,19 @@ void	update_scene(t_game *game)
 	while (y < WIN_HEIGHT)
 	{
 		x = 0;
-		while (x < WIN_WIDTH)
-		{
-			put_pixel_canva(&game->scene, x, y, get_trgb(0, 55, 255, 55));
-			x++;
-		}
+		if (y > WIN_HEIGHT / 2)
+			while (x < WIN_WIDTH)
+			{
+				put_pixel_canva(&game->scene, x, y, get_trgb(0, 0, 85, 0));
+				x++;
+			}
+		else
+			while (x < WIN_WIDTH)
+			{
+				put_pixel_canva(&game->scene, x, y, get_trgb(0, 0, 160, 230));
+				x++;
+			}
 		y++;
 	}
+	//call dda and put wall
 }
