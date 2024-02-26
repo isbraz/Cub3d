@@ -36,6 +36,8 @@
 #define SPAWN_ERROR 403
 #define TYPES_ERROR 404
 #define WALL_ERROR 405
+#define FOV_ANGLE  3.0 // FOV de 60 graus em radianos
+
 
 typedef struct s_image
 {
