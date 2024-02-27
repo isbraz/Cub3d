@@ -13,7 +13,7 @@ double	cast_ray(t_map map, double pos_x, double pos_y, double angle)
 	//Perform DDA
 	while (1)
 	{
-		if (map.map[(int)ray_y, (int)ray_x] == '1')
+		if (map.map[(int)ray_y][(int)ray_x] == '1')
 		{
 			double distance = sqrt(pow(ray_x - pos_x, 2) + pow(ray_y - pos_y, 2));
 			return (distance);

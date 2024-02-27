@@ -36,7 +36,7 @@
 #define SPAWN_ERROR 403
 #define TYPES_ERROR 404
 #define WALL_ERROR 405
-#define FOV_ANGLE  3.0 // FOV de 60 graus em radianos
+#define FOV_ANGLE  60 // FOV de 60 graus em radianos
 
 
 typedef struct s_image
@@ -55,6 +55,7 @@ typedef struct s_player
 	t_image	sprite;
 	t_image	minimap_sprite;
 	double	position[2];
+	double	direction;
 }	t_player;
 
 typedef struct s_map {
