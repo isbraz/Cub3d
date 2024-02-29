@@ -11,3 +11,36 @@ C 225,30,0
 1000000000N01
 1101111111111
 1111111111111
+
+
+
+
+// static void	print_minimap_square(t_game *game, int x, int y, int color)
+// {
+// 	int	temp_x;
+// 	int	final_y;
+// 	int	final_x;
+
+// 	final_y = y + MINIMAP_SCALE;
+// 	final_x = x + MINIMAP_SCALE;
+// 	while (y < final_y && (y >= 0 && y < MINIMAP_HEIGHT))
+// 	{
+// 		temp_x = x;
+// 		while (temp_x < final_x && (temp_x >= 0 && temp_x < MINIMAP_WIDTH))
+// 		{
+// 			if (y == final_y - 1 || temp_x == final_x - 1)
+// 			{
+// 				put_pixel_canva(&game->scene, \
+// 				(temp_x++) + MINIMAP_POSITIONX, \
+// 				y + MINIMAP_POSITIONY, \
+// 				get_trgb(0,0,0,0));
+// 			}
+// 			else
+// 				put_pixel_canva(&game->scene, \
+// 				(temp_x++) + MINIMAP_POSITIONX, \
+// 				y + MINIMAP_POSITIONY, \
+// 				color);
+// 		}
+// 		y++;	
+// 	}
+// }

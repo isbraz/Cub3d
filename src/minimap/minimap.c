@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/02/22 15:07:35 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/02/28 12:03:53 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void	print_minimap_square(t_game *game, int x, int y, int color)
 
 	final_y = y + MINIMAP_SCALE;
 	final_x = x + MINIMAP_SCALE;
-	while (y < final_y && (y >= 0 && y < MINIMAP_HEIGHT))
+	while (y < final_y - 1 && (y >= 0 && y < MINIMAP_HEIGHT))
 	{
 		temp_x = x;
-		while (temp_x < final_x && (temp_x >= 0 && temp_x < MINIMAP_WIDTH))
+		while (temp_x < final_x - 1 && (temp_x >= 0 && temp_x < MINIMAP_WIDTH))
 			put_pixel_canva(&game->scene, \
 			(temp_x++) + MINIMAP_POSITIONX, \
 			y + MINIMAP_POSITIONY, \
@@ -89,3 +89,29 @@ void	update_minimap(t_game *game)
 	print_minimap_walls(game);
 	print_minimap_player(game);
 }
+
+
+	// //create vertical lines
+	// x = MINIMAP_POSITIONX;
+	//   while (x <= MINIMAP_POSITIONX + MINIMAP_WIDTH)
+    // {
+    //     int y = MINIMAP_POSITIONY;
+    //     while (y <= MINIMAP_POSITIONY + MINIMAP_HEIGHT)
+    //     {
+    //         put_pixel_canva(&game->scene, x, y, get_trgb(0, 0, 101, 0));
+    //         y++;
+    //     }
+    //     x += MINIMAP_SCALE;
+    // }
+	// //create horizontal lines
+	// y = MINIMAP_POSITIONY;
+    // while (y <= MINIMAP_POSITIONY + MINIMAP_HEIGHT)
+    // {
+    //     x = MINIMAP_POSITIONX;
+    //     while (x <= MINIMAP_POSITIONX + MINIMAP_WIDTH)
+    //     {
+    //         put_pixel_canva(&game->scene, x, y, get_trgb(0, 0, 101, 0));
+    //         x++;
+    //     }
+    //     y += MINIMAP_SCALE;
+    // }
