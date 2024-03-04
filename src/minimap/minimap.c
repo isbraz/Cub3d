@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/02/28 12:03:53 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/04 11:38:33 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,55 @@ static void	print_minimap_background(t_game *game)
 	}
 }
 
+
+/**
+ * @brief	This function draw a line using Bresenham algorithm
+ */
+static void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color) 
+{
+    int dx = abs(x1 - x0);
+    int dy = abs(y1 - y0);
+    int sx = x0 < x1 ? 1 : -1;
+    int sy = y0 < y1 ? 1 : -1;
+    int err = dx - dy;
+
+    while (x0 != x1 || y0 != y1)
+    {
+        put_pixel_canva(&game->scene, x0, y0, color);
+        int e2 = 2 * err;
+        if (e2 > -dy)
+        {
+            err -= dy;
+            x0 += sx;
+        }
+        if (e2 < dx)
+        {
+            err += dx;
+            y0 += sy;
+        }
+    }
+}
+
+static void	print_player_view(t_game *game)
+{
+	int	player_x;
+	int	player_y;
+	int	dest_x;
+	int	dest_y;
+
+	player_x = MINIMAP_POSITIONX + (MINIMAP_WIDTH / 2);
+	player_y = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2);
+	dest_x = player_x + (int)(game->player.pdx * MINIMAP_SCALE);
+	dest_y = player_y + (int)(game->player.pdy * MINIMAP_SCALE);
+	draw_line(game, player_x, player_y, dest_x, dest_y, get_trgb(0, 255, 255, 0));
+}
+
 void	update_minimap(t_game *game)
 {
 	print_minimap_background(game);
 	print_minimap_walls(game);
 	print_minimap_player(game);
+	print_player_view(game);
 }
 
 

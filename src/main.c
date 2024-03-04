@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/02/28 12:39:14 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/04 11:31:06 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,31 @@ int	ft_close(t_game *game)
 	return (exit(0), 0);
 }
 
+void	move_vision(int key, t_game *game)
+{
+	if (key == 65361)
+	{
+		if (game->player.pa < 0)
+			game->player.pa += 2 * PI;
+		game->player.pa -= 0.1;
+		game->player.pdx = cos(game->player.pa) * 5;
+		game->player.pdy = sin(game->player.pa) * 5;
+	}
+	if (key == 65363)
+	{
+		if (game->player.pa > (2 * PI))
+			game->player.pa -= 2 * PI;
+		game->player.pa += 0.1;
+		game->player.pdx = cos(game->player.pa) * 5;
+		game->player.pdy = sin(game->player.pa) * 5;
+	}
+}
+
+//arrows up = 65362
+//arrows down = 65364
+//arrows left = 65361
+//arrows right = 65363
+
 void	move_player(int key, t_game *game)
 {
 	int	x;
@@ -28,26 +53,22 @@ void	move_player(int key, t_game *game)
 
 	x = game->player.position[X];
 	y = game->player.position[Y];
-	if (key == 119) //up
+	if (key == 119)
 	{
 		if (y && game->map.map[y - 1][x] != '1')
 			game->player.position[Y] -= 1;
 	}
-	if (key == 115) //down
+	if (key == 115)
 	{
 		if (game->map.map[y + 1][x] != '1')
 			game->player.position[Y] += 1;
 	}
-	if (key == 97) //left
+	if (key == 97)
 	{
 		if (x && game->map.map[y][x - 1] != '1')
 			game->player.position[X] -= 1;
-		if (game->player.pa < 0)
-			game->player.pa += 2 * PI;
-		else 
-			game->player.pa -= 0.1;
 	}
-	if (key == 100) //right
+	if (key == 100)
 	{
 		if (game->map.map[y][x + 1] != '1')
 			game->player.position[X] += 1;
@@ -59,7 +80,8 @@ int	ft_key_listener(int key, t_game *game)
 	if (key == 65307)
 		ft_close(game);
 	move_player(key, game);
-	printf("key pressed: %d\n", key);
+	move_vision(key, game);
+	// printf("key pressed: %d\n", key);
 	return (0);
 }
 
@@ -100,8 +122,3 @@ int main(int argc, char *argv[])
 	raycasting basic idea:
 	use DDA algorithm
 */
-
-//arrows up = 65362
-//arrows down = 65364
-//arrows left = 65361
-//arrows right = 65363
