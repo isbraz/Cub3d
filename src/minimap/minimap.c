@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/04 11:38:33 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:12:57 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	print_minimap_background(t_game *game)
 
 
 /**
- * @brief	This function draw a line using Bresenham algorithm
+ * @brief	This function draw a line using Bresenham algorythm 
  */
 static void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color) 
 {
@@ -123,7 +123,7 @@ static void	print_player_view(t_game *game)
 	player_y = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2);
 	dest_x = player_x + (int)(game->player.pdx * MINIMAP_SCALE);
 	dest_y = player_y + (int)(game->player.pdy * MINIMAP_SCALE);
-	draw_line(game, player_x, player_y, dest_x, dest_y, get_trgb(0, 255, 255, 0));
+	draw_line(game, player_x, player_y, dest_x, dest_y, get_trgb(0, 255, 255, 70));
 }
 
 void	update_minimap(t_game *game)
