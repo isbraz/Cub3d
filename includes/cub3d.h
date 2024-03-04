@@ -12,10 +12,10 @@
 
 #define WIN_WIDTH 800
 #define WIN_HEIGHT 600
-#define MINIMAP_WIDTH 200
-#define MINIMAP_HEIGHT 100
+#define MINIMAP_WIDTH 600
+#define MINIMAP_HEIGHT 300
 #define MINIMAP_MARGIN 20
-#define MINIMAP_SCALE 10
+#define MINIMAP_SCALE 20
 #define MINIMAP_POSITIONY (WIN_HEIGHT - MINIMAP_HEIGHT - MINIMAP_MARGIN)
 #define MINIMAP_POSITIONX (MINIMAP_MARGIN)
 
@@ -36,9 +36,8 @@
 #define SPAWN_ERROR 403
 #define TYPES_ERROR 404
 #define WALL_ERROR 405
-#define FOV_ANGLE  60.0f // FOV de 60 graus em radianos
 #define PI 3.1415926535f
-
+#define FOV_ANGLE  3.1415926535f/3
 
 typedef struct s_image
 {

@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/04 12:12:57 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:15:51 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,30 @@ static void	print_minimap_walls(t_game *game)
 	}
 }
 
+static void	print_minimap_square2(t_game *game, int x, int y, int color)
+{
+	int	temp_x;
+	int	final_y;
+	int	final_x;
+
+	final_y = y + 5;
+	final_x = x + 5;
+	while (y < final_y - 1 && (y >= 0 && y < MINIMAP_HEIGHT))
+	{
+		temp_x = x;
+		while (temp_x < final_x - 1 && (temp_x >= 0 && temp_x < MINIMAP_WIDTH))
+			put_pixel_canva(&game->scene, \
+			(temp_x++) + MINIMAP_POSITIONX, \
+			y + MINIMAP_POSITIONY, \
+			color);
+		y++;
+	}
+}
+
 static void	print_minimap_player(t_game *game)
 {
-	print_minimap_square(game, MINIMAP_WIDTH / 2,
-		MINIMAP_HEIGHT / 2, get_trgb(0, 255, 50, 50));
+	print_minimap_square2(game, (MINIMAP_WIDTH / 2) +10,
+		(MINIMAP_HEIGHT / 2)+10, get_trgb(0, 255, 50, 50));
 }
 
 static void	print_minimap_background(t_game *game)
@@ -85,7 +105,7 @@ static void	print_minimap_background(t_game *game)
 
 
 /**
- * @brief	This function draw a line using Bresenham algorythm 
+ * @brief	This function draw a line using Bresenham algorythm
  */
 static void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color) 
 {
@@ -97,6 +117,7 @@ static void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 
     while (x0 != x1 || y0 != y1)
     {
+		//call dda function
         put_pixel_canva(&game->scene, x0, y0, color);
         int e2 = 2 * err;
         if (e2 > -dy)
@@ -112,6 +133,8 @@ static void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
     }
 }
 
+
+
 static void	print_player_view(t_game *game)
 {
 	int	player_x;
@@ -123,7 +146,7 @@ static void	print_player_view(t_game *game)
 	player_y = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2);
 	dest_x = player_x + (int)(game->player.pdx * MINIMAP_SCALE);
 	dest_y = player_y + (int)(game->player.pdy * MINIMAP_SCALE);
-	draw_line(game, player_x, player_y, dest_x, dest_y, get_trgb(0, 255, 255, 70));
+	draw_line(game, player_x + 10, player_y + 10, dest_x, dest_y, get_trgb(0, 255, 50, 50));
 }
 
 void	update_minimap(t_game *game)
@@ -133,7 +156,6 @@ void	update_minimap(t_game *game)
 	print_minimap_player(game);
 	print_player_view(game);
 }
-
 
 	// //create vertical lines
 	// x = MINIMAP_POSITIONX;

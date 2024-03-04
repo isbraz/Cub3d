@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/04 11:31:06 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:16:31 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ void	move_vision(int key, t_game *game)
 		if (game->player.pa < 0)
 			game->player.pa += 2 * PI;
 		game->player.pa -= 0.1;
-		game->player.pdx = cos(game->player.pa) * 5;
-		game->player.pdy = sin(game->player.pa) * 5;
+		game->player.pdx = cos(game->player.pa) * 3;
+		game->player.pdy = sin(game->player.pa) * 3;
 	}
 	if (key == 65363)
 	{
 		if (game->player.pa > (2 * PI))
 			game->player.pa -= 2 * PI;
 		game->player.pa += 0.1;
-		game->player.pdx = cos(game->player.pa) * 5;
-		game->player.pdy = sin(game->player.pa) * 5;
+		game->player.pdx = cos(game->player.pa) * 3;
+		game->player.pdy = sin(game->player.pa) * 3;
 	}
 }
 
@@ -56,22 +56,22 @@ void	move_player(int key, t_game *game)
 	if (key == 119)
 	{
 		if (y && game->map.map[y - 1][x] != '1')
-			game->player.position[Y] -= 1;
+			game->player.position[Y] -= 0.1;
 	}
 	if (key == 115)
 	{
 		if (game->map.map[y + 1][x] != '1')
-			game->player.position[Y] += 1;
+			game->player.position[Y] += 0.1;
 	}
 	if (key == 97)
 	{
 		if (x && game->map.map[y][x - 1] != '1')
-			game->player.position[X] -= 1;
+			game->player.position[X] -= 0.1;
 	}
 	if (key == 100)
 	{
 		if (game->map.map[y][x + 1] != '1')
-			game->player.position[X] += 1;
+			game->player.position[X] += 0.1;
 	}
 }
 
