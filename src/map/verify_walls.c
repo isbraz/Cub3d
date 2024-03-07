@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:49:26 by user              #+#    #+#             */
-/*   Updated: 2024/02/18 14:41:50 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:00:32 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int	is_open(char **map, int x, int y)
 {
 	if ((!x || map[y][x - 1] == ' ') ||
 		(!map[y][x + 1] || map[y][x + 1] == ' ') ||
-		(!y || ft_strlen(map[y - 1]) < x || map[y - 1][x] == ' ') ||
-		(!map[y + 1] || ft_strlen(map[y + 1]) < x || map[y + 1][x] == ' '))
+		(!y || ft_strlen(map[y - 1]) < x + 1 || map[y - 1][x] == ' ') ||
+		(!map[y + 1] || ft_strlen(map[y + 1]) < x + 1 || map[y + 1][x] == ' '))
 		return (1);
 	return (0);
 }
