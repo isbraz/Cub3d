@@ -1,6 +1,6 @@
 INC_DIR = includes
 MLX_DIR = .mlx
-CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -g  -fsanitize=address #-Wall -Wextra -Werror
 
 SRCS = src/main.c                     \
 		src/utils/ft_strjoin.c        \
@@ -37,12 +37,12 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@cd .mlx && ./configure 2>&1 >/dev/null
 	@echo "mlx compiled!"
-	@$(CC) $(OBJS) -L$(MLX_DIR) -lmlx -I$(MLX_DIR) -lXext -lX11 -lm -lz  -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -L$(MLX_DIR) -lmlx -I$(MLX_DIR) -lXext -lX11 -lm -lz  -o $(NAME)
 	@echo "cub3D compiled!"
 
 .objs/%.o: src/%.c
 	@mkdir -p $(@D)
-	@$(CC) -I$(INC_DIR) -I$(MLX_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INC_DIR) -I$(MLX_DIR) -c $< -o $@
 
 clean:
 	@rm -rf .objs
