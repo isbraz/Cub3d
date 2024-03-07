@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/04 15:16:31 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:49:35 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ void	move_vision(int key, t_game *game)
 		if (game->player.pa < 0)
 			game->player.pa += 2 * PI;
 		game->player.pa -= 0.1;
-		game->player.pdx = cos(game->player.pa) * 3;
-		game->player.pdy = sin(game->player.pa) * 3;
+		game->player.pdx = cos(game->player.pa);
+		game->player.pdy = sin(game->player.pa);
 	}
 	if (key == 65363)
 	{
 		if (game->player.pa > (2 * PI))
 			game->player.pa -= 2 * PI;
 		game->player.pa += 0.1;
-		game->player.pdx = cos(game->player.pa) * 3;
-		game->player.pdy = sin(game->player.pa) * 3;
+		game->player.pdx = cos(game->player.pa);
+		game->player.pdy = sin(game->player.pa);
 	}
 }
 
@@ -55,32 +55,35 @@ void	move_player(int key, t_game *game)
 	y = game->player.position[Y];
 	if (key == 119)
 	{
-		if (y && game->map.map[y - 1][x] != '1')
-			game->player.position[Y] -= 0.1;
+		// if (y && game->map.map[y - 1][x] != '1')
+		// {
+		game->player.position[X] += (game->player.pdx / 2);
+		game->player.position[Y] += (game->player.pdy / 2);
+		// }
 	}
-	if (key == 115)
-	{
-		if (game->map.map[y + 1][x] != '1')
-			game->player.position[Y] += 0.1;
-	}
-	if (key == 97)
-	{
-		if (x && game->map.map[y][x - 1] != '1')
-			game->player.position[X] -= 0.1;
-	}
-	if (key == 100)
-	{
-		if (game->map.map[y][x + 1] != '1')
-			game->player.position[X] += 0.1;
-	}
+	// if (key == 115)
+	// {
+	// 	if (game->map.map[y + 1][x] != '1')
+	// 		game->player.position[Y] += 0.1;
+	// }
+	// if (key == 97)
+	// {
+	// 	if (x && game->map.map[y][x - 1] != '1')
+	// 		game->player.position[X] -= 0.1;
+	// }
+	// if (key == 100)
+	// {
+	// 	if (game->map.map[y][x + 1] != '1')
+	// 		game->player.position[X] += 0.1;
+	// }
 }
 
 int	ft_key_listener(int key, t_game *game)
 {
 	if (key == 65307)
 		ft_close(game);
-	move_player(key, game);
 	move_vision(key, game);
+	move_player(key, game);
 	// printf("key pressed: %d\n", key);
 	return (0);
 }
@@ -100,6 +103,9 @@ void	new_game(t_game *game)
 	new_canvas(&game->scene, game->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
 	game->player.position[X] = game->map.spawn_pos[X];
 	game->player.position[Y] = game->map.spawn_pos[Y];
+	game->player.pa = 2;
+	game->player.pdx = cos(game->player.pa);
+	game->player.pdy = sin(game->player.pa);
 }
 
 int main(int argc, char *argv[])
@@ -119,6 +125,10 @@ int main(int argc, char *argv[])
 }
 
 /*
-	raycasting basic idea:
-	use DDA algorithm
+	utils math function:
+	sqrt();
+
+	soma de vetores:
+	v1x + v2x
+	v1y + v2y
 */
