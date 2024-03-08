@@ -38,6 +38,7 @@
 #define WALL_ERROR 405
 #define PI 3.1415926535f
 #define FOV_ANGLE  3.1415926535f/3
+#define SPEED 0.5f
 
 typedef struct s_image
 {
