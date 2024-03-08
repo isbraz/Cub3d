@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/07 15:49:35 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:58:02 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,41 +41,28 @@ void	move_vision(int key, t_game *game)
 	}
 }
 
-//arrows up = 65362
-//arrows down = 65364
-//arrows left = 65361
-//arrows right = 65363
-
 void	move_player(int key, t_game *game)
 {
-	int	x;
-	int	y;
-
-	x = game->player.position[X];
-	y = game->player.position[Y];
 	if (key == 119)
 	{
-		// if (y && game->map.map[y - 1][x] != '1')
-		// {
-		game->player.position[X] += (game->player.pdx / 2);
-		game->player.position[Y] += (game->player.pdy / 2);
-		// }
+		game->player.position[X] += (game->player.pdx * SPEED);
+		game->player.position[Y] += (game->player.pdy * SPEED);
 	}
-	// if (key == 115)
-	// {
-	// 	if (game->map.map[y + 1][x] != '1')
-	// 		game->player.position[Y] += 0.1;
-	// }
-	// if (key == 97)
-	// {
-	// 	if (x && game->map.map[y][x - 1] != '1')
-	// 		game->player.position[X] -= 0.1;
-	// }
-	// if (key == 100)
-	// {
-	// 	if (game->map.map[y][x + 1] != '1')
-	// 		game->player.position[X] += 0.1;
-	// }
+	if (key == 115)
+	{
+		game->player.position[X] -= (game->player.pdx * SPEED);
+		game->player.position[Y] -= (game->player.pdy * SPEED);
+	}
+	if (key == 97)
+	{
+		game->player.position[X] += (game->player.pdy * SPEED);
+		game->player.position[Y] += (-game->player.pdx * SPEED);
+	}
+	if (key == 100)
+	{
+		game->player.position[X] += (-game->player.pdy * SPEED);
+		game->player.position[Y] += (game->player.pdx * SPEED);
+	}
 }
 
 int	ft_key_listener(int key, t_game *game)
@@ -98,12 +85,15 @@ int	ft_loop(t_game *game)
 
 void	new_game(t_game *game)
 {
+	char	dir;
+
+	dir = game->map.spawn_dir;
 	game->mlx.mlx = mlx_init();
 	game->mlx.window = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D!");
 	new_canvas(&game->scene, game->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
 	game->player.position[X] = game->map.spawn_pos[X];
 	game->player.position[Y] = game->map.spawn_pos[Y];
-	game->player.pa = 2;
+	game->player.pa = ((PI / 2) * (dir == 'S')) + (PI * (dir == 'W')) + (((3 * PI) / 2) * (dir == 'N'));
 	game->player.pdx = cos(game->player.pa);
 	game->player.pdy = sin(game->player.pa);
 }
