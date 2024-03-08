@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/08 15:58:02 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:28:12 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	ft_key_listener(int key, t_game *game)
 		ft_close(game);
 	move_vision(key, game);
 	move_player(key, game);
-	// printf("key pressed: %d\n", key);
 	return (0);
 }
 
