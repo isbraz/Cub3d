@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/07 15:42:11 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:50:43 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,11 @@ static void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 
     while (x0 != x1 || y0 != y1)
     { 
-		if (x0 > WIN_WIDTH || y0 > WIN_HEIGHT)
+		if (get_pixel_canva(&game->scene, x0, y0) != get_trgb(0, 230, 230, 230) && \
+			get_pixel_canva(&game->scene, x0, y0) != get_trgb(0, 255, 50, 50))
 			break;
-		if (get_pixel_canva(&game->scene, x0,y0) == 2105372)
-			break;
+		// if (x0 > WIN_WIDTH || y0 > WIN_HEIGHT)
+		// 	break;
         put_pixel_canva(&game->scene, x0, y0, color);
         int e2 = 2 * err;
         if (e2 > -dy)
@@ -157,28 +158,3 @@ void	update_minimap(t_game *game)
 	print_minimap_player(game);
 	print_player_view(game);
 }
-
-	// //create vertical lines
-	// x = MINIMAP_POSITIONX;
-	//   while (x <= MINIMAP_POSITIONX + MINIMAP_WIDTH)
-    // {
-    //     int y = MINIMAP_POSITIONY;
-    //     while (y <= MINIMAP_POSITIONY + MINIMAP_HEIGHT)
-    //     {
-    //         put_pixel_canva(&game->scene, x, y, get_trgb(0, 0, 101, 0));
-    //         y++;
-    //     }
-    //     x += MINIMAP_SCALE;
-    // }
-	// //create horizontal lines
-	// y = MINIMAP_POSITIONY;
-    // while (y <= MINIMAP_POSITIONY + MINIMAP_HEIGHT)
-    // {
-    //     x = MINIMAP_POSITIONX;
-    //     while (x <= MINIMAP_POSITIONX + MINIMAP_WIDTH)
-    //     {
-    //         put_pixel_canva(&game->scene, x, y, get_trgb(0, 0, 101, 0));
-    //         x++;
-    //     }
-    //     y += MINIMAP_SCALE;
-    // }
