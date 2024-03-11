@@ -127,6 +127,7 @@ void	update_minimap(t_game *game);
 void	update_scene(t_game *game);
 
 double	cast_ray(t_map map, double pos_x, double pos_y, double angle);
-
+void	move_player(int key, t_game *game);
+void	move_vision(int key, t_game *game);
 
 #endif

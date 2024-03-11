@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/08 17:28:12 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/11 10:43:39 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,50 +19,6 @@ int	ft_close(t_game *game)
 	free(game->mlx.mlx);
 	free_map(&game->map);
 	return (exit(0), 0);
-}
-
-void	move_vision(int key, t_game *game)
-{
-	if (key == 65361)
-	{
-		if (game->player.pa < 0)
-			game->player.pa += 2 * PI;
-		game->player.pa -= 0.1;
-		game->player.pdx = cos(game->player.pa);
-		game->player.pdy = sin(game->player.pa);
-	}
-	if (key == 65363)
-	{
-		if (game->player.pa > (2 * PI))
-			game->player.pa -= 2 * PI;
-		game->player.pa += 0.1;
-		game->player.pdx = cos(game->player.pa);
-		game->player.pdy = sin(game->player.pa);
-	}
-}
-
-void	move_player(int key, t_game *game)
-{
-	if (key == 119)
-	{
-		game->player.position[X] += (game->player.pdx * SPEED);
-		game->player.position[Y] += (game->player.pdy * SPEED);
-	}
-	if (key == 115)
-	{
-		game->player.position[X] -= (game->player.pdx * SPEED);
-		game->player.position[Y] -= (game->player.pdy * SPEED);
-	}
-	if (key == 97)
-	{
-		game->player.position[X] += (game->player.pdy * SPEED);
-		game->player.position[Y] += (-game->player.pdx * SPEED);
-	}
-	if (key == 100)
-	{
-		game->player.position[X] += (-game->player.pdy * SPEED);
-		game->player.position[Y] += (game->player.pdx * SPEED);
-	}
 }
 
 int	ft_key_listener(int key, t_game *game)
