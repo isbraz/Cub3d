@@ -27,6 +27,7 @@ SRCS = src/main.c                     \
 		src/scene/scene.c             \
 		src/raycast/dda.c			  \
 		src/scene/moves.c             \
+		src/raycast/raycast.c         \
 
 OBJS = $(patsubst src/%,.objs/%,$(patsubst %.c,%.o,$(SRCS)))
 
