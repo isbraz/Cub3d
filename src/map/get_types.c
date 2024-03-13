@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_types.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:58:26 by user              #+#    #+#             */
-/*   Updated: 2024/02/14 19:15:04 by user             ###   ########.fr       */
+/*   Updated: 2024/03/13 11:52:24 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ static int	get_color(char *color)
 	while (split[index])
 	{
 		if (!ft_isnumeric(split[index]))
-			return (free(split), -1);
+			return (free_double(split), -1);
 		colors[index] = ft_atoi(split[index]);
 		if (colors[index] > 255 || colors[index] < 0)
-			return (free(split), -1);
+			return (free_double(split), -1);
 		index++;
 	}
-	free(split);
+	free_double(split);
 	if (index > 3)
 		return (-1);
 	return (get_trgb(0, colors[0], colors[1], colors[2]));

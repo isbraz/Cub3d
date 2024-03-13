@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/11 10:43:39 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:57:26 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 int	ft_close(t_game *game)
 {
+	if (game->mlx.mlx)
+	{
+		mlx_destroy_image(game->mlx.mlx, game->scene.id);
+	}
 	mlx_destroy_window(game->mlx.mlx, game->mlx.window);
 	mlx_destroy_display(game->mlx.mlx);
 	free(game->mlx.mlx);
@@ -58,6 +62,7 @@ int main(int argc, char *argv[])
 	t_game game;
 	t_player player;
 
+	game.mlx.mlx = NULL;
 	if (argc != 2)
 		exit_error(NULL, ARGUMENTS_ERROR);
 	get_map(&game.map, argv);
