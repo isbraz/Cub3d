@@ -12,8 +12,8 @@
 
 #define WIN_WIDTH 800
 #define WIN_HEIGHT 600
-#define MINIMAP_WIDTH 600
-#define MINIMAP_HEIGHT 300
+#define MINIMAP_WIDTH 300
+#define MINIMAP_HEIGHT 150
 #define MINIMAP_MARGIN 20
 #define MINIMAP_SCALE 20
 #define MINIMAP_POSITIONY (WIN_HEIGHT - MINIMAP_HEIGHT - MINIMAP_MARGIN)
@@ -37,7 +37,7 @@
 #define TYPES_ERROR 404
 #define WALL_ERROR 405
 #define PI 3.1415926535f
-#define FOV_ANGLE  3.1415926535f/3
+#define FOV_ANGLE   60 * (PI / 180)
 #define SPEED 0.5f
 
 typedef struct s_image
@@ -59,7 +59,8 @@ typedef struct s_player
 	double	pdx;
 	double	pdy;
 	double	pa;
-
+	double	planeX;
+	double	planeY;
 }	t_player;
 
 typedef struct s_map {
@@ -85,16 +86,6 @@ typedef struct s_game {
 	t_image		scene;
 	t_player	player;
 }	t_game;
-
-// typedef struct s_player
-// {
-// 	double pos_x; //player position
-// 	double pos_y; //player position
-// 	double dir_x; //the direction of the player
-// 	double dir_y; //the direction of the player
-// 	double plane_x; //field of view
-// 	double plane_y; //field of view
-// }	t_player;
 
 void	exit_error(t_map *map, int status);
 int		ft_strlen(const char *s);
@@ -126,7 +117,8 @@ void	update_minimap(t_game *game);
 
 void	update_scene(t_game *game);
 
-double	cast_ray(t_map map, double pos_x, double pos_y, double angle);
+double	dda(t_map map, double pos_x, double pos_y, double angle);
+void	raycast(t_game *game);
 void	move_player(int key, t_game *game);
 void	move_vision(int key, t_game *game);
 
