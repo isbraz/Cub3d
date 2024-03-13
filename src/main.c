@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/13 11:57:26 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:59:34 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	ft_key_listener(int key, t_game *game)
 {
 	if (key == 65307)
 		ft_close(game);
+	printf("key = %d\n", key);
 	move_vision(key, game);
 	move_player(key, game);
 	return (0);
@@ -55,6 +56,8 @@ void	new_game(t_game *game)
 	game->player.pa = ((PI / 2) * (dir == 'S')) + (PI * (dir == 'W')) + (((3 * PI) / 2) * (dir == 'N'));
 	game->player.pdx = cos(game->player.pa);
 	game->player.pdy = sin(game->player.pa);
+	game->player.planeX = 0;
+	game->player.planeY = 0.66;
 }
 
 int main(int argc, char *argv[])
@@ -75,10 +78,7 @@ int main(int argc, char *argv[])
 }
 
 /*
-	utils math function:
-	sqrt();
-
-	soma de vetores:
-	v1x + v2x
-	v1y + v2y
+	camera plane*
+	FOV*
+	
 */

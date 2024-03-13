@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:43:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/11 10:43:45 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:09:14 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,30 @@
 
 void	move_vision(int key, t_game *game)
 {
-	if (key == 65361)
+	double	oldplaneX;
+	double	oldplaneY;
+
+	if (key == 65361) //left
 	{
 		if (game->player.pa < 0)
 			game->player.pa += 2 * PI;
 		game->player.pa -= 0.1;
 		game->player.pdx = cos(game->player.pa);
 		game->player.pdy = sin(game->player.pa);
+		oldplaneX = game->player.planeX;
+		game->player.planeX = game->player.planeX * cos(0.1) - game->player.planeY * sin(0.1);
+		game->player.planeY = oldplaneX * sin(0.1) + game->player.planeY * cos(0.1);
 	}
-	if (key == 65363)
+	if (key == 65363) //right
 	{
 		if (game->player.pa > (2 * PI))
 			game->player.pa -= 2 * PI;
 		game->player.pa += 0.1;
 		game->player.pdx = cos(game->player.pa);
 		game->player.pdy = sin(game->player.pa);
+		oldplaneX = game->player.planeX;
+		game->player.planeX = game->player.planeX * cos(-0.1) - game->player.planeY * sin(-0.1);
+		game->player.planeY = oldplaneX * sin(-0.1) + game->player.planeY * cos(-0.1);
 	}
 }
 
