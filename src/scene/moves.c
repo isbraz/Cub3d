@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:43:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/14 12:06:09 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:35:40 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,22 @@ void	move_vision(int key, t_game *game)
 
 void	move_player(int key, t_game *game)
 {
-	if (key == 119)
+	if (key == 119 && game->map.map[(int)(game->player.position[Y] + game->player.pdy * SPEED)][(int)(game->player.position[X] + game->player.pdx * SPEED)] != '1')
 	{
 		game->player.position[X] += (game->player.pdx * SPEED);
 		game->player.position[Y] += (game->player.pdy * SPEED);
 	}
-	if (key == 115)
+	if (key == 115 && game->map.map[(int)(game->player.position[Y] - game->player.pdy * SPEED)][(int)(game->player.position[X] - game->player.pdx * SPEED)] != '1')
 	{
 		game->player.position[X] -= (game->player.pdx * SPEED);
 		game->player.position[Y] -= (game->player.pdy * SPEED);
 	}
-	if (key == 97)
+	if (key == 97 && game->map.map[(int)(game->player.position[Y] - game->player.pdx * SPEED)][(int)(game->player.position[X] + game->player.pdy * SPEED)] != '1')
 	{
 		game->player.position[X] += (game->player.pdy * SPEED);
 		game->player.position[Y] += (-game->player.pdx * SPEED);
 	}
-	if (key == 100)
+	if (key == 100 && game->map.map[(int)(game->player.position[Y] + game->player.pdx * SPEED)][(int)(game->player.position[X] - game->player.pdy * SPEED)] != '1')
 	{
 		game->player.position[X] += (-game->player.pdy * SPEED);
 		game->player.position[Y] += (game->player.pdx * SPEED);
