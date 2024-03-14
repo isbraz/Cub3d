@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/08 17:50:43 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:08:09 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ static void	print_minimap_square2(t_game *game, int x, int y, int color)
 
 static void	print_minimap_player(t_game *game)
 {
-	print_minimap_square2(game, (MINIMAP_WIDTH / 2) +10,
-		(MINIMAP_HEIGHT / 2)+10, get_trgb(0, 255, 50, 50));
+	print_minimap_square2(game, (MINIMAP_WIDTH / 2),
+		(MINIMAP_HEIGHT / 2), get_trgb(0, 255, 50, 50));
 }
 
 static void	print_minimap_background(t_game *game)
@@ -148,7 +148,7 @@ static void	print_player_view(t_game *game)
 	player_y = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2);
 	dest_x = player_x + (int)(game->player.pdx * 600);
 	dest_y = player_y + (int)(game->player.pdy * 600);
-	draw_line(game, player_x + 10, player_y + 10, dest_x, dest_y, get_trgb(0, 255, 50, 50));
+	draw_line(game, player_x, player_y, dest_x, dest_y, get_trgb(0, 255, 50, 50));
 }
 
 void	update_minimap(t_game *game)
