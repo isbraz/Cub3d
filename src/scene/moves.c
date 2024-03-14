@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:43:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/13 12:09:14 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:06:09 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	move_vision(int key, t_game *game)
 		game->player.pdx = cos(game->player.pa);
 		game->player.pdy = sin(game->player.pa);
 		oldplaneX = game->player.planeX;
-		game->player.planeX = game->player.planeX * cos(0.1) - game->player.planeY * sin(0.1);
-		game->player.planeY = oldplaneX * sin(0.1) + game->player.planeY * cos(0.1);
+		game->player.planeX = game->player.planeX * cos(-0.1) - game->player.planeY * sin(-0.1);
+		game->player.planeY = oldplaneX * sin(-0.1) + game->player.planeY * cos(-0.1);
 	}
 	if (key == 65363) //right
 	{
@@ -36,8 +36,8 @@ void	move_vision(int key, t_game *game)
 		game->player.pdx = cos(game->player.pa);
 		game->player.pdy = sin(game->player.pa);
 		oldplaneX = game->player.planeX;
-		game->player.planeX = game->player.planeX * cos(-0.1) - game->player.planeY * sin(-0.1);
-		game->player.planeY = oldplaneX * sin(-0.1) + game->player.planeY * cos(-0.1);
+		game->player.planeX = game->player.planeX * cos(0.1) - game->player.planeY * sin(0.1);
+		game->player.planeY = oldplaneX * sin(0.1) + game->player.planeY * cos(0.1);
 	}
 }
 

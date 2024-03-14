@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:25:55 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/13 12:41:14 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:20:57 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	raycast(t_game *game)
 
 	for (int x = 0; x < WIN_WIDTH; x++)
 	{
-		double cameraX = 2 * x / (double)WIN_WIDTH - 1;
-		double raydirX = game->player.pdx + planeX * cameraX;
+		double cameraX = 2 * x / (double)WIN_HEIGHT - 1;
 		double raydirY = game->player.pdy + planeY * cameraX;
+		double raydirX = game->player.pdx + planeX * cameraX;
 		//which box of the map we're in
 		int mapX = (int)game->player.position[X];
 		int mapY = (int)game->player.position[Y];
@@ -112,13 +112,13 @@ void	raycast(t_game *game)
 		if (game->map.map[mapY][mapX] == '1') 
 			hit = 1;
       }
-	  
+
 		//Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!) ***
     	if(side == 0)
 			perpWallDist = (sideDistX - deltaDistX);
     	else
 			perpWallDist = (sideDistY - deltaDistY);
-		
+
 		//Calculate height of line to draw on screen
 		int lineHeight = (int)(WIN_HEIGHT / perpWallDist);
 
@@ -130,6 +130,6 @@ void	raycast(t_game *game)
       	if(drawEnd > WIN_HEIGHT)
 			drawEnd = WIN_HEIGHT - 1;
 			
-		draw_line(game, x, drawStart, x, drawEnd, get_trgb(0, 255, 0, 0));
+		draw_line(game,  x, drawStart, x, drawEnd, get_trgb(0, 255, 0, 0));
 	}
 }
