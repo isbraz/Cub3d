@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:25:55 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/14 18:16:56 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:38:27 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,16 @@ void	raycast(t_game *game)
 {
 	double	planeX = game->player.planeX;
 	double	planeY = game->player.planeY;
+	t_image img;
 
+	img.id = mlx_xpm_file_to_image(game->mlx.mlx, "src/textures/wall1.xpm", &img.width, &img.height);
+	if (img.id == NULL)
+	{
+    	// Handle error, e.g., print an error message and exit the program
+    	fprintf(stderr, "Failed to load image\n");
+    	exit(1);
+	}
+	img.addr = mlx_get_data_addr(img.id, &img.bits_per_pixel, &img.line_length, &img.endian);
 	for (int x = 0; x < WIN_WIDTH; x++)
 	{
 		double cameraX = 2 * x / (double)WIN_HEIGHT - 1;
@@ -130,6 +139,28 @@ void	raycast(t_game *game)
       	if(drawEnd > WIN_HEIGHT)
 			drawEnd = WIN_HEIGHT - 1;
 			
-		draw_line(game,  x, drawStart, x, drawEnd, get_trgb(0, 255, 0, 0));
+		double wallX; //where exactly the wall was hit
+		if (side == 0)
+			wallX = game->player.position[Y] + perpWallDist * raydirY;
+		else
+			wallX = game->player.position[X] + perpWallDist * raydirX;
+		wallX -= floor((wallX));
+		int texX = (int)(wallX * (double)(img.width));
+		if(side == 0 && raydirX > 0)
+			texX = img.width - texX - 1;
+		if(side == 1 && raydirY < 0)
+			texX = img.width - texX - 1;
+		for (int y = drawStart; y < drawEnd; y++)
+		{
+			int d = y * 256 - WIN_HEIGHT * 128 + lineHeight * 128; //256 and 128 factors to avoid floats
+			int texY = ((d * img.height) / lineHeight) / 256;
+			int color = get_pixel_canva(&img, texX, texY);
+			if (side == 1)
+				color = (color >> 1) & 8355711;
+			put_pixel_canva(&game->scene, x, y, color);
+			// draw_line(game, x, y, x, y, color);
+		}
+		// draw_line(game,  x, drawStart, x, drawEnd, get_trgb(0, 255, 0, 0));
 	}
+	
 }
