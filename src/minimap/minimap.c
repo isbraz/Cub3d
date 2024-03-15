@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/15 11:57:29 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:38:06 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,51 +103,57 @@ static void	print_minimap_background(t_game *game)
 	}
 }
 
+
 /**
  * @brief	This function draw a line using Bresenham algorythm
  */
-static void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color) 
+static void draw_line(t_game *game, int x1, int y1)
 {
-    int dx = abs(x1 - x0);
-    int dy = abs(y1 - y0);
-    int sx = x0 < x1 ? 1 : -1;
-    int sy = y0 < y1 ? 1 : -1;
-    int err = dx - dy;
+	int	err;
+	int	e2;
+	int	x0;
+	int	y0;
 
-    while (x0 != x1 || y0 != y1)
-    { 
+	x0 = MINIMAP_POSITIONX + (MINIMAP_WIDTH / 2) + 2;
+	y0 = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2) + 2;
+	err = abs(x1 - x0) - abs(y1 - y0);
+	while (x0 != x1 || y0 != y1)
+	{
 		if (get_pixel_canva(&game->scene, x0, y0) != get_trgb(0, 230, 230, 230) && \
-			get_pixel_canva(&game->scene, x0, y0) != get_trgb(0, 255, 50, 50))
-			break;
-		// if (x0 > WIN_WIDTH || y0 > WIN_HEIGHT)
-		// 	break;
-        put_pixel_canva(&game->scene, x0, y0, color);
-        int e2 = 2 * err;
-        if (e2 > -dy)
-        {
-            err -= dy;
-            x0 += sx;
-        }
-        if (e2 < dx)
-        {
-            err += dx;
-            y0 += sy;
-        }
-    }
+				get_pixel_canva(&game->scene, x0, y0) != get_trgb(0, 255, 50, 50))
+				break;
+		put_pixel_canva(&game->scene, x0, y0, get_trgb(0, 255, 50, 50));
+		e2 = 2 * err;
+		if (e2 > -abs(y1 - y0))
+		{
+				err -= abs(y1 - y0);
+				x0 += x0 < x1 ? 1 : -1;
+		}
+		if (e2 < abs(x1 - x0))
+		{
+				err += abs(x1 - x0);
+				y0 += y0 < y1 ? 1 : -1;
+		}
+	}
 }
 
 static void	print_player_view(t_game *game)
 {
-	int	player_x;
-	int	player_y;
-	int	dest_x;
-	int	dest_y;
+	int		dest_x;
+	int		dest_y;
+	double	new_x;
+	double	new_y;
 
-	player_x = MINIMAP_POSITIONX + (MINIMAP_WIDTH / 2);
-	player_y = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2);
-	dest_x = player_x + (int)(game->player.pdx * 600);
-	dest_y = player_y + (int)(game->player.pdy * 600);
-	draw_line(game, player_x + 2, player_y + 2, dest_x, dest_y, get_trgb(0, 255, 50, 50));
+	int start = 30;
+	while (start >= -30)
+	{
+		new_x = game->player.pdx * cos(start*PI/180) - game->player.pdy * sin(start*PI/180);
+		new_y = game->player.pdx * sin(start*PI/180) + game->player.pdy * cos(start*PI/180);
+		dest_x = MINIMAP_POSITIONX + (MINIMAP_WIDTH / 2) + (int)(new_x * 600);
+		dest_y = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2) + (int)(new_y * 600);
+		draw_line(game, dest_x, dest_y);
+		start--;
+	}
 }
 
 void	update_minimap(t_game *game)
