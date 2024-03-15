@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/15 12:51:20 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:42:33 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,32 +59,6 @@ static void	print_minimap_walls(t_game *game)
 	}
 }
 
-static void	print_minimap_square2(t_game *game, int x, int y, int color)
-{
-	int	temp_x;
-	int	final_y;
-	int	final_x;
-
-	final_y = y + 5;
-	final_x = x + 5;
-	while (y < final_y && (y >= 0 && y < MINIMAP_HEIGHT))
-	{
-		temp_x = x;
-		while (temp_x < final_x && (temp_x >= 0 && temp_x < MINIMAP_WIDTH))
-			put_pixel_canva(&game->scene, \
-			(temp_x++) + MINIMAP_POSITIONX, \
-			y + MINIMAP_POSITIONY, \
-			color);
-		y++;
-	}
-}
-
-static void	print_minimap_player(t_game *game)
-{
-	print_minimap_square2(game, (MINIMAP_WIDTH / 2),
-		(MINIMAP_HEIGHT / 2), get_trgb(0, 255, 50, 50));
-}
-
 static void	print_minimap_background(t_game *game)
 {
 	int	y;
@@ -107,14 +81,17 @@ static void	print_player_view(t_game *game)
 {
 	int		dest_x;
 	int		dest_y;
+	int		start;
 	double	new_x;
 	double	new_y;
 
-	int start = 30;
+	start = 30;
 	while (start >= -30)
 	{
-		new_x = game->player.pdx * cos(start*PI/180) - game->player.pdy * sin(start*PI/180);
-		new_y = game->player.pdx * sin(start*PI/180) + game->player.pdy * cos(start*PI/180);
+		new_x = game->player.pdx * cos(start * PI / 180) - \
+			game->player.pdy * sin(start * PI / 180);
+		new_y = game->player.pdx * sin(start * PI / 180) + \
+			game->player.pdy * cos(start * PI / 180);
 		dest_x = MINIMAP_POSITIONX + (MINIMAP_WIDTH / 2) + (int)(new_x * 600);
 		dest_y = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2) + (int)(new_y * 600);
 		draw_view_line(game, dest_x, dest_y);
@@ -126,6 +103,5 @@ void	update_minimap(t_game *game)
 {
 	print_minimap_background(game);
 	print_minimap_walls(game);
-	print_minimap_player(game);
 	print_player_view(game);
 }
