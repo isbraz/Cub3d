@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:25:55 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/15 17:41:05 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:26:41 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@
 
 void	raycast(t_game *game)
 {
-	double	planeX = game->player.planeX;
-	double	planeY = game->player.planeY;
+	double	planeX = game->player.plane[X];
+	double	planeY = game->player.plane[Y];
 
 	for (int x = 0; x < WIN_WIDTH; x++)
 	{
 		double cameraX = 2 * x / (double)WIN_HEIGHT - 1;
-		double raydirY = game->player.pdy + planeY * cameraX;
-		double raydirX = game->player.pdx + planeX * cameraX;
+		double raydirY = game->player.delta[Y] + planeY * cameraX;
+		double raydirX = game->player.delta[X] + planeX * cameraX;
 		//which box of the map we're in
 		int mapX = (int)game->player.position[X];
 		int mapY = (int)game->player.position[Y];

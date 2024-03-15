@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/15 18:18:45 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:26:12 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ void	new_game(t_game *game)
 	game->wall_textures[0].addr = mlx_get_data_addr(game->wall_textures[0].id, &game->wall_textures[0].bits_per_pixel, &game->wall_textures[0].line_length, &game->wall_textures[0].endian);
 	game->player.position[X] = game->map.spawn_pos[X];
 	game->player.position[Y] = game->map.spawn_pos[Y];
-	game->player.pa = ((PI / 2) * (dir == 'S')) + (PI * (dir == 'W')) + (((3 * PI) / 2) * (dir == 'N'));
-	game->player.pdx = cos(game->player.pa);
-	game->player.pdy = sin(game->player.pa);
-	game->player.planeX = ((-0.5) * (dir == 'S')) + ((0.5) * (dir == 'N'));
-	game->player.planeY = ((-0.5) * (dir == 'W')) + ((0.5) * (dir == 'E'));
+	game->player.angle = ((PI / 2) * (dir == 'S')) + (PI * (dir == 'W')) + (((3 * PI) / 2) * (dir == 'N'));
+	game->player.delta[X] = cos(game->player.angle);
+	game->player.delta[Y] = sin(game->player.angle);
+	game->player.plane[X] = ((-0.5) * (dir == 'S')) + ((0.5) * (dir == 'N'));
+	game->player.plane[Y] = ((-0.5) * (dir == 'W')) + ((0.5) * (dir == 'E'));
 }
 
 int main(int argc, char *argv[])

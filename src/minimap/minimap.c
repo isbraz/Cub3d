@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/15 17:59:59 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:19:59 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ static void	print_player_view(t_game *game)
 	double	new[2];
 	double	vec[2];
 
-	vec[X] = game->player.pdx;
-	vec[Y] = game->player.pdy;
+	vec[X] = game->player.delta[X];
+	vec[Y] = game->player.delta[Y];
 	new[X] = 1;
 	new[Y] = 0;
 	start = 30;

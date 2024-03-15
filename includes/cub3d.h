@@ -53,14 +53,10 @@ typedef struct s_image
 
 typedef struct s_player
 {
-	t_image	sprite;
-	t_image	minimap_sprite;
 	double	position[2];
-	double	pdx;
-	double	pdy;
-	double	pa;
-	double	planeX;
-	double	planeY;
+	double	plane[2];
+	double	delta[2];
+	double	angle;
 }	t_player;
 
 typedef struct s_map {
