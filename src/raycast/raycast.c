@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:25:55 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/14 16:20:57 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:16:56 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 		// if (get_pixel_canva(&game->scene, x0, y0) != get_trgb(0, 230, 230, 230) && \
 		// 	get_pixel_canva(&game->scene, x0, y0) != get_trgb(0, 255, 50, 50))
 		// 	break;
-		if (x0 > WIN_WIDTH || y0 > WIN_HEIGHT)
+		if (x0 >= WIN_WIDTH || y0 >= WIN_HEIGHT || y0 < 0 || x0 < 0)
 			break;
         put_pixel_canva(&game->scene, x0, y0, color);
         int e2 = 2 * err;
