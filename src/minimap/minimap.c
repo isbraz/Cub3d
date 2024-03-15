@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/15 13:42:33 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:59:59 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,19 @@ static void	print_player_view(t_game *game)
 	int		dest_x;
 	int		dest_y;
 	int		start;
-	double	new_x;
-	double	new_y;
+	double	new[2];
+	double	vec[2];
 
+	vec[X] = game->player.pdx;
+	vec[Y] = game->player.pdy;
+	new[X] = 1;
+	new[Y] = 0;
 	start = 30;
 	while (start >= -30)
 	{
-		new_x = game->player.pdx * cos(start * PI / 180) - \
-			game->player.pdy * sin(start * PI / 180);
-		new_y = game->player.pdx * sin(start * PI / 180) + \
-			game->player.pdy * cos(start * PI / 180);
-		dest_x = MINIMAP_POSITIONX + (MINIMAP_WIDTH / 2) + (int)(new_x * 600);
-		dest_y = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2) + (int)(new_y * 600);
+		rotate_vector(vec, new, start);
+		dest_x = MINIMAP_POSITIONX + (MINIMAP_WIDTH / 2) + (int)(new[X] * 600);
+		dest_y = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2) + (int)(new[Y] * 600);
 		draw_view_line(game, dest_x, dest_y);
 		start--;
 	}

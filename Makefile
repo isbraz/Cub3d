@@ -1,6 +1,6 @@
 INC_DIR = includes
 MLX_DIR = .mlx
-CFLAGS = -g  -fsanitize=address #-Wall -Wextra -Werror
+CFLAGS = -g #-fsanitize=address #-Wall -Wextra -Werror
 
 SRCS = src/main.c                     \
 		src/utils/ft_strjoin.c        \
@@ -13,6 +13,7 @@ SRCS = src/main.c                     \
 		src/utils/ft_isnumeric.c      \
 		src/utils/ft_atoi.c           \
 		src/utils/is_floor.c          \
+		src/utils/rotate_vector.c     \
 		src/mlx_utils/new_canvas.c    \
 		src/mlx_utils/get_pixel.c     \
 		src/mlx_utils/put_pixel.c     \
