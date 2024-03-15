@@ -85,6 +85,7 @@ typedef struct s_game {
 	t_map		map;
 	t_image		scene;
 	t_player	player;
+	t_image		wall_textures[4];
 }	t_game;
 
 void	exit_error(t_map *map, int status);
