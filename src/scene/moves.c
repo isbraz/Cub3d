@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:43:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/14 16:35:40 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:00:57 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	move_vision(int key, t_game *game)
 	double	oldplaneX;
 	double	oldplaneY;
 
-	if (key == 65361) //left
+	if (key == 65361)
 	{
 		if (game->player.pa < 0)
 			game->player.pa += 2 * PI;
@@ -28,7 +28,7 @@ void	move_vision(int key, t_game *game)
 		game->player.planeX = game->player.planeX * cos(-0.1) - game->player.planeY * sin(-0.1);
 		game->player.planeY = oldplaneX * sin(-0.1) + game->player.planeY * cos(-0.1);
 	}
-	if (key == 65363) //right
+	if (key == 65363)
 	{
 		if (game->player.pa > (2 * PI))
 			game->player.pa -= 2 * PI;
