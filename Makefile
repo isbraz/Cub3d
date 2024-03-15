@@ -24,6 +24,7 @@ SRCS = src/main.c                     \
 		src/map/get_types.c           \
 		src/map/get_spawn.c           \
 		src/minimap/minimap.c         \
+		src/minimap/draw_view_line.c  \
 		src/scene/scene.c             \
 		src/raycast/dda.c			  \
 		src/scene/moves.c             \

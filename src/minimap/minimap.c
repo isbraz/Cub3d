@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/15 12:38:06 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:51:20 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,40 +103,6 @@ static void	print_minimap_background(t_game *game)
 	}
 }
 
-
-/**
- * @brief	This function draw a line using Bresenham algorythm
- */
-static void draw_line(t_game *game, int x1, int y1)
-{
-	int	err;
-	int	e2;
-	int	x0;
-	int	y0;
-
-	x0 = MINIMAP_POSITIONX + (MINIMAP_WIDTH / 2) + 2;
-	y0 = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2) + 2;
-	err = abs(x1 - x0) - abs(y1 - y0);
-	while (x0 != x1 || y0 != y1)
-	{
-		if (get_pixel_canva(&game->scene, x0, y0) != get_trgb(0, 230, 230, 230) && \
-				get_pixel_canva(&game->scene, x0, y0) != get_trgb(0, 255, 50, 50))
-				break;
-		put_pixel_canva(&game->scene, x0, y0, get_trgb(0, 255, 50, 50));
-		e2 = 2 * err;
-		if (e2 > -abs(y1 - y0))
-		{
-				err -= abs(y1 - y0);
-				x0 += x0 < x1 ? 1 : -1;
-		}
-		if (e2 < abs(x1 - x0))
-		{
-				err += abs(x1 - x0);
-				y0 += y0 < y1 ? 1 : -1;
-		}
-	}
-}
-
 static void	print_player_view(t_game *game)
 {
 	int		dest_x;
@@ -151,7 +117,7 @@ static void	print_player_view(t_game *game)
 		new_y = game->player.pdx * sin(start*PI/180) + game->player.pdy * cos(start*PI/180);
 		dest_x = MINIMAP_POSITIONX + (MINIMAP_WIDTH / 2) + (int)(new_x * 600);
 		dest_y = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2) + (int)(new_y * 600);
-		draw_line(game, dest_x, dest_y);
+		draw_view_line(game, dest_x, dest_y);
 		start--;
 	}
 }

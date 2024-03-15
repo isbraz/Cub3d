@@ -113,6 +113,7 @@ int		verify_walls(t_map *map);
 int		get_types(t_map *map);
 int		get_spawn(t_map *map);
 
+void	draw_view_line(t_game *game, int x1, int y1);
 void	update_minimap(t_game *game);
 
 void	update_scene(t_game *game);
