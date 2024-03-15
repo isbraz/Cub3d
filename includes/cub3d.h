@@ -97,6 +97,7 @@ char	**ft_nsplit(char const *s, char c, size_t n);
 int		ft_isnumeric(char *str);
 int		ft_atoi(const char *str);
 int		is_floor(char c);
+void		rotate_vector(double vec[2], double dest[2], int degree);
 
 
 int		get_trgb(int t, int r, int g, int b);
