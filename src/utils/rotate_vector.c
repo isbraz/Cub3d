@@ -12,7 +12,7 @@
 
 #include <cub3d.h>
 
-int	rotate_vector(double vec[2], double dest[2], int degree)
+void	rotate_vector(double vec[2], double dest[2], int degree)
 {
 	dest[X] = vec[X] * cos(degree * PI / 180) - vec[Y] * sin(degree * PI / 180);
 	dest[Y] = vec[X] * sin(degree * PI / 180) + vec[Y] * cos(degree * PI / 180);
