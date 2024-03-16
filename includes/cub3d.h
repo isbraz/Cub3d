@@ -19,6 +19,8 @@
 #define MINIMAP_POSITIONY (WIN_HEIGHT - MINIMAP_HEIGHT - MINIMAP_MARGIN)
 #define MINIMAP_POSITIONX (MINIMAP_MARGIN)
 
+# define RAY_COLOR 16724787
+
 #define INVALID_TYPE 6
 #define NO 0
 #define SO 1
@@ -84,6 +86,8 @@ typedef struct s_game {
 	t_image		wall_textures[4];
 }	t_game;
 
+typedef void	(*t_draw_walls)(t_game*, int[2], int, char);
+
 void	exit_error(t_map *map, int status);
 int		ft_strlen(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
@@ -113,6 +117,9 @@ int		get_spawn(t_map *map);
 
 void	draw_view_line(t_game *game, int x1, int y1);
 void	update_minimap(t_game *game);
+void	draw_minimap(t_game *game, t_draw_walls f, int color);
+void draw_space(t_game *game, int vec[2], int color, char c);
+void draw_walls(t_game *game, int vec[2], int color, char c);
 
 void	update_scene(t_game *game);
 

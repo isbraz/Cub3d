@@ -6,60 +6,13 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/15 19:15:56 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:12:07 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static void	print_minimap_square(t_game *game, int x, int y, int color)
-{
-	int	temp_x;
-	int	final_y;
-	int	final_x;
-
-	final_y = y + MINIMAP_SCALE;
-	final_x = x + MINIMAP_SCALE;
-	while (y < final_y && (y >= 0 && y < MINIMAP_HEIGHT))
-	{
-		temp_x = x;
-		while (temp_x < final_x && (temp_x >= 0 && temp_x < MINIMAP_WIDTH))
-			put_pixel_canva(&game->scene, \
-			(temp_x++) + MINIMAP_POSITIONX, \
-			y + MINIMAP_POSITIONY, \
-			color);
-		y++;
-	}
-}
-
-static void	print_minimap_walls(t_game *game)
-{
-	int	y_middle;
-	int	x_middle;
-	int	y;
-	int	x;
-
-	y = 0;
-	x = 0;
-	while (game->map.map[y])
-	{
-		x = 0;
-		while (game->map.map[y][x])
-		{
-			x_middle = (x * MINIMAP_SCALE) + (MINIMAP_WIDTH / 2);
-			y_middle = (y * MINIMAP_SCALE) + (MINIMAP_HEIGHT / 2);
-			if (is_floor(game->map.map[y][x]))
-				print_minimap_square(game, \
-				x_middle - (game->player.position[X] * MINIMAP_SCALE), \
-				y_middle - (game->player.position[Y] * MINIMAP_SCALE), \
-				get_trgb(0, 230, 230, 230));
-			x++;
-		}
-		y++;
-	}
-}
-
-static void	print_minimap_background(t_game *game)
+static void	draw_minimap_background(t_game *game)
 {
 	int	y;
 	int	x;
@@ -77,7 +30,7 @@ static void	print_minimap_background(t_game *game)
 	}
 }
 
-static void	print_player_view(t_game *game)
+static void	draw_player_view(t_game *game)
 {
 	int		dest_x;
 	int		dest_y;
@@ -97,7 +50,8 @@ static void	print_player_view(t_game *game)
 
 void	update_minimap(t_game *game)
 {
-	print_minimap_background(game);
-	print_minimap_walls(game);
-	print_player_view(game);
+	draw_minimap_background(game);
+	draw_minimap(game, draw_space, get_trgb(0, 230, 230, 230));
+	draw_minimap(game, draw_walls, get_trgb(0, 32, 32, 28));
+	draw_player_view(game);
 }
