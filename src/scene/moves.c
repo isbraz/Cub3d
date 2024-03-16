@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:43:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/16 13:07:31 by user             ###   ########.fr       */
+/*   Updated: 2024/03/17 14:19:35 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	move_player(int key, t_game *game)
 	double new[2];
 	if (key != 119 && key != 115 && key != 97 && key != 100)
 		return ;
+<<<<<<< HEAD
 	if (key == 119 && game->map.map[(int)(game->player.position[Y] + game->player.delta[Y] * SPEED)][(int)(game->player.position[X] + game->player.delta[X] * SPEED)] != '1')
 		rotate_vector(game->player.delta, new, 0);
 	if (key == 115 && game->map.map[(int)(game->player.position[Y] - game->player.delta[Y] * SPEED)][(int)(game->player.position[X] - game->player.delta[X] * SPEED)] != '1')
@@ -125,6 +126,18 @@ void	move_player(int key, t_game *game)
 		rotate_vector(game->player.delta, new, 90);
 	if (has_collison(game, new))
 		return;
+=======
+	if (key == 119)
+		rotate_vector(game->player.delta, new, 0);
+	if (key == 115)
+		rotate_vector(game->player.delta, new, 180);
+	if (key == 97)
+		rotate_vector(game->player.delta, new, 270);
+	if (key == 100)
+		rotate_vector(game->player.delta, new, 90);
+	if (has_collison(game, new))
+		return ;
+>>>>>>> 8c15a11 (add collison)
 	game->player.position[X] += (new[X] * SPEED);
 	game->player.position[Y] += (new[Y] * SPEED);
 }
