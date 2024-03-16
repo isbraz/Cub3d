@@ -28,7 +28,6 @@ SRCS = src/main.c                     \
 		src/minimap/draw_view_line.c  \
 		src/minimap/draw_minimap.c    \
 		src/scene/scene.c             \
-		src/raycast/dda.c			  \
 		src/scene/moves.c             \
 		src/raycast/raycast.c         \
 

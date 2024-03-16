@@ -84,6 +84,7 @@ typedef struct s_game {
 	t_image		scene;
 	t_player	player;
 	t_image		wall_textures[4];
+	int		show_map;
 }	t_game;
 
 typedef void	(*t_draw_walls)(t_game*, int[2], int, char);
@@ -123,7 +124,6 @@ void draw_walls(t_game *game, int vec[2], int color, char c);
 
 void	update_scene(t_game *game);
 
-double	dda(t_map map, double pos_x, double pos_y, double angle);
 void	raycast(t_game *game);
 void	move_player(int key, t_game *game);
 void	move_vision(int key, t_game *game);
