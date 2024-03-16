@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:25:55 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/15 18:26:41 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:15:38 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 //     while (x0 != x1 || y0 != y1)
 //     { 
 // 		// if (get_pixel_canva(&game->scene, x0, y0) != get_trgb(0, 230, 230, 230) && \
-// 		// 	get_pixel_canva(&game->scene, x0, y0) != get_trgb(0, 255, 50, 50))
+// 		// 	get_pixel_canva(&game->scene, x0, y0) != RAY_COLOR)
 // 		// 	break;
 // 		if (x0 >= WIN_WIDTH || y0 >= WIN_HEIGHT || y0 < 0 || x0 < 0)
 // 			break;
@@ -145,6 +145,8 @@ void	raycast(t_game *game)
 		{
 			int d = y * 256 - WIN_HEIGHT * 128 + lineHeight * 128; //256 and 128 factors to avoid floats
 			int texY = ((d * game->wall_textures->height) / lineHeight) / 256;
+			if (texY <= -1 || texX <= -1)
+				return ;
 			int color = get_pixel_canva(&game->wall_textures[0], texX, texY);
 			if (side == 1)
 				color = (color >> 1) & 8355711;
