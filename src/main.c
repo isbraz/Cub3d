@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/15 18:26:12 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:30:21 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	ft_key_listener(int key, t_game *game)
 {
 	if (key == 65307)
 		ft_close(game);
-	// printf("key = %d\n", key);
+	if (key == 109)
+		game->show_map ^= 1;
 	move_vision(key, game);
 	move_player(key, game);
 	return (0);
@@ -38,7 +39,8 @@ int	ft_key_listener(int key, t_game *game)
 int	ft_loop(t_game *game)
 {
 	update_scene(game);
-	update_minimap(game);
+	if (game->show_map)
+		update_minimap(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.window, game->scene.id, 0, 0);
 	return (0);
 }
@@ -48,6 +50,7 @@ void	new_game(t_game *game)
 	char	dir;
 
 	dir = game->map.spawn_dir;
+	game->show_map = 1;
 	game->mlx.mlx = mlx_init();
 	game->mlx.window = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D!");
 	new_canvas(&game->scene, game->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
@@ -80,9 +83,3 @@ int main(int argc, char *argv[])
 	mlx_loop(game.mlx.mlx);
 	return (0);
 }
-
-/*
-	camera plane*
-	FOV*
-	
-*/
