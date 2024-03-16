@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:36:06 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/02/11 16:39:28 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/16 18:20:35 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static char	**fill_array(char const *s, char c, char **newstr, size_t n)
 
 char	**ft_nsplit(char const *s, char c, size_t n)
 {
-	char	**array;
+	char		**array;
 	size_t		index;
 	size_t		words;
 
