@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 12:39:24 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/15 13:25:14 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:15:41 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static void	update_pixel(int *pixel, int next)
 		*pixel += -1;
 }
 
-static int	is_wall(t_game *game, int pixelx, int pixely)
+static int	is_wall(t_game *game, int pixel[2])
 {
 	int	curr;
 
-	curr = get_pixel_canva(&game->scene, pixelx, pixely);
-	if (curr != get_trgb(0, 230, 230, 230) && curr != get_trgb(0, 255, 50, 50))
+	curr = get_pixel_canva(&game->scene, pixel[X], pixel[Y]);
+	if (curr != get_trgb(0, 230, 230, 230) && curr != RAY_COLOR)
 		return (1);
 	return (0);
 }
@@ -34,27 +34,26 @@ void	draw_view_line(t_game *game, int finalX, int finalY)
 {
 	int	err;
 	int	temp;
-	int	pixelx;
-	int	pixely;
+	int	pixel[2];
 
-	pixelx = MINIMAP_POSITIONX + (MINIMAP_WIDTH / 2) + 2;
-	pixely = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2) + 2;
-	err = abs(finalX - pixelx) - abs(finalY - pixely);
-	while (pixelx != finalX || pixely != finalY)
+	pixel[X] = MINIMAP_POSITIONX + (MINIMAP_WIDTH / 2) + 2;
+	pixel[Y] = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2) + 2;
+	err = abs(finalX - pixel[X]) - abs(finalY - pixel[Y]);
+	while (pixel[X] != finalX || pixel[Y] != finalY)
 	{
-		if (is_wall(game, pixelx, pixely))
+		if (is_wall(game, pixel))
 			break ;
-		put_pixel_canva(&game->scene, pixelx, pixely, get_trgb(0, 255, 50, 50));
+		put_pixel_canva(&game->scene, pixel[X], pixel[Y], RAY_COLOR);
 		temp = 2 * err;
-		if (temp > -abs(finalY - pixely))
+		if (temp > -abs(finalY - pixel[Y]))
 		{
-			err -= abs(finalY - pixely);
-			update_pixel(&pixelx, finalX);
+			err -= abs(finalY - pixel[Y]);
+			update_pixel(&pixel[X], finalX);
 		}
-		if (temp < abs(finalX - pixelx))
+		if (temp < abs(finalX - pixel[X]))
 		{
-			err += abs(finalX - pixelx);
-			update_pixel(&pixely, finalY);
+			err += abs(finalX - pixel[X]);
+			update_pixel(&pixel[Y], finalY);
 		}
 	}
 }
