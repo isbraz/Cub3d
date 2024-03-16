@@ -41,6 +41,7 @@
 #define PI 3.1415926535f
 #define FOV_ANGLE   60 * (PI / 180)
 #define SPEED 0.1f
+#define A_SPEED 0.05f
 
 typedef struct s_image
 {
@@ -99,8 +100,9 @@ char	**ft_nsplit(char const *s, char c, size_t n);
 int		ft_isnumeric(char *str);
 int		ft_atoi(const char *str);
 int		is_floor(char c);
-void		rotate_vector(double vec[2], double dest[2], int degree);
-
+void		rotate_vector(double vec[2], double dest[2], double degree);
+double	get_degree(double radian);
+double	get_radian(double degree);
 
 int		get_trgb(int t, int r, int g, int b);
 void	put_pixel_canva(t_image *image, int x, int y, int pixel);

@@ -14,6 +14,8 @@ SRCS = src/main.c                     \
 		src/utils/ft_atoi.c           \
 		src/utils/is_floor.c          \
 		src/utils/rotate_vector.c     \
+		src/utils/get_degree.c        \
+		src/utils/get_radian.c        \
 		src/mlx_utils/new_canvas.c    \
 		src/mlx_utils/get_pixel.c     \
 		src/mlx_utils/put_pixel.c     \
