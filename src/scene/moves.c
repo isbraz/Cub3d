@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:43:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/17 14:19:35 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/17 14:19:47 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,24 @@
 
 void	move_vision(int key, t_game *game)
 {
-	double	oldplaneX;
-	double	oldplaneY;
+	double	old[2];
+	double	speed;
 
+	speed = A_SPEED;
+	if (key != 65361 && key != 65363)
+		return ;
 	if (key == 65361)
-	{
-		if (game->player.angle < 0)
-			game->player.angle += 2 * PI;
-		game->player.angle -= 0.1;
-		game->player.delta[X] = cos(game->player.angle);
-		game->player.delta[Y] = sin(game->player.angle);
-		oldplaneX = game->player.plane[X];
-		game->player.plane[X] = game->player.plane[X] * cos(-0.1) - game->player.plane[Y] * sin(-0.1);
-		game->player.plane[Y] = oldplaneX * sin(-0.1) + game->player.plane[Y] * cos(-0.1);
-	}
-	if (key == 65363)
-	{
-		if (game->player.angle > (2 * PI))
-			game->player.angle -= 2 * PI;
-		game->player.angle += 0.1;
-		game->player.delta[X] = cos(game->player.angle);
-		game->player.delta[Y] = sin(game->player.angle);
-		oldplaneX = game->player.plane[X];
-		game->player.plane[X] = game->player.plane[X] * cos(0.1) - game->player.plane[Y] * sin(0.1);
-		game->player.plane[Y] = oldplaneX * sin(0.1) + game->player.plane[Y] * cos(0.1);
-	}
+		speed = -A_SPEED;
+	old[X] = game->player.plane[X];
+	old[Y] = game->player.plane[Y];
+	game->player.angle += speed;
+	if (game->player.angle < 0)
+		game->player.angle += 2 * PI;
+	if (game->player.angle > (2 * PI))
+		game->player.angle -= 2 * PI;
+	game->player.delta[X] = cos(game->player.angle);
+	game->player.delta[Y] = sin(game->player.angle);
+	rotate_vector(old, game->player.plane, get_degree(speed));
 }
 static void	update_pixel(int *pixel, int next)
 {
@@ -112,7 +105,8 @@ static int	has_collison(t_game *game, double delta[2])
  
 void	move_player(int key, t_game *game)
 {
-	double new[2];
+	double	new[2];
+
 	if (key != 119 && key != 115 && key != 97 && key != 100)
 		return ;
 <<<<<<< HEAD
