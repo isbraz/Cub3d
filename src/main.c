@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/16 17:30:21 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/17 13:56:55 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,26 @@ int	ft_loop(t_game *game)
 	return (0);
 }
 
+void	init_images(t_game *game)
+{
+	game->wall_textures[0].id = mlx_xpm_file_to_image(game->mlx.mlx, \
+		"src/textures/wall1.xpm", &game->wall_textures[0].width, \
+		&game->wall_textures[0].height);
+	game->wall_textures[0].addr = mlx_get_data_addr(game->wall_textures[0].id, &game->wall_textures[0].bits_per_pixel, &game->wall_textures[0].line_length, &game->wall_textures[0].endian);
+	game->wall_textures[1].id = mlx_xpm_file_to_image(game->mlx.mlx, \
+		"src/textures/wall2.xpm", &game->wall_textures[1].width, \
+		&game->wall_textures[1].height);
+	game->wall_textures[1].addr = mlx_get_data_addr(game->wall_textures[1].id, &game->wall_textures[1].bits_per_pixel, &game->wall_textures[1].line_length, &game->wall_textures[1].endian);
+	game->wall_textures[2].id = mlx_xpm_file_to_image(game->mlx.mlx, \
+		"src/textures/wall3.xpm", &game->wall_textures[2].width, \
+		&game->wall_textures[2].height);
+	game->wall_textures[2].addr = mlx_get_data_addr(game->wall_textures[2].id, &game->wall_textures[2].bits_per_pixel, &game->wall_textures[2].line_length, &game->wall_textures[2].endian);
+	game->wall_textures[3].id = mlx_xpm_file_to_image(game->mlx.mlx, \
+		"src/textures/wall4.xpm", &game->wall_textures[3].width, \
+		&game->wall_textures[3].height);
+	game->wall_textures[3].addr = mlx_get_data_addr(game->wall_textures[3].id, &game->wall_textures[3].bits_per_pixel, &game->wall_textures[3].line_length, &game->wall_textures[3].endian);
+}
+
 void	new_game(t_game *game)
 {
 	char	dir;
@@ -54,10 +74,7 @@ void	new_game(t_game *game)
 	game->mlx.mlx = mlx_init();
 	game->mlx.window = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D!");
 	new_canvas(&game->scene, game->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
-	game->wall_textures[0].id = mlx_xpm_file_to_image(game->mlx.mlx, \
-		"src/textures/wall1.xpm", &game->wall_textures[0].width, \
-		&game->wall_textures[0].height);
-	game->wall_textures[0].addr = mlx_get_data_addr(game->wall_textures[0].id, &game->wall_textures[0].bits_per_pixel, &game->wall_textures[0].line_length, &game->wall_textures[0].endian);
+	init_images(game);
 	game->player.position[X] = game->map.spawn_pos[X];
 	game->player.position[Y] = game->map.spawn_pos[Y];
 	game->player.angle = ((PI / 2) * (dir == 'S')) + (PI * (dir == 'W')) + (((3 * PI) / 2) * (dir == 'N'));
