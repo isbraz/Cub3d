@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/17 14:39:45 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/17 18:36:19 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	ft_close(t_game *game)
 	if (game->mlx.mlx)
 	{
 		mlx_destroy_image(game->mlx.mlx, game->scene.id);
+		mlx_destroy_image(game->mlx.mlx, game->wall_textures[0].id);
 	}
 	mlx_destroy_window(game->mlx.mlx, game->mlx.window);
 	mlx_destroy_display(game->mlx.mlx);
@@ -37,8 +38,7 @@ int	ft_close(t_game *game)
 
 int	ft_mouse_listener(int x, int y, t_game *game)
 {
-	mlx_mouse_move(game->mlx.mlx, game->mlx.window, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-	if (x == 400 || (time_now() - game->last) <= 20)
+	if (x == 400 || (time_now() - game->last) < 20)
 		return (0);
 	game->last = time_now();
 	if (x < 400)
@@ -61,6 +61,7 @@ int	ft_key_listener(int key, t_game *game)
 
 int	ft_loop(t_game *game)
 {
+	mlx_mouse_move(game->mlx.mlx, game->mlx.window, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	update_scene(game);
 	if (game->show_map)
 		update_minimap(game);
@@ -81,8 +82,8 @@ void	new_game(t_game *game)
 		"src/textures/wall1.xpm", &game->wall_textures[0].width, \
 		&game->wall_textures[0].height);
 	game->wall_textures[0].addr = mlx_get_data_addr(game->wall_textures[0].id, &game->wall_textures[0].bits_per_pixel, &game->wall_textures[0].line_length, &game->wall_textures[0].endian);
-	game->player.position[X] = game->map.spawn_pos[X];
-	game->player.position[Y] = game->map.spawn_pos[Y];
+	game->player.position[X] = game->map.spawn_pos[X] + 0.5;
+	game->player.position[Y] = game->map.spawn_pos[Y] + 0.5;
 	game->player.angle = ((PI / 2) * (dir == 'S')) + (PI * (dir == 'W')) + (((3 * PI) / 2) * (dir == 'N'));
 	game->player.delta[X] = cos(game->player.angle);
 	game->player.delta[Y] = sin(game->player.angle);
