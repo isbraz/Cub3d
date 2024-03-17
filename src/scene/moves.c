@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:43:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/17 14:21:52 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/17 14:23:30 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,23 @@ void	move_vision(int key, t_game *game)
 
 static int	has_collison(t_game *game, double delta[2])
 {
-	int		dest_x;
-	int		dest_y;
+	double	new_pos[2];
+	double	new_delta[2];
 	int		start;
-	double	new[2];
 
-	start = 30;
-	while (start >= -30)
+	start = 42;
+	while (start >= -42)
 	{
-		rotate_vector(delta, new, start);
-		dest_x = MINIMAP_POSITIONX + (MINIMAP_WIDTH / 2) + (int)(new[X] * 600);
-		dest_y = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2) + (int)(new[Y] * 600);
-		if (draw_view_line2(game, dest_x, dest_y, delta) <= 15)
+		rotate_vector(delta, new_delta, start);
+		new_pos[X] = game->player.position[X] + new_delta[X] * 0.5;
+		new_pos[Y] = game->player.position[Y] + new_delta[Y] * 0.5;
+		if (game->map.map[(int)new_pos[Y]][(int)new_pos[X]] == '1')
 			return (1);
-		start--;
+		start -= 10;
 	}
 	return (0);
 }
- 
+
 void	move_player(int key, t_game *game)
 {
 	double	new[2];
