@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <math.h>
+#include <sys/time.h>
 
 #include <mlx.h>
 
@@ -85,6 +86,7 @@ typedef struct s_game {
 	t_image		scene;
 	t_player	player;
 	t_image		wall_textures[4];
+	long		last;
 	int		show_map;
 }	t_game;
 
