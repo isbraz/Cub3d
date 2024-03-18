@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:25:55 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/17 15:16:22 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:37:02 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	raycast(t_game *game)
 			int texY = ((d * game->wall_textures->height) / lineHeight) / 256;
 			if (texY <= -1 || texX <= -1)
 				return ;
-				int color = get_pixel_canva(&game->wall_textures[c], texX, texY);
+			int color = get_pixel_canva(&game->wall_textures[c], texX, texY);
 			if (side == 1)
 				color = (color >> 1) & 8355711;
 			put_pixel_canva(&game->scene, x, y, color);
