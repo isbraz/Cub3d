@@ -1,6 +1,6 @@
 INC_DIR = includes
 MLX_DIR = .mlx
-CFLAGS = -g #-fsanitize=address #-Wall -Wextra -Werror
+CFLAGS = -g -fsanitize=address #-Wall -Wextra -Werror
 
 SRCS = src/main.c                     \
 		src/utils/ft_strjoin.c        \
