@@ -6,104 +6,114 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:25:55 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/18 14:37:02 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:16:00 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
+void	draw_3Dwalls(t_game *game, int draw_start, int draw_end, int lineHeight, int texX, int x)
+{
+	int d;
+	int	texY;
+	int	color;
+	
+	while (draw_start < draw_end)
+	{
+		d = draw_start * 256 - WIN_HEIGHT * 128 + lineHeight * 128;
+		texY = ((d * game->wall_textures->height) / lineHeight) / 256;
+		if (texY <= -1 || texX <= -1)
+			return ;
+		color = get_pixel_canva(&game->wall_textures[game->raycast.c], texX, texY);
+		if (game->raycast.side == 1)
+			color = (color >> 1) & 8355711;
+		put_pixel_canva(&game->scene, x, draw_start, color);
+		draw_start++;
+	}
+}
+
 void	raycast(t_game *game)
 {
-	int		c;
+	int		x;
 
-	for (int x = 0; x < WIN_WIDTH; x++)
+	x = 0;
+	while (x < WIN_WIDTH)
 	{
 		double cameraX = 2 * x / (double)WIN_HEIGHT - 1;
-		double raydirY = game->player.delta[Y] + game->player.plane[Y] * cameraX;
-		double raydirX = game->player.delta[X] + game->player.plane[X] * cameraX;
-		//which box of the map we're in
-		int mapX = (int)game->player.position[X];
-		int mapY = (int)game->player.position[Y];
+		game->raycast.raydirY = game->player.delta[Y] + game->player.plane[Y] * cameraX;
+		game->raycast.raydirX = game->player.delta[X] + game->player.plane[X] * cameraX;
+	
+		game->raycast.mapX = (int)game->player.position[X];
+		game->raycast.mapY = (int)game->player.position[Y];
 		
-		//length of ray from current position to next x or y-side
-		double sideDistX;
-		double sideDistY;
-		
-		//length of ray from one x or y-side to next x or y-side
-		double deltaDistX = fabs(1 / raydirX);
-		double deltaDistY = fabs(1 / raydirY);
+		game->raycast.deltaDistX = fabs(1 / game->raycast.raydirX);
+		game->raycast.deltaDistY = fabs(1 / game->raycast.raydirY);
 		double perpWallDist;
 		
-		//what direction to step in x or y-direction (either +1 or -1)
-		int stepX;
-    	int stepY;
-
-    	int hit = 0; //was there a wall hit?
-    	int side; //was a NS or a EW wall hit?
-		      //calculate step and initial sideDist
-      if (raydirX < 0)
+		game->raycast.hit = 0;
+      if (game->raycast.raydirX < 0)
       {
-        stepX = -1;
-        sideDistX = (game->player.position[X] - mapX) * deltaDistX;
+        game->raycast.stepX = -1;
+        game->raycast.sideDistX = (game->player.position[X] - game->raycast.mapX) * game->raycast.deltaDistX;
       }
       else
       {
-        stepX = 1;
-        sideDistX = (mapX + 1.0 - game->player.position[X]) * deltaDistX;
+        game->raycast.stepX = 1;
+        game->raycast.sideDistX = (game->raycast.mapX + 1.0 - game->player.position[X]) * game->raycast.deltaDistX;
       }
-      if (raydirY < 0)
+      if (game->raycast.raydirY < 0)
       {
-        stepY = -1;
-        sideDistY = (game->player.position[Y] - mapY) * deltaDistY;
+        game->raycast.stepY = -1;
+        game->raycast.sideDistY = (game->player.position[Y] - game->raycast.mapY) * game->raycast.deltaDistY;
       }
       else
       {
-        stepY = 1;
-        sideDistY = (mapY + 1.0 - game->player.position[Y]) * deltaDistY;
+        game->raycast.stepY = 1;
+        game->raycast.sideDistY = (game->raycast.mapY + 1.0 - game->player.position[Y]) * game->raycast.deltaDistY;
       }
       //perform DDA
-      while (hit == 0)
+      while (game->raycast.hit == 0)
       {
         //jump to next map square, either in x-direction, or in y-direction
-        if (sideDistX < sideDistY)
+        if (game->raycast.sideDistX < game->raycast.sideDistY)
         {
-          sideDistX += deltaDistX;
-          mapX += stepX;
-          side = 0;
+          game->raycast.sideDistX += game->raycast.deltaDistX;
+          game->raycast.mapX += game->raycast.stepX;
+          game->raycast.side = 0;
         }
         else
         {
-          sideDistY += deltaDistY;
-          mapY += stepY;
-          side = 1;
+          game->raycast.sideDistY += game->raycast.deltaDistY;
+          game->raycast.mapY += game->raycast.stepY;
+          game->raycast.side = 1;
         }
-        //Check if ray has hit a wall
-		if (game->map.map[mapY][mapX] == '1')
+        //Check if ray has hiiiit a wall
+		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '1')
 		{
-			hit = 1;
+			game->raycast.hit = 1;
 			// Determine the texture to use based on the direction of the wall hit
-     	   if (side == 0) // NS wall hit
+     	   if (game->raycast.side == 0) // EW wall hiiiit
         	{
-            	if (raydirX > 0)
-            		c = 0; // North
+            	if (game->raycast.raydirX > 0)
+            		game->raycast.c = WE; // West wall1
            		else
-            		c = 1; // South
+            		game->raycast.c = EA; // East wall2
         	}
-        	else // EW wall hit
+        	else // NS wall hiiit
         	{
-            	if (raydirY > 0)
-             		c = 2; // East
+            	if (game->raycast.raydirY > 0)
+             		game->raycast.c = NO; // North wall3
            		else
-            		c = 3; // West
+            		game->raycast.c = SO; // South wall4
        		}
 		} 	
       }
 
 		//Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!)
-    	if(side == 0)
-			perpWallDist = (sideDistX - deltaDistX);
+    	if(game->raycast.side == 0)
+			perpWallDist = (game->raycast.sideDistX - game->raycast.deltaDistX);
     	else
-			perpWallDist = (sideDistY - deltaDistY);
+			perpWallDist = (game->raycast.sideDistY - game->raycast.deltaDistY);
 
 		//Calculate height of line to draw on screen
 		int lineHeight = (int)(WIN_HEIGHT / perpWallDist);
@@ -116,27 +126,19 @@ void	raycast(t_game *game)
       	if(drawEnd > WIN_HEIGHT)
 			drawEnd = WIN_HEIGHT - 1;
 			
-		double wallX; //where exactly the wall was hit
-		if (side == 0)
-			wallX = game->player.position[Y] + perpWallDist * raydirY;
+		double wallX; //where exactly the wall was hiiit
+		if (game->raycast.side == 0)
+			wallX = game->player.position[Y] + perpWallDist * game->raycast.raydirY;
 		else
-			wallX = game->player.position[X] + perpWallDist * raydirX;
+			wallX = game->player.position[X] + perpWallDist * game->raycast.raydirX;
 		wallX -= floor((wallX));
-		int texX = (int)(wallX * (double)(game->wall_textures[c].width));
-		if(side == 0 && raydirX > 0)
+		int texX = (int)(wallX * (double)(game->wall_textures[game->raycast.c].width));
+		if(game->raycast.side == 0 && game->raycast.raydirX > 0)
 			texX = game->wall_textures[0].width - texX - 1;
-		if(side == 1 && raydirY < 0)
+		if(game->raycast.side == 1 && game->raycast.raydirY < 0)
 			texX = game->wall_textures[0].width - texX - 1;
-		for (int y = drawStart; y < drawEnd; y++)
-		{
-			int d = y * 256 - WIN_HEIGHT * 128 + lineHeight * 128; //256 and 128 factors to avoid floats
-			int texY = ((d * game->wall_textures->height) / lineHeight) / 256;
-			if (texY <= -1 || texX <= -1)
-				return ;
-			int color = get_pixel_canva(&game->wall_textures[c], texX, texY);
-			if (side == 1)
-				color = (color >> 1) & 8355711;
-			put_pixel_canva(&game->scene, x, y, color);
-		}
+
+		draw_3Dwalls(game, drawStart, drawEnd, lineHeight, texX, x);
+		x++;
 	}
 }
