@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:58:26 by user              #+#    #+#             */
-/*   Updated: 2024/03/19 16:19:05 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:22:53 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int file_exist(char *file_name)
 
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		return (1);
+		return (0);
 	return (1);
 }
 
