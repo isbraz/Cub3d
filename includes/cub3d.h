@@ -80,14 +80,31 @@ typedef struct s_mlx {
 	void	*mlx;
 }	t_mlx;
 
+typedef struct s_raycast {
+	double	raydirX;
+    double	raydirY;
+    double	sideDistX; //length of ray from current position to next x or y-side
+    double	sideDistY;
+    double	deltaDistX;
+    double	deltaDistY;
+    int		mapX;
+    int		mapY;
+    int		stepX;
+    int		stepY;
+    int		hit;
+    int		side;
+	int		c;
+}	t_raycast;
+
 typedef struct s_game {
 	t_mlx		mlx;
 	t_map		map;
 	t_image		scene;
 	t_player	player;
 	t_image		wall_textures[4];
+	t_raycast	raycast;
 	long		last;
-	int		show_map;
+	int			show_map;
 }	t_game;
 
 typedef void	(*t_draw_walls)(t_game*, int[2], int, char);
