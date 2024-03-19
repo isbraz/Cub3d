@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 08:06:12 by user              #+#    #+#             */
-/*   Updated: 2024/02/11 17:58:13 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:49:12 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,14 @@ void	free_map(t_map *map)
 
 void	get_map(t_map *map, char *argv[])
 {
+	map->map = NULL;
+	map->types = NULL;
+	map->types_info[NO] = NULL;
+	map->types_info[SO] = NULL;
+	map->types_info[WE] = NULL;
+	map->types_info[EA] = NULL;
+	map->types_info[F] = NULL;
+	map->types_info[C] = NULL;
 	map->input = get_file(argv);
 	if (!map->input)
 		exit_error(map, OPENING_ERROR);
@@ -86,11 +94,5 @@ void	get_map(t_map *map, char *argv[])
 	map->map_start = get_map_start(map->input);
 	map->map = ft_split(&map->input[map->map_start], '\n');
 	map->types = ft_nsplit(map->input, '\n', map->map_start);
-	map->types_info[NO] = NULL;
-	map->types_info[SO] = NULL;
-	map->types_info[WE] = NULL;
-	map->types_info[EA] = NULL;
-	map->types_info[F] = NULL;
-	map->types_info[C] = NULL;
 	verify_map(map);
 }

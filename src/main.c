@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/18 16:28:01 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:31:10 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ long	time_now(void)
 
 int	ft_close(t_game *game)
 {
+	int i;
+
+	i = 0;
 	if (game->mlx.mlx)
 	{
 		mlx_destroy_image(game->mlx.mlx, game->scene.id);
-		mlx_destroy_image(game->mlx.mlx, game->wall_textures[0].id);
+		while (i < 4)
+			mlx_destroy_image(game->mlx.mlx, game->wall_textures[i++].id);
 	}
 	mlx_destroy_window(game->mlx.mlx, game->mlx.window);
 	mlx_destroy_display(game->mlx.mlx);
@@ -107,7 +111,7 @@ void	new_game(t_game *game)
 	game->player.plane[X] = ((-0.5) * (dir == 'S')) + ((0.5) * (dir == 'N'));
 	game->player.plane[Y] = ((-0.5) * (dir == 'W')) + ((0.5) * (dir == 'E'));
 	game->last = time_now();
-	mlx_mouse_hide(game->mlx.mlx, game->mlx.window);
+	// mlx_mouse_hide(game->mlx.mlx, game->mlx.window);
 }
 
 int main(int argc, char *argv[])
