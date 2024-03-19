@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/18 16:28:01 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:50:10 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_key_listener(int key, t_game *game)
 
 int	ft_loop(t_game *game)
 {
-	mlx_mouse_move(game->mlx.mlx, game->mlx.window, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	// mlx_mouse_move(game->mlx.mlx, game->mlx.window, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	update_scene(game);
 	if (game->show_map)
 		update_minimap(game);
@@ -71,22 +71,22 @@ int	ft_loop(t_game *game)
 
 void	init_images(t_game *game)
 {
-	game->wall_textures[0].id = mlx_xpm_file_to_image(game->mlx.mlx, \
-		"src/textures/wall1.xpm", &game->wall_textures[0].width, \
-		&game->wall_textures[0].height);
-	game->wall_textures[0].addr = mlx_get_data_addr(game->wall_textures[0].id, &game->wall_textures[0].bits_per_pixel, &game->wall_textures[0].line_length, &game->wall_textures[0].endian);
-	game->wall_textures[1].id = mlx_xpm_file_to_image(game->mlx.mlx, \
-		"src/textures/wall2.xpm", &game->wall_textures[1].width, \
-		&game->wall_textures[1].height);
-	game->wall_textures[1].addr = mlx_get_data_addr(game->wall_textures[1].id, &game->wall_textures[1].bits_per_pixel, &game->wall_textures[1].line_length, &game->wall_textures[1].endian);
-	game->wall_textures[2].id = mlx_xpm_file_to_image(game->mlx.mlx, \
-		"src/textures/wall3.xpm", &game->wall_textures[2].width, \
-		&game->wall_textures[2].height);
-	game->wall_textures[2].addr = mlx_get_data_addr(game->wall_textures[2].id, &game->wall_textures[2].bits_per_pixel, &game->wall_textures[2].line_length, &game->wall_textures[2].endian);
-	game->wall_textures[3].id = mlx_xpm_file_to_image(game->mlx.mlx, \
-		"src/textures/wall4.xpm", &game->wall_textures[3].width, \
-		&game->wall_textures[3].height);
-	game->wall_textures[3].addr = mlx_get_data_addr(game->wall_textures[3].id, &game->wall_textures[3].bits_per_pixel, &game->wall_textures[3].line_length, &game->wall_textures[3].endian);
+	game->wall_textures[NO].id = mlx_xpm_file_to_image(game->mlx.mlx, \
+		game->map.types_info[NO], &game->wall_textures[NO].width, \
+		&game->wall_textures[NO].height);
+	game->wall_textures[NO].addr = mlx_get_data_addr(game->wall_textures[NO].id, &game->wall_textures[NO].bits_per_pixel, &game->wall_textures[NO].line_length, &game->wall_textures[NO].endian);
+	game->wall_textures[SO].id = mlx_xpm_file_to_image(game->mlx.mlx, \
+		game->map.types_info[SO], &game->wall_textures[SO].width, \
+		&game->wall_textures[SO].height);
+	game->wall_textures[SO].addr = mlx_get_data_addr(game->wall_textures[SO].id, &game->wall_textures[SO].bits_per_pixel, &game->wall_textures[SO].line_length, &game->wall_textures[SO].endian);
+	game->wall_textures[WE].id = mlx_xpm_file_to_image(game->mlx.mlx, \
+		game->map.types_info[WE], &game->wall_textures[WE].width, \
+		&game->wall_textures[WE].height);
+	game->wall_textures[WE].addr = mlx_get_data_addr(game->wall_textures[WE].id, &game->wall_textures[WE].bits_per_pixel, &game->wall_textures[WE].line_length, &game->wall_textures[WE].endian);
+	game->wall_textures[EA].id = mlx_xpm_file_to_image(game->mlx.mlx, \
+		game->map.types_info[EA], &game->wall_textures[EA].width, \
+		&game->wall_textures[EA].height);
+	game->wall_textures[EA].addr = mlx_get_data_addr(game->wall_textures[EA].id, &game->wall_textures[EA].bits_per_pixel, &game->wall_textures[EA].line_length, &game->wall_textures[EA].endian);
 }
 
 void	new_game(t_game *game)
@@ -106,6 +106,7 @@ void	new_game(t_game *game)
 	game->player.delta[Y] = sin(game->player.angle);
 	game->player.plane[X] = ((-0.5) * (dir == 'S')) + ((0.5) * (dir == 'N'));
 	game->player.plane[Y] = ((-0.5) * (dir == 'W')) + ((0.5) * (dir == 'E'));
+	game->raycast.hit = 0;
 	game->last = time_now();
 	mlx_mouse_hide(game->mlx.mlx, game->mlx.window);
 }
