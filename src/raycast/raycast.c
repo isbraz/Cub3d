@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:25:55 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/19 16:16:00 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:03:37 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,34 @@ void	draw_3Dwalls(t_game *game, int draw_start, int draw_end, int lineHeight, in
 	}
 }
 
+static void	do_steps(t_game *game)
+{
+	if (game->raycast.raydirX < 0)
+	{
+		game->raycast.stepX = -1;
+		game->raycast.sideDistX = (game->player.position[X] - game->raycast.mapX) * game->raycast.deltaDistX;
+	}
+	else
+	{
+		game->raycast.stepX = 1;
+		game->raycast.sideDistX = (game->raycast.mapX + 1.0 - game->player.position[X]) * game->raycast.deltaDistX;
+	}
+	if (game->raycast.raydirY < 0)
+	{
+		game->raycast.stepY = -1;
+		game->raycast.sideDistY = (game->player.position[Y] - game->raycast.mapY) * game->raycast.deltaDistY;
+	}
+	else
+	{
+		game->raycast.stepY = 1;
+		game->raycast.sideDistY = (game->raycast.mapY + 1.0 - game->player.position[Y]) * game->raycast.deltaDistY;
+	}
+}
+
 void	raycast(t_game *game)
 {
 	int		x;
+	double	perpWallDist;
 
 	x = 0;
 	while (x < WIN_WIDTH)
@@ -48,29 +73,9 @@ void	raycast(t_game *game)
 		
 		game->raycast.deltaDistX = fabs(1 / game->raycast.raydirX);
 		game->raycast.deltaDistY = fabs(1 / game->raycast.raydirY);
-		double perpWallDist;
 		
 		game->raycast.hit = 0;
-      if (game->raycast.raydirX < 0)
-      {
-        game->raycast.stepX = -1;
-        game->raycast.sideDistX = (game->player.position[X] - game->raycast.mapX) * game->raycast.deltaDistX;
-      }
-      else
-      {
-        game->raycast.stepX = 1;
-        game->raycast.sideDistX = (game->raycast.mapX + 1.0 - game->player.position[X]) * game->raycast.deltaDistX;
-      }
-      if (game->raycast.raydirY < 0)
-      {
-        game->raycast.stepY = -1;
-        game->raycast.sideDistY = (game->player.position[Y] - game->raycast.mapY) * game->raycast.deltaDistY;
-      }
-      else
-      {
-        game->raycast.stepY = 1;
-        game->raycast.sideDistY = (game->raycast.mapY + 1.0 - game->player.position[Y]) * game->raycast.deltaDistY;
-      }
+		do_steps(game);
       //perform DDA
       while (game->raycast.hit == 0)
       {
@@ -137,7 +142,6 @@ void	raycast(t_game *game)
 			texX = game->wall_textures[0].width - texX - 1;
 		if(game->raycast.side == 1 && game->raycast.raydirY < 0)
 			texX = game->wall_textures[0].width - texX - 1;
-
 		draw_3Dwalls(game, drawStart, drawEnd, lineHeight, texX, x);
 		x++;
 	}
