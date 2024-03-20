@@ -87,6 +87,7 @@ typedef struct s_raycast {
     double	sideDistY;
     double	deltaDistX;
     double	deltaDistY;
+	int		lineHeight;
     int		mapX;
     int		mapY;
     int		stepX;
