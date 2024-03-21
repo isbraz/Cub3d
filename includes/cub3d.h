@@ -144,7 +144,7 @@ void	draw_minimap(t_game *game, t_draw_walls f, int color);
 void draw_space(t_game *game, int vec[2], int color, char c);
 void draw_walls(t_game *game, int vec[2], int color, char c);
 
-void	update_scene(t_game *game);
+void	update_scene(t_game *game, char **floor_c, char **ceiling_c);
 
 void	raycast(t_game *game);
 void	move_player(int key, t_game *game);
