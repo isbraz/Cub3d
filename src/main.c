@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/21 11:21:56 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/21 12:28:38 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ft_key_listener(int key, t_game *game)
 int	ft_loop(t_game *game)
 {
 	// mlx_mouse_move(game->mlx.mlx, game->mlx.window, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-	update_scene(game);
+	update_scene(game, ft_split(game->map.types_info[F], ','), ft_split(game->map.types_info[C], ','));
 	if (game->show_map)
 		update_minimap(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.window, game->scene.id, 0, 0);
