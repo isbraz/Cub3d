@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 07:41:59 by user              #+#    #+#             */
-/*   Updated: 2024/02/11 16:39:28 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:22:01 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	exit_error(t_map *map, int status)
 	else if (status == BREAKS_ERROR)
 		write(2, "Error\nempty line in the map\n", 29);
 	else if (status == SPAWN_ERROR)
-		write(2, "Error\ninvalid player position\n", 31);
+		write(2, "Error\ninvalid player position / character\n", 43);
 	else if (status == TYPES_ERROR)
 		write(2, "Error\ninvalid types info\n", 26);
 	else if (status == WALL_ERROR)
