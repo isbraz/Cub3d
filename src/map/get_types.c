@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_types.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:58:26 by user              #+#    #+#             */
-/*   Updated: 2024/03/19 16:22:53 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:08:41 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	get_color(char *color)
 		index++;
 	}
 	free_double(split);
-	if (index > 3)
+	if (index != 3)
 		return (-1);
 	return (get_trgb(0, colors[0], colors[1], colors[2]));
 }
