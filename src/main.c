@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/19 15:50:10 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:19:25 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void	new_game(t_game *game)
 	game->mlx.window = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D!");
 	new_canvas(&game->scene, game->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
 	init_images(game);
-	game->player.position[X] = game->map.spawn_pos[X];
-	game->player.position[Y] = game->map.spawn_pos[Y];
+	game->player.position[X] = game->map.spawn_pos[X] + 0.5;
+	game->player.position[Y] = game->map.spawn_pos[Y] + 0.5;
 	game->player.angle = ((PI / 2) * (dir == 'S')) + (PI * (dir == 'W')) + (((3 * PI) / 2) * (dir == 'N'));
 	game->player.delta[X] = cos(game->player.angle);
 	game->player.delta[Y] = sin(game->player.angle);
