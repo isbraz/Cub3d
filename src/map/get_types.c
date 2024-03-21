@@ -6,11 +6,21 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:58:26 by user              #+#    #+#             */
-/*   Updated: 2024/03/13 11:52:24 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:22:53 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+static int file_exist(char *file_name)
+{
+	int	fd;
+
+	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	return (1);
+}
 
 static int	get_color(char *color)
 {
@@ -43,6 +53,8 @@ static int	is_types_correct(t_map *map)
 	while (index < 6)
 	{
 		if (!map->types_info[index])
+			return (0);
+		if (index < 4 && !file_exist(map->types_info[index]))
 			return (0);
 		if (index == 4)
 			map->floor_color = get_color(map->types_info[index]);
