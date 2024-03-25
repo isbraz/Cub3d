@@ -27,6 +27,7 @@
 #define SO 1
 #define WE 2
 #define EA 3
+// #define D 4
 #define F 4
 #define C 5
 
@@ -102,10 +103,12 @@ typedef struct s_game {
 	t_map		map;
 	t_image		scene;
 	t_player	player;
-	t_image		wall_textures[4];
+	t_image		textures[4];
+	t_image		door[2];
 	t_raycast	raycast;
 	long		last;
 	int			show_map;
+	int			padlock;
 }	t_game;
 
 typedef void	(*t_draw_walls)(t_game*, int[2], int, char);
@@ -129,7 +132,6 @@ void	put_pixel_canva(t_image *image, int x, int y, int pixel);
 int		get_pixel_canva(t_image *image, int x, int y);
 void	new_canvas(t_image *canvas, void *mlx, int height, int width);
 
-
 void	get_map(t_map *map, char *argv[]);
 void	free_map(t_map *map);
 void	verify_map(t_map *map);
@@ -141,8 +143,10 @@ int		get_spawn(t_map *map);
 void	draw_view_line(t_game *game, int x1, int y1);
 void	update_minimap(t_game *game);
 void	draw_minimap(t_game *game, t_draw_walls f, int color);
-void draw_space(t_game *game, int vec[2], int color, char c);
-void draw_walls(t_game *game, int vec[2], int color, char c);
+void 	draw_space(t_game *game, int vec[2], int color, char c);
+void	draw_walls(t_game *game, int vec[2], int color, char c);
+void	draw_door(t_game *game, int vec[2], int color, char c);
+
 
 void	update_scene(t_game *game, char **floor_c, char **ceiling_c);
 
