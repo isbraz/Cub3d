@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:55:34 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/16 17:16:37 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:47:02 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ void	draw_space(t_game *game, int vec[2], int color, char c)
 void	draw_walls(t_game *game, int vec[2], int color, char c)
 {
 	if (!is_floor(c))
+		draw_minimap_square(game, vec, color, MINIMAP_SCALE + 1);
+}
+
+void	draw_door(t_game *game, int vec[2], int color, char c)
+{
+	if (c == '2')
 		draw_minimap_square(game, vec, color, MINIMAP_SCALE + 1);
 }
 
