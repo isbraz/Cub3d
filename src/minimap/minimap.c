@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/25 11:49:34 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:16:35 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,14 @@ static void	draw_player_view(t_game *game)
 	draw_view_line(game, dest_x, dest_y);
 }
 
-
 void	update_minimap(t_game *game)
 {
 	draw_minimap_background(game);
 	draw_minimap(game, draw_space, get_trgb(0, 230, 230, 230));
 	draw_minimap(game, draw_walls, get_trgb(0, 32, 32, 28));
-	draw_minimap(game, draw_door, get_trgb(0, 0, 97, 0));
+	if (game->padlock)
+		draw_minimap(game, draw_door, get_trgb(0, 0, 97, 0));
+	else
+		draw_minimap(game, draw_door, get_trgb(0, 200, 0, 0));
 	draw_player_view(game);
 }
