@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/21 12:28:38 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:32:38 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_close(t_game *game)
 	{
 		mlx_destroy_image(game->mlx.mlx, game->scene.id);
 		while (i < 4)
-			mlx_destroy_image(game->mlx.mlx, game->wall_textures[i++].id);
+			mlx_destroy_image(game->mlx.mlx, game->textures[i++].id);
 	}
 	mlx_destroy_window(game->mlx.mlx, game->mlx.window);
 	mlx_destroy_display(game->mlx.mlx);
@@ -58,6 +58,8 @@ int	ft_key_listener(int key, t_game *game)
 		ft_close(game);
 	if (key == 109)
 		game->show_map ^= 1;
+	if (key == 101)
+		game->padlock ^= 1;
 	move_vision(key, game);
 	move_player(key, game);
 	return (0);
@@ -65,7 +67,7 @@ int	ft_key_listener(int key, t_game *game)
 
 int	ft_loop(t_game *game)
 {
-	// mlx_mouse_move(game->mlx.mlx, game->mlx.window, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	mlx_mouse_move(game->mlx.mlx, game->mlx.window, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	update_scene(game, ft_split(game->map.types_info[F], ','), ft_split(game->map.types_info[C], ','));
 	if (game->show_map)
 		update_minimap(game);
@@ -83,10 +85,12 @@ void	set_image(void *mlx, t_image *image, char *path)
 
 void	init_images(t_game *game)
 {
-	set_image(game->mlx.mlx, &game->wall_textures[NO], game->map.types_info[NO]);
-	set_image(game->mlx.mlx, &game->wall_textures[SO], game->map.types_info[SO]);
-	set_image(game->mlx.mlx, &game->wall_textures[WE], game->map.types_info[WE]);
-	set_image(game->mlx.mlx, &game->wall_textures[EA], game->map.types_info[EA]);
+	set_image(game->mlx.mlx, &game->textures[NO], game->map.types_info[NO]);
+	set_image(game->mlx.mlx, &game->textures[SO], game->map.types_info[SO]);
+	set_image(game->mlx.mlx, &game->textures[WE], game->map.types_info[WE]);
+	set_image(game->mlx.mlx, &game->textures[EA], game->map.types_info[EA]);
+	set_image(game->mlx.mlx, &game->door[0], "./src/textures/closed.xpm");
+	set_image(game->mlx.mlx, &game->door[1], "./src/textures/open.xpm");
 }
 
 void	new_game(t_game *game)
@@ -95,6 +99,7 @@ void	new_game(t_game *game)
 
 	dir = game->map.spawn_dir;
 	game->show_map = 1;
+	game->padlock = 0;
 	game->mlx.mlx = mlx_init();
 	game->mlx.window = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D!");
 	new_canvas(&game->scene, game->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
@@ -108,7 +113,7 @@ void	new_game(t_game *game)
 	game->player.plane[Y] = ((-0.5) * (dir == 'W')) + ((0.5) * (dir == 'E'));
 	game->raycast.hit = 0;
 	game->last = time_now();
-	// mlx_mouse_hide(game->mlx.mlx, game->mlx.window);
+	mlx_mouse_hide(game->mlx.mlx, game->mlx.window);
 }
 
 int main(int argc, char *argv[])
