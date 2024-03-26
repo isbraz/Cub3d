@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:25:55 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/26 17:28:28 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:34:00 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,7 @@ static void	draw_3Dwalls(t_game *game, int draw_start, int draw_end, int texX, i
 		if (texY <= -1 || texX <= -1)
 			return ;
 		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '1')
-		{
 			color = get_pixel_canva(&game->textures[game->raycast.c], texX, texY);
-			if (game->raycast.side == 1)
-				color = (color >> 1) & 8355711;
-		}
 		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '2')
 		{
 			texY = ((d * game->door[game->d].height) / game->raycast.lineHeight) / 256;
