@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/25 16:32:38 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:41:56 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_close(t_game *game)
 
 int	ft_mouse_listener(int x, int y, t_game *game)
 {
-	if (x == 400 || (time_now() - game->last) < 20)
+	if (x == 400 || (time_now() - game->last) < 20 || !game->lock_mouse)
 		return (0);
 	game->last = time_now();
 	if (x < 400)
@@ -58,6 +58,8 @@ int	ft_key_listener(int key, t_game *game)
 		ft_close(game);
 	if (key == 109)
 		game->show_map ^= 1;
+	if (key == 112)
+		game->lock_mouse ^= 1;
 	if (key == 101)
 		game->padlock ^= 1;
 	move_vision(key, game);
@@ -67,7 +69,8 @@ int	ft_key_listener(int key, t_game *game)
 
 int	ft_loop(t_game *game)
 {
-	mlx_mouse_move(game->mlx.mlx, game->mlx.window, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	if (game->lock_mouse)
+		mlx_mouse_move(game->mlx.mlx, game->mlx.window, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	update_scene(game, ft_split(game->map.types_info[F], ','), ft_split(game->map.types_info[C], ','));
 	if (game->show_map)
 		update_minimap(game);
@@ -99,6 +102,7 @@ void	new_game(t_game *game)
 
 	dir = game->map.spawn_dir;
 	game->show_map = 1;
+	game->lock_mouse = 1;
 	game->padlock = 0;
 	game->mlx.mlx = mlx_init();
 	game->mlx.window = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D!");

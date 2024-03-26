@@ -108,6 +108,7 @@ typedef struct s_game {
 	t_raycast	raycast;
 	long		last;
 	int			show_map;
+	int			lock_mouse;
 	int			padlock;
 }	t_game;
 
