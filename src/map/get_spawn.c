@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_spawn.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 08:39:15 by user              #+#    #+#             */
-/*   Updated: 2024/03/21 17:20:03 by user             ###   ########.fr       */
+/*   Updated: 2024/03/26 20:34:39 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	get_spawn(t_map *map)
 			if (valid_char(map->map[y][x]) == 2)
 			{
 				map->spawn_dir = map->map[y][x];
-				map->spawn_pos[X] = x;
-				map->spawn_pos[Y] = y;
+				map->spawn_pos[X] = x + 0.5;
+				map->spawn_pos[Y] = y + 0.5;
 			}
 			x++;
 		}

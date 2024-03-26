@@ -73,7 +73,7 @@ typedef struct s_map {
 	char	**map;
 	int		map_start;
 	char	spawn_dir;
-	int		spawn_pos[2];
+	double	spawn_pos[2];
 }	t_map;
 
 typedef struct s_raycast {
@@ -126,6 +126,7 @@ void		rotate_vector(double vec[2], double dest[2], double degree);
 double	get_degree(double radian);
 double	get_radian(double degree);
 void		ft_memset(void *var, int value, long n);
+long	time_now(void);
 
 int		get_trgb(int t, int r, int g, int b);
 void	put_pixel_canva(t_image *image, int x, int y, int pixel);
@@ -154,11 +155,11 @@ void	draw_door(t_game *game, int vec[2], int color, char c);
 
 
 void	update_scene(t_game *game);
+void	new_game(t_game *game);
 
 void	raycast(t_game *game);
 void	move_player(int key, t_game *game);
 void	move_vision(int key, t_game *game);
 void	update_door(t_game *game);
-long	time_now(void);
 
 #endif

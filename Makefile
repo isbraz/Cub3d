@@ -36,10 +36,11 @@ SRCS = src/main.c                   \
 		src/minimap/minimap.c         \
 		src/minimap/draw_view_line.c  \
 		src/minimap/draw_minimap.c    \
-		src/scene/scene.c             \
-		src/scene/moves.c             \
-		src/scene/handle_door.c       \
-		src/raycast/raycast.c         \
+		src/game/scene.c              \
+		src/game/moves.c              \
+		src/game/handle_door.c        \
+		src/game/raycast.c            \
+		src/game/new_game.c           \
 
 OBJS = $(patsubst src/%,.objs/%,$(patsubst %.c,%.o,$(SRCS)))
 
