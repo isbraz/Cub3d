@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/26 17:12:13 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:33:27 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,6 @@ void	init_images(t_game *game)
 	set_image(game->mlx.mlx, &game->door[2], "./src/textures/closed2.xpm");
 	set_image(game->mlx.mlx, &game->door[3], "./src/textures/closed3.xpm");
 	set_image(game->mlx.mlx, &game->door[4], "./src/textures/open.xpm");
-	int color = get_pixel_canva(&game->door[0], 139, 430);
-	color = (color >> 1) & 8355711;
-	printf("%d\n", color);
 }
 
 void	new_game(t_game *game)
