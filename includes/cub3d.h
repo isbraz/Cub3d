@@ -104,11 +104,13 @@ typedef struct s_game {
 	t_image		scene;
 	t_player	player;
 	t_image		textures[4];
-	t_image		door[2];
+	t_image		door[5];
 	t_raycast	raycast;
 	long		last;
 	int			show_map;
 	int			padlock;
+	int			d;
+	long		door_time;			
 }	t_game;
 
 typedef void	(*t_draw_walls)(t_game*, int[2], int, char);
@@ -153,5 +155,7 @@ void	update_scene(t_game *game, char **floor_c, char **ceiling_c);
 void	raycast(t_game *game);
 void	move_player(int key, t_game *game);
 void	move_vision(int key, t_game *game);
+void	update_door(t_game *game);
+long	time_now(void);
 
 #endif

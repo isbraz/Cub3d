@@ -6,11 +6,13 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:25:55 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/26 12:01:53 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:03:41 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+void	create_walls(t_game game, int x);
 
 static void	init_calc(t_game *game, double cameraX)
 {
@@ -62,15 +64,8 @@ static void	draw_3Dwalls(t_game *game, int draw_start, int draw_end, int texX, i
 			color = get_pixel_canva(&game->textures[game->raycast.c], texX, texY);
 		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '2')
 		{
-			texY = ((d * game->door[0].height) / game->raycast.lineHeight) / 256;
-			if (get_pixel_canva(&game->door[0], texX * 0.15, texY) != -16777216)
-			{
-				color = get_pixel_canva(&game->door[0], texX * 0.15, texY);
-				if (game->padlock)
-				{
-					color = get_pixel_canva(&game->door[1], texX * 0.15, texY);
-				}
-			}
+			texY = ((d * game->door[game->d].height) / game->raycast.lineHeight) / 256;
+			color = get_pixel_canva(&game->door[game->d], texX * 0.15, texY);
 		}
 		if (game->raycast.side == 1)
 			color = (color >> 1) & 8355711;
@@ -108,7 +103,7 @@ static double	get_distance(t_game *game)
 	return (perpWallDist);
 }
 
-static double	perform_dda(t_game *game)
+static double	perform_dda(t_game *game, int x)
 {
 	game->raycast.hit = 0;	
 	while (game->raycast.hit == 0)
@@ -128,15 +123,18 @@ static double	perform_dda(t_game *game)
 		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '1' \
 		|| game->map.map[game->raycast.mapY][game->raycast.mapX] == '2')
 		{
+			if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '2')
+				create_walls(*game, x);
 			game->raycast.hit = 1;
 			set_texture(game);
+			break;
 		}
 	}
 	return (get_distance(game));
 }
 
 
-void	create_walls(t_game *game, int x)
+void	create_walls(t_game game, int x)
 {
 	int		drawStart;
 	int		drawEnd;
@@ -144,25 +142,25 @@ void	create_walls(t_game *game, int x)
 	double	wallX;
 	int		texX;
 
-	perpWallDist = perform_dda(game);
-	game->raycast.lineHeight = (int)(WIN_HEIGHT / perpWallDist);
-	drawStart = -game->raycast.lineHeight / 2 + WIN_HEIGHT / 2;
+	perpWallDist = perform_dda(&game, x);
+	game.raycast.lineHeight = (int)(WIN_HEIGHT / perpWallDist);
+	drawStart = -game.raycast.lineHeight / 2 + WIN_HEIGHT / 2;
 	if(drawStart < 0)
 		drawStart = 0;
-	drawEnd = game->raycast.lineHeight / 2 + WIN_HEIGHT / 2;
+	drawEnd = game.raycast.lineHeight / 2 + WIN_HEIGHT / 2;
 	if(drawEnd > WIN_HEIGHT)
 		drawEnd = WIN_HEIGHT - 1;
-	if (game->raycast.side == 0)
-		wallX = game->player.position[Y] + perpWallDist * game->raycast.raydirY;
+	if (game.raycast.side == 0)
+		wallX = game.player.position[Y] + perpWallDist * game.raycast.raydirY;
 	else
-		wallX = game->player.position[X] + perpWallDist * game->raycast.raydirX;
+		wallX = game.player.position[X] + perpWallDist * game.raycast.raydirX;
 	wallX -= floor((wallX));
-	texX = (int)(wallX * (double)(game->textures[game->raycast.c].width));
-	if(game->raycast.side == 0 && game->raycast.raydirX > 0)
-		texX = game->textures[0].width - texX - 1;
-	if(game->raycast.side == 1 && game->raycast.raydirY < 0)
-		texX = game->textures[0].width - texX - 1;
-	draw_3Dwalls(game, drawStart, drawEnd,texX, x);
+	texX = (int)(wallX * (double)(game.textures[game.raycast.c].width));
+	if(game.raycast.side == 0 && game.raycast.raydirX > 0)
+		texX = game.textures[0].width - texX - 1;
+	if(game.raycast.side == 1 && game.raycast.raydirY < 0)
+		texX = game.textures[0].width - texX - 1;
+	draw_3Dwalls(&game, drawStart, drawEnd,texX, x);
 }
 
 void	raycast(t_game *game)
@@ -176,7 +174,7 @@ void	raycast(t_game *game)
 		cameraX = 2 * x / (double)WIN_HEIGHT - 1;
 		init_calc(game, cameraX);
 		do_steps(game);
-    	create_walls(game, x);
+    	create_walls(*game, x);
 		x++;
 	}
 }

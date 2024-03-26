@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/25 16:32:38 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:56:03 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ int	ft_key_listener(int key, t_game *game)
 	if (key == 109)
 		game->show_map ^= 1;
 	if (key == 101)
+	{
 		game->padlock ^= 1;
+		game->door_time = time_now();
+	}
 	move_vision(key, game);
 	move_player(key, game);
 	return (0);
@@ -71,6 +74,7 @@ int	ft_loop(t_game *game)
 	update_scene(game, ft_split(game->map.types_info[F], ','), ft_split(game->map.types_info[C], ','));
 	if (game->show_map)
 		update_minimap(game);
+	update_door(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.window, game->scene.id, 0, 0);
 	return (0);
 }
@@ -90,7 +94,13 @@ void	init_images(t_game *game)
 	set_image(game->mlx.mlx, &game->textures[WE], game->map.types_info[WE]);
 	set_image(game->mlx.mlx, &game->textures[EA], game->map.types_info[EA]);
 	set_image(game->mlx.mlx, &game->door[0], "./src/textures/closed.xpm");
-	set_image(game->mlx.mlx, &game->door[1], "./src/textures/open.xpm");
+	set_image(game->mlx.mlx, &game->door[1], "./src/textures/closed1.xpm");
+	set_image(game->mlx.mlx, &game->door[2], "./src/textures/closed2.xpm");
+	set_image(game->mlx.mlx, &game->door[3], "./src/textures/closed3.xpm");
+	set_image(game->mlx.mlx, &game->door[4], "./src/textures/open.xpm");
+	int color = get_pixel_canva(&game->door[0], 139, 430);
+	color = (color >> 1) & 8355711;
+	printf("%d\n", color);
 }
 
 void	new_game(t_game *game)
@@ -100,6 +110,7 @@ void	new_game(t_game *game)
 	dir = game->map.spawn_dir;
 	game->show_map = 1;
 	game->padlock = 0;
+	game->d = 0;
 	game->mlx.mlx = mlx_init();
 	game->mlx.window = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D!");
 	new_canvas(&game->scene, game->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
@@ -113,6 +124,7 @@ void	new_game(t_game *game)
 	game->player.plane[Y] = ((-0.5) * (dir == 'W')) + ((0.5) * (dir == 'E'));
 	game->raycast.hit = 0;
 	game->last = time_now();
+	game->door_time = time_now();
 	mlx_mouse_hide(game->mlx.mlx, game->mlx.window);
 }
 
