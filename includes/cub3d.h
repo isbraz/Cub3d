@@ -76,11 +76,6 @@ typedef struct s_map {
 	int		spawn_pos[2];
 }	t_map;
 
-typedef struct s_mlx {
-	void	*window;
-	void	*mlx;
-}	t_mlx;
-
 typedef struct s_raycast {
 	double	raydirX;
     double	raydirY;
@@ -99,7 +94,8 @@ typedef struct s_raycast {
 }	t_raycast;
 
 typedef struct s_game {
-	t_mlx		mlx;
+	void	*window;
+	void	*mlx;
 	t_map		map;
 	t_image		scene;
 	t_player	player;

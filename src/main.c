@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/26 20:07:30 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:15:14 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_images(t_game *game)
 {
-	new_canvas(&game->scene, game->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
+	new_canvas(&game->scene, game->mlx, WIN_HEIGHT, WIN_WIDTH);
 	new_image(game, &game->textures[NO], game->map.types_info[NO]);
 	new_image(game, &game->textures[SO], game->map.types_info[SO]);
 	new_image(game, &game->textures[WE], game->map.types_info[WE]);
@@ -30,8 +30,8 @@ void	new_game(t_game *game)
 {
 	char	dir;
 
-	game->mlx.mlx = mlx_init();
-	game->mlx.window = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D!");
+	game->mlx = mlx_init();
+	game->window = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D!");
 	init_images(game);
 	game->show_map = 1;
 	dir = game->map.spawn_dir;
@@ -57,10 +57,10 @@ int main(int argc, char *argv[])
 		exit_error(NULL, ARGUMENTS_ERROR);
 	get_map(&game.map, argv);
 	new_game(&game);
-	mlx_hook(game.mlx.window, 17, (1L<<3), ft_close, &game);
-	mlx_hook(game.mlx.window, 2, (1L<<0), key_listener, &game);
-	mlx_hook(game.mlx.window, 6, (1L<<6), mouse_listener, &game);
-	mlx_loop_hook(game.mlx.mlx, ft_loop, &game);
-	mlx_loop(game.mlx.mlx);
+	mlx_hook(game.window, 17, (1L<<3), ft_close, &game);
+	mlx_hook(game.window, 2, (1L<<0), key_listener, &game);
+	mlx_hook(game.window, 6, (1L<<6), mouse_listener, &game);
+	mlx_loop_hook(game.mlx, ft_loop, &game);
+	mlx_loop(game.mlx);
 	return (0);
 }

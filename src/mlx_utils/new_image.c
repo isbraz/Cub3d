@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 19:46:21 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/26 20:01:56 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:18:55 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	new_image(t_game *game, t_image *image, char *path)
 {
 	image->id = mlx_xpm_file_to_image(\
-		game->mlx.mlx, \
+		game->mlx, \
 		path, \
 		&image->width, \
 		&image->height \
