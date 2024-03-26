@@ -6,44 +6,11 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/26 19:41:34 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:59:38 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-long	time_now(void)
-{
-	long int		now;
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	now = (time.tv_sec * 1000 + time.tv_usec / 1000);
-	return (now);
-}
-
-int	ft_close(t_game *game)
-{
-	int i;
-
-	i = -1;
-	if (game->mlx.mlx)
-	{
-		mlx_destroy_image(game->mlx.mlx, game->scene.id);
-		while (++i < 4)
-			if (game->textures[i].id)
-				mlx_destroy_image(game->mlx.mlx, game->textures[i].id);
-		i = -1;
-		while (++i < 5)
-			if (game->door[i].id)
-				mlx_destroy_image(game->mlx.mlx, game->door[i].id);
-	}
-	mlx_destroy_window(game->mlx.mlx, game->mlx.window);
-	mlx_destroy_display(game->mlx.mlx);
-	free(game->mlx.mlx);
-	free_map(&game->map);
-	return (exit(0), 0);
-}
 
 int	ft_mouse_listener(int x, int y, t_game *game)
 {
@@ -89,38 +56,17 @@ int	ft_loop(t_game *game)
 	return (0);
 }
 
-void	set_image(t_game *game, t_image *image, char *path)
-{
-	image->id = mlx_xpm_file_to_image(
-		game->mlx.mlx,
-		path,
-		&image->width,
-		&image->height
-	);
-	if (!image->id)
-	{
-		printf("Error\nxpm error.\n");
-		ft_close(game);
-	}
-	image->addr = mlx_get_data_addr(
-		image->id,
-		&image->bits_per_pixel,
-		&image->line_length,
-		&image->endian
-	);
-}
-
 void	init_images(t_game *game)
 {
-	set_image(game, &game->textures[NO], game->map.types_info[NO]);
-	set_image(game, &game->textures[SO], game->map.types_info[SO]);
-	set_image(game, &game->textures[WE], game->map.types_info[WE]);
-	set_image(game, &game->textures[EA], game->map.types_info[EA]);
-	set_image(game, &game->door[0], "./src/textures/closed.xpm");
-	set_image(game, &game->door[1], "./src/textures/closed1.xpm");
-	set_image(game, &game->door[2], "./src/textures/closed2.xpm");
-	set_image(game, &game->door[3], "./src/textures/closed3.xpm");
-	set_image(game, &game->door[4], "./src/textures/open.xpm");
+	new_image(game, &game->textures[NO], game->map.types_info[NO]);
+	new_image(game, &game->textures[SO], game->map.types_info[SO]);
+	new_image(game, &game->textures[WE], game->map.types_info[WE]);
+	new_image(game, &game->textures[EA], game->map.types_info[EA]);
+	new_image(game, &game->door[0], "./src/textures/closed.xpm");
+	new_image(game, &game->door[1], "./src/textures/closed1.xpm");
+	new_image(game, &game->door[2], "./src/textures/closed2.xpm");
+	new_image(game, &game->door[3], "./src/textures/closed3.xpm");
+	new_image(game, &game->door[4], "./src/textures/open.xpm");
 }
 
 void	new_game(t_game *game)

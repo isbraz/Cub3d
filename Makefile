@@ -2,7 +2,7 @@ INC_DIR = includes
 MLX_DIR = .mlx
 CFLAGS = -g #-fsanitize=address #-Wall -Wextra -Werror
 
-SRCS = src/main.c                     \
+SRCS = src/main.c                   \
 		src/utils/ft_strjoin.c        \
 		src/utils/ft_strlen.c         \
 		src/utils/ft_split.c          \
@@ -17,7 +17,10 @@ SRCS = src/main.c                     \
 		src/utils/get_degree.c        \
 		src/utils/get_radian.c        \
 		src/utils/ft_memset.c         \
+		src/utils/time_now.c          \
+		src/mlx_utils/ft_close.c      \
 		src/mlx_utils/new_canvas.c    \
+		src/mlx_utils/new_image.c     \
 		src/mlx_utils/get_pixel.c     \
 		src/mlx_utils/put_pixel.c     \
 		src/mlx_utils/get_trgb.c      \
@@ -32,7 +35,7 @@ SRCS = src/main.c                     \
 		src/minimap/draw_minimap.c    \
 		src/scene/scene.c             \
 		src/scene/moves.c             \
-		src/scene/handle_door.c         \
+		src/scene/handle_door.c       \
 		src/raycast/raycast.c         \
 
 OBJS = $(patsubst src/%,.objs/%,$(patsubst %.c,%.o,$(SRCS)))
