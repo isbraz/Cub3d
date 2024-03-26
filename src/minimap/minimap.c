@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/26 20:10:00 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:50:21 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	draw_player_view(t_game *game)
 void	update_minimap(t_game *game)
 {
 	if (!game->show_map)
-		return;
+		return ;
 	draw_minimap_background(game);
 	draw_minimap(game, draw_space, get_trgb(0, 230, 230, 230));
 	draw_minimap(game, draw_walls, get_trgb(0, 32, 32, 28));

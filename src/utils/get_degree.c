@@ -6,13 +6,13 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 18:45:02 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/16 18:48:11 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:51:58 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-double get_degree(double radian)
+double	get_degree(double radian)
 {
 	return (radian * (180.0 / PI));
 }
