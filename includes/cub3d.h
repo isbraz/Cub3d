@@ -152,7 +152,7 @@ void	draw_walls(t_game *game, int vec[2], int color, char c);
 void	draw_door(t_game *game, int vec[2], int color, char c);
 
 
-void	update_scene(t_game *game, char **floor_c, char **ceiling_c);
+void	update_scene(t_game *game);
 
 void	raycast(t_game *game);
 void	move_player(int key, t_game *game);

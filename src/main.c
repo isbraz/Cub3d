@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/26 19:33:25 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:41:34 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	ft_loop(t_game *game)
 {
 	if (!game->pause)
 		mlx_mouse_move(game->mlx.mlx, game->mlx.window, WIN_WIDTH / 2, WIN_HEIGHT / 2);
-	update_scene(game, ft_split(game->map.types_info[F], ','), ft_split(game->map.types_info[C], ','));
+	update_scene(game);
 	if (game->show_map)
 		update_minimap(game);
 	update_door(game);
@@ -142,7 +142,7 @@ void	new_game(t_game *game)
 	game->player.plane[Y] = ((-0.5) * (dir == 'W')) + ((0.5) * (dir == 'E'));
 	game->last = time_now();
 	game->door_time = time_now();
-	mlx_mouse_hide(game->mlx.mlx, game->mlx.window);
+	// mlx_mouse_hide(game->mlx.mlx, game->mlx.window);
 }
 
 int main(int argc, char *argv[])

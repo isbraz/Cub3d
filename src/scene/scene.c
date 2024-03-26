@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 17:41:34 by user              #+#    #+#             */
-/*   Updated: 2024/03/22 15:12:41 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:41:27 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	update_scene(t_game *game, char **floor_c, char **ceiling_c)
+void	update_scene(t_game *game)
 {
 	int	y;
 	int	x;
@@ -23,12 +23,10 @@ void	update_scene(t_game *game, char **floor_c, char **ceiling_c)
 		x = 0;
 		if (y > WIN_HEIGHT / 2)
 			while (x < WIN_WIDTH)
-				put_pixel_canva(&game->scene, x++, y, get_trgb(0,  \
-				ft_atoi(floor_c[0]), ft_atoi(floor_c[1]), ft_atoi(floor_c[2]))); //floor
+				put_pixel_canva(&game->scene, x++, y, game->map.floor_color);
 		else
 			while (x < WIN_WIDTH)
-				put_pixel_canva(&game->scene, x++, y, get_trgb(0, \
-				ft_atoi(ceiling_c[0]), ft_atoi(ceiling_c[1]), ft_atoi(ceiling_c[2]))); //ceiling
+				put_pixel_canva(&game->scene, x++, y, game->map.ceiling_color);
 		y++;
 	}
 	raycast(game);
