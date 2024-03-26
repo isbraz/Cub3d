@@ -6,7 +6,7 @@
 /*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:25:55 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/25 16:20:40 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:01:53 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,18 @@ static void	draw_3Dwalls(t_game *game, int draw_start, int draw_end, int texX, i
 		texY = ((d * game->textures->height) / game->raycast.lineHeight) / 256;
 		if (texY <= -1 || texX <= -1)
 			return ;
-		color = get_pixel_canva(&game->textures[game->raycast.c], texX, texY);
+		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '1')	
+			color = get_pixel_canva(&game->textures[game->raycast.c], texX, texY);
 		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '2')
 		{
 			texY = ((d * game->door[0].height) / game->raycast.lineHeight) / 256;
-			color = get_pixel_canva(&game->door[0], texX * 0.15, texY);
-			if (game->padlock)
+			if (get_pixel_canva(&game->door[0], texX * 0.15, texY) != -16777216)
 			{
-				color = get_pixel_canva(&game->door[1], texX * 0.15, texY);
+				color = get_pixel_canva(&game->door[0], texX * 0.15, texY);
+				if (game->padlock)
+				{
+					color = get_pixel_canva(&game->door[1], texX * 0.15, texY);
+				}
 			}
 		}
 		if (game->raycast.side == 1)
@@ -121,8 +125,8 @@ static double	perform_dda(t_game *game)
 			game->raycast.mapY += game->raycast.stepY;
 			game->raycast.side = 1;
 		}
-		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '1' || \
-			game->map.map[game->raycast.mapY][game->raycast.mapX] == '2')
+		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '1' \
+		|| game->map.map[game->raycast.mapY][game->raycast.mapX] == '2')
 		{
 			game->raycast.hit = 1;
 			set_texture(game);
