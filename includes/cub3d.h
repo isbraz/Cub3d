@@ -127,6 +127,7 @@ int		is_floor(char c);
 void		rotate_vector(double vec[2], double dest[2], double degree);
 double	get_degree(double radian);
 double	get_radian(double degree);
+void		ft_memset(void *var, int value, long n);
 
 int		get_trgb(int t, int r, int g, int b);
 void	put_pixel_canva(t_image *image, int x, int y, int pixel);

@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/26 16:41:56 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:01:13 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	new_game(t_game *game)
 	dir = game->map.spawn_dir;
 	game->show_map = 1;
 	game->lock_mouse = 1;
-	game->padlock = 0;
 	game->mlx.mlx = mlx_init();
 	game->mlx.window = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D!");
 	new_canvas(&game->scene, game->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);
@@ -115,7 +114,6 @@ void	new_game(t_game *game)
 	game->player.delta[Y] = sin(game->player.angle);
 	game->player.plane[X] = ((-0.5) * (dir == 'S')) + ((0.5) * (dir == 'N'));
 	game->player.plane[Y] = ((-0.5) * (dir == 'W')) + ((0.5) * (dir == 'E'));
-	game->raycast.hit = 0;
 	game->last = time_now();
 	mlx_mouse_hide(game->mlx.mlx, game->mlx.window);
 }
@@ -125,7 +123,7 @@ int main(int argc, char *argv[])
 	t_game game;
 	t_player player;
 
-	game.mlx.mlx = NULL;
+	ft_memset(&game, 0, sizeof(game));
 	if (argc != 2)
 		exit_error(NULL, ARGUMENTS_ERROR);
 	get_map(&game.map, argv);
