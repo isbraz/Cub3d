@@ -112,7 +112,7 @@ typedef struct s_game {
 
 typedef void	(*t_draw_walls)(t_game*, int[2], int, char);
 
-void	exit_error(t_map *map, int status);
+void	exit_parsing_error(t_map *map, int status);
 int		ft_strlen(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char const *s1);

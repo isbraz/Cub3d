@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/26 20:15:14 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:25:56 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 
 	ft_memset(&game, 0, sizeof(game));
 	if (argc != 2)
-		exit_error(NULL, ARGUMENTS_ERROR);
+		exit_parsing_error(NULL, ARGUMENTS_ERROR);
 	get_map(&game.map, argv);
 	new_game(&game);
 	mlx_hook(game.window, 17, (1L<<3), ft_close, &game);

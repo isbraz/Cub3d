@@ -9,7 +9,7 @@ SRCS = src/main.c                   \
 		src/utils/ft_nsplit.c         \
 		src/utils/ft_strdup.c         \
 		src/utils/free_double.c       \
-		src/utils/exit_error.c        \
+		src/utils/exit_parsing_error.c\
 		src/utils/ft_isnumeric.c      \
 		src/utils/ft_atoi.c           \
 		src/utils/is_floor.c          \
