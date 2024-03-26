@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:49:26 by user              #+#    #+#             */
-/*   Updated: 2024/03/07 15:00:32 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:33:38 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@ static int	is_open(char **map, int x, int y)
 	return (0);
 }
 
+static int	door_closed(char **map, int x, int y)
+{
+	int	sides_closed;
+
+	sides_closed = 0;
+	if (map[y][x - 1] == '1')
+		sides_closed++;
+	if (map[y][x + 1] == '1')
+		sides_closed++;
+	if (map[y - 1][x] == '1')
+		sides_closed++;
+	if (map[y + 1][x] == '1')
+		sides_closed++;
+	return (sides_closed);
+}
+
 int	verify_walls(t_map *map)
 {
 	int	x;
@@ -33,9 +49,10 @@ int	verify_walls(t_map *map)
 		x = 0;
 		while (map->map[y][x])
 		{
-			if (is_floor(map->map[y][x]))
-				if (is_open(map->map, x, y))
-					return (0);
+			if (is_floor(map->map[y][x]) && is_open(map->map, x, y))
+				return (0);
+			if (map->map[y][x] == '2' && door_closed(map->map, x, y) != 2)
+				return (0);
 			x++;
 		}
 		y++;
