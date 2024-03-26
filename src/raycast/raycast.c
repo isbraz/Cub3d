@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:25:55 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/26 16:03:41 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:28:28 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,17 @@ static void	draw_3Dwalls(t_game *game, int draw_start, int draw_end, int texX, i
 		texY = ((d * game->textures->height) / game->raycast.lineHeight) / 256;
 		if (texY <= -1 || texX <= -1)
 			return ;
-		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '1')	
+		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '1')
+		{
 			color = get_pixel_canva(&game->textures[game->raycast.c], texX, texY);
+			if (game->raycast.side == 1)
+				color = (color >> 1) & 8355711;
+		}
 		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '2')
 		{
 			texY = ((d * game->door[game->d].height) / game->raycast.lineHeight) / 256;
 			color = get_pixel_canva(&game->door[game->d], texX * 0.15, texY);
 		}
-		if (game->raycast.side == 1)
-			color = (color >> 1) & 8355711;
 		put_pixel_canva(&game->scene, x, draw_start, color);
 		draw_start++;
 	}
