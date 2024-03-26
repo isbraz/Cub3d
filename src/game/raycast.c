@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:25:55 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/26 17:34:00 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:12:15 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,58 +14,62 @@
 
 void	create_walls(t_game game, int x);
 
-static void	init_calc(t_game *game, double cameraX)
+static void	init_calc(t_game *game, double c_x)
 {
-	game->raycast.raydirY = game->player.delta[Y] + game->player.plane[Y] * cameraX;
-	game->raycast.raydirX = game->player.delta[X] + game->player.plane[X] * cameraX;
-	game->raycast.mapX = (int)game->player.position[X];
-	game->raycast.mapY = (int)game->player.position[Y];
-	game->raycast.deltaDistX = fabs(1 / game->raycast.raydirX);
-	game->raycast.deltaDistY = fabs(1 / game->raycast.raydirY);
+	game->raycast.raydiry = game->player.delta[Y] + game->player.plane[Y] * c_x;
+	game->raycast.raydirx = game->player.delta[X] + game->player.plane[X] * c_x;
+	game->raycast.mapx = (int)game->player.position[X];
+	game->raycast.mapy = (int)game->player.position[Y];
+	game->raycast.deltadistx = fabs(1 / game->raycast.raydirx);
+	game->raycast.deltadisty = fabs(1 / game->raycast.raydiry);
 }
 
 static void	do_steps(t_game *game)
 {
-	if (game->raycast.raydirX < 0)
+	if (game->raycast.raydirx < 0)
 	{
-		game->raycast.stepX = -1;
-		game->raycast.sideDistX = (game->player.position[X] - game->raycast.mapX) * game->raycast.deltaDistX;
+		game->raycast.stepx = -1;
+		game->raycast.sidedistx = (game->player.position[X] - 
+				game->raycast.mapx) * game->raycast.deltadistx;
 	}
 	else
 	{
-		game->raycast.stepX = 1;
-		game->raycast.sideDistX = (game->raycast.mapX + 1.0 - game->player.position[X]) * game->raycast.deltaDistX;
+		game->raycast.stepx = 1;
+		game->raycast.sidedistx = (game->raycast.mapx + 1.0 - 
+				game->player.position[X]) * game->raycast.deltadistx;
 	}
-	if (game->raycast.raydirY < 0)
+	if (game->raycast.raydiry < 0)
 	{
-		game->raycast.stepY = -1;
-		game->raycast.sideDistY = (game->player.position[Y] - game->raycast.mapY) * game->raycast.deltaDistY;
+		game->raycast.stepy = -1;
+		game->raycast.sidedisty = (game->player.position[Y] - 
+				game->raycast.mapy) * game->raycast.deltadisty;
 	}
 	else
 	{
-		game->raycast.stepY = 1;
-		game->raycast.sideDistY = (game->raycast.mapY + 1.0 - game->player.position[Y]) * game->raycast.deltaDistY;
+		game->raycast.stepy = 1;
+		game->raycast.sidedisty = (game->raycast.mapy + 1.0 - 
+				game->player.position[Y]) * game->raycast.deltadisty;
 	}
 }
 
-static void	draw_3Dwalls(t_game *game, int draw_start, int draw_end, int texX, int x)
+static void	draw_wall_line(t_game *game, int draw_start, int draw_end, int tex_x, int x)
 {
-	int d;
-	int	texY;
+	int	d;
+	int	tex_y;
 	int	color;
 
 	while (draw_start < draw_end)
 	{
-		d = draw_start * 256 - WIN_HEIGHT * 128 + game->raycast.lineHeight * 128;
-		texY = ((d * game->textures->height) / game->raycast.lineHeight) / 256;
-		if (texY <= -1 || texX <= -1)
+		d = draw_start * 256 - WIN_HEIGHT * 128 + game->raycast.lineheight * 128;
+		tex_y = ((d * game->textures->height) / game->raycast.lineheight) / 256;
+		if (tex_y <= -1 || tex_x <= -1)
 			return ;
-		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '1')
-			color = get_pixel_canva(&game->textures[game->raycast.c], texX, texY);
-		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '2')
+		if (game->map.map[game->raycast.mapy][game->raycast.mapx] == '1')
+			color = get_pixel_canva(&game->textures[game->raycast.c], tex_x, tex_y);
+		if (game->map.map[game->raycast.mapy][game->raycast.mapx] == '2')
 		{
-			texY = ((d * game->door[game->d].height) / game->raycast.lineHeight) / 256;
-			color = get_pixel_canva(&game->door[game->d], texX * 0.15, texY);
+			tex_y = ((d * game->door[game->d].height) / game->raycast.lineheight) / 256;
+			color = get_pixel_canva(&game->door[game->d], tex_x * 0.15, tex_y);
 		}
 		put_pixel_canva(&game->scene, x, draw_start, color);
 		draw_start++;
@@ -74,54 +78,54 @@ static void	draw_3Dwalls(t_game *game, int draw_start, int draw_end, int texX, i
 
 static void	set_texture(t_game *game)
 {
-	if (game->raycast.side == 0) // EW wall hit
-    {
-        if (game->raycast.raydirX > 0)
-            game->raycast.c = WE; // West wall1
-        else
-            game->raycast.c = EA; // East wall2
-    }
-    else // NS wall hit
-    {
-        if (game->raycast.raydirY > 0)
-            game->raycast.c = NO; // North wall3
-        else
-            game->raycast.c = SO; // South wall4
-    }
+	if (game->raycast.side == 0)
+	{
+		if (game->raycast.raydirx > 0)
+			game->raycast.c = WE;
+		else
+			game->raycast.c = EA;
+	}
+	else
+	{
+		if (game->raycast.raydiry > 0)
+			game->raycast.c = NO;
+		else
+			game->raycast.c = SO;
+	}
 }
 
 static double	get_distance(t_game *game)
 {
-	double	perpWallDist;
+	double	perp_wall_dist;
 
-	if(game->raycast.side == 0)
-		perpWallDist = (game->raycast.sideDistX - game->raycast.deltaDistX);
+	if (game->raycast.side == 0)
+		perp_wall_dist = (game->raycast.sidedistx - game->raycast.deltadistx);
 	else
-		perpWallDist = (game->raycast.sideDistY - game->raycast.deltaDistY);
-	return (perpWallDist);
+		perp_wall_dist = (game->raycast.sidedisty - game->raycast.deltadisty);
+	return (perp_wall_dist);
 }
 
 static double	perform_dda(t_game *game, int x)
 {
-	game->raycast.hit = 0;	
+	game->raycast.hit = 0;
 	while (game->raycast.hit == 0)
 	{
-		if (game->raycast.sideDistX < game->raycast.sideDistY)
+		if (game->raycast.sidedistx < game->raycast.sidedisty)
 		{
-			game->raycast.sideDistX += game->raycast.deltaDistX;
-			game->raycast.mapX += game->raycast.stepX;
+			game->raycast.sidedistx += game->raycast.deltadistx;
+			game->raycast.mapx += game->raycast.stepx;
 			game->raycast.side = 0;
 		}
 		else
 		{
-			game->raycast.sideDistY += game->raycast.deltaDistY;
-			game->raycast.mapY += game->raycast.stepY;
+			game->raycast.sidedisty += game->raycast.deltadisty;
+			game->raycast.mapy += game->raycast.stepy;
 			game->raycast.side = 1;
 		}
-		if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '1' \
-		|| game->map.map[game->raycast.mapY][game->raycast.mapX] == '2')
+		if (game->map.map[game->raycast.mapy][game->raycast.mapx] == '1' \
+		|| game->map.map[game->raycast.mapy][game->raycast.mapx] == '2')
 		{
-			if (game->map.map[game->raycast.mapY][game->raycast.mapX] == '2')
+			if (game->map.map[game->raycast.mapy][game->raycast.mapx] == '2')
 				create_walls(*game, x);
 			game->raycast.hit = 1;
 			set_texture(game);
@@ -134,45 +138,45 @@ static double	perform_dda(t_game *game, int x)
 
 void	create_walls(t_game game, int x)
 {
-	int		drawStart;
-	int		drawEnd;
-	double	perpWallDist;
-	double	wallX;
-	int		texX;
+	int		draw_start;
+	int		draw_end;
+	double	perp_wall_dist;
+	double	wall_x;
+	int		tex_x;
 
-	perpWallDist = perform_dda(&game, x);
-	game.raycast.lineHeight = (int)(WIN_HEIGHT / perpWallDist);
-	drawStart = -game.raycast.lineHeight / 2 + WIN_HEIGHT / 2;
-	if(drawStart < 0)
-		drawStart = 0;
-	drawEnd = game.raycast.lineHeight / 2 + WIN_HEIGHT / 2;
-	if(drawEnd > WIN_HEIGHT)
-		drawEnd = WIN_HEIGHT - 1;
+	perp_wall_dist = perform_dda(&game, x);
+	game.raycast.lineheight = (int)(WIN_HEIGHT / perp_wall_dist);
+	draw_start = -game.raycast.lineheight / 2 + WIN_HEIGHT / 2;
+	if (draw_start < 0)
+		draw_start = 0;
+	draw_end = game.raycast.lineheight / 2 + WIN_HEIGHT / 2;
+	if (draw_end > WIN_HEIGHT)
+		draw_end = WIN_HEIGHT - 1;
 	if (game.raycast.side == 0)
-		wallX = game.player.position[Y] + perpWallDist * game.raycast.raydirY;
+		wall_x = game.player.position[Y] + perp_wall_dist * game.raycast.raydiry;
 	else
-		wallX = game.player.position[X] + perpWallDist * game.raycast.raydirX;
-	wallX -= floor((wallX));
-	texX = (int)(wallX * (double)(game.textures[game.raycast.c].width));
-	if(game.raycast.side == 0 && game.raycast.raydirX > 0)
-		texX = game.textures[0].width - texX - 1;
-	if(game.raycast.side == 1 && game.raycast.raydirY < 0)
-		texX = game.textures[0].width - texX - 1;
-	draw_3Dwalls(&game, drawStart, drawEnd,texX, x);
+		wall_x = game.player.position[X] + perp_wall_dist * game.raycast.raydirx;
+	wall_x -= floor((wall_x));
+	tex_x = (int)(wall_x * (double)(game.textures[game.raycast.c].width));
+	if (game.raycast.side == 0 && game.raycast.raydirx > 0)
+		tex_x = game.textures[0].width - tex_x - 1;
+	if (game.raycast.side == 1 && game.raycast.raydiry < 0)
+		tex_x = game.textures[0].width - tex_x - 1;
+	draw_wall_line(&game, draw_start, draw_end, tex_x, x);
 }
 
 void	raycast(t_game *game)
 {
 	int		x;
-	double	cameraX;
+	double	camera_x;
 
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
-		cameraX = 2 * x / (double)WIN_HEIGHT - 1;
-		init_calc(game, cameraX);
+		camera_x = 2 * x / (double)WIN_HEIGHT - 1;
+		init_calc(game, camera_x);
 		do_steps(game);
-    	create_walls(*game, x);
+		create_walls(*game, x);
 		x++;
 	}
 }

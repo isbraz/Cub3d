@@ -6,7 +6,7 @@
 /*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/26 20:50:21 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:18:19 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static void	draw_minimap_background(t_game *game)
 	int	y;
 	int	x;
 
-	y = MINIMAP_POSITIONY;
-	while (y <= MINIMAP_POSITIONY + MINIMAP_HEIGHT)
+	y = game->map.minimap_pos[Y];
+	while (y <= game->map.minimap_pos[Y] + MINIMAP_HEIGHT)
 	{
-		x = MINIMAP_POSITIONX;
-		while (x < MINIMAP_POSITIONX + MINIMAP_WIDTH)
+		x = game->map.minimap_pos[X];
+		while (x < game->map.minimap_pos[X] + MINIMAP_WIDTH)
 		{
 			put_pixel_canva(&game->scene, x, y, get_trgb(0, 32, 32, 28));
 			x++;
@@ -35,9 +35,9 @@ static void	draw_player_view(t_game *game)
 	int		dest_x;
 	int		dest_y;
 
-	dest_x = MINIMAP_POSITIONX + (MINIMAP_WIDTH / 2) + \
+	dest_x = game->map.minimap_pos[X] + (MINIMAP_WIDTH / 2) + \
 							(int)(game->player.delta[X] * 600);
-	dest_y = MINIMAP_POSITIONY + (MINIMAP_HEIGHT / 2) + \
+	dest_y = game->map.minimap_pos[Y] + (MINIMAP_HEIGHT / 2) + \
 							(int)(game->player.delta[Y] * 600);
 	draw_view_line(game, dest_x, dest_y);
 }

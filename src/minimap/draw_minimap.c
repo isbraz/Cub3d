@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:55:34 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/25 11:47:02 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:19:17 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ static void	draw_minimap_square(t_game *game, int vec[2], int color, int size)
 	{
 		temp_x = vec[X];
 		while (temp_x < final_x && (temp_x >= 0 && temp_x < MINIMAP_WIDTH))
-			put_pixel_canva(&game->scene, (temp_x++) + MINIMAP_POSITIONX, \
-				vec[Y] + MINIMAP_POSITIONY, color);
+			put_pixel_canva(&game->scene, \
+								(temp_x++) + game->map.minimap_pos[X], \
+								vec[Y] + game->map.minimap_pos[Y], \
+								color);
 		vec[Y]++;
 	}
 }

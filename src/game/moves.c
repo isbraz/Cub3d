@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:43:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/22 16:05:39 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:56:21 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ static int	has_collison(t_game *game, double delta[2])
 		rotate_vector(delta, new_delta, start);
 		new_pos[X] = game->player.position[X] + new_delta[X] * 0.5;
 		new_pos[Y] = game->player.position[Y] + new_delta[Y] * 0.5;
-		if (game->map.map[(int)new_pos[Y]][(int)new_pos[X]] == '1' || (game->map.map[(int)new_pos[Y]][(int)new_pos[X]] == '2' && !game->padlock))
+		if (game->map.map[(int)new_pos[Y]][(int)new_pos[X]] == '1' || \
+			(game->map.map[(int)new_pos[Y]][(int)new_pos[X]] == '2' && \
+			!game->padlock))
 			return (1);
 		start -= 10;
 	}
