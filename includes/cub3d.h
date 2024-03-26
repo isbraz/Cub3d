@@ -137,6 +137,9 @@ int		get_pixel_canva(t_image *image, int x, int y);
 void	new_canvas(t_image *canvas, void *mlx, int height, int width);
 void	new_image(t_game *game, t_image *image, char *path);
 int	ft_close(t_game *game);
+int	mouse_listener(int x, int y, t_game *game);
+int	key_listener(int key, t_game *game);
+int	ft_loop(t_game *game);
 
 void	get_map(t_map *map, char *argv[]);
 void	free_map(t_map *map);

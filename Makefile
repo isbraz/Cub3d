@@ -19,6 +19,9 @@ SRCS = src/main.c                   \
 		src/utils/ft_memset.c         \
 		src/utils/time_now.c          \
 		src/mlx_utils/ft_close.c      \
+		src/mlx_utils/ft_loop.c       \
+		src/mlx_utils/mouse_listener.c\
+		src/mlx_utils/key_listener.c  \
 		src/mlx_utils/new_canvas.c    \
 		src/mlx_utils/new_image.c     \
 		src/mlx_utils/get_pixel.c     \
