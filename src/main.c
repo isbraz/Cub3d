@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:09:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/26 17:33:27 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:33:25 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,17 @@ int	ft_close(t_game *game)
 {
 	int i;
 
-	i = 0;
+	i = -1;
 	if (game->mlx.mlx)
 	{
 		mlx_destroy_image(game->mlx.mlx, game->scene.id);
-		while (i < 4)
-			mlx_destroy_image(game->mlx.mlx, game->textures[i++].id);
+		while (++i < 4)
+			if (game->textures[i].id)
+				mlx_destroy_image(game->mlx.mlx, game->textures[i].id);
+		i = -1;
+		while (++i < 5)
+			if (game->door[i].id)
+				mlx_destroy_image(game->mlx.mlx, game->door[i].id);
 	}
 	mlx_destroy_window(game->mlx.mlx, game->mlx.window);
 	mlx_destroy_display(game->mlx.mlx);
@@ -42,7 +47,7 @@ int	ft_close(t_game *game)
 
 int	ft_mouse_listener(int x, int y, t_game *game)
 {
-	if (x == 400 || (time_now() - game->last) < 20 || !game->lock_mouse)
+	if (x == 400 || (time_now() - game->last) < 20 || game->pause)
 		return (0);
 	game->last = time_now();
 	if (x < 400)
@@ -56,10 +61,12 @@ int	ft_key_listener(int key, t_game *game)
 {
 	if (key == 65307)
 		ft_close(game);
+	if (key == 112)
+		game->pause ^= 1;
+	if (game->pause)
+		return (0);
 	if (key == 109)
 		game->show_map ^= 1;
-	if (key == 112)
-		game->lock_mouse ^= 1;
 	if (key == 101)
 	{
 		game->padlock ^= 1;
@@ -72,7 +79,7 @@ int	ft_key_listener(int key, t_game *game)
 
 int	ft_loop(t_game *game)
 {
-	if (game->lock_mouse)
+	if (!game->pause)
 		mlx_mouse_move(game->mlx.mlx, game->mlx.window, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	update_scene(game, ft_split(game->map.types_info[F], ','), ft_split(game->map.types_info[C], ','));
 	if (game->show_map)
@@ -82,25 +89,38 @@ int	ft_loop(t_game *game)
 	return (0);
 }
 
-void	set_image(void *mlx, t_image *image, char *path)
+void	set_image(t_game *game, t_image *image, char *path)
 {
-	image->id = mlx_xpm_file_to_image(mlx, path, &image->width, \
-														&image->height);
-	image->addr = mlx_get_data_addr(image->id, &image->bits_per_pixel, \
-											&image->line_length, &image->endian);
+	image->id = mlx_xpm_file_to_image(
+		game->mlx.mlx,
+		path,
+		&image->width,
+		&image->height
+	);
+	if (!image->id)
+	{
+		printf("Error\nxpm error.\n");
+		ft_close(game);
+	}
+	image->addr = mlx_get_data_addr(
+		image->id,
+		&image->bits_per_pixel,
+		&image->line_length,
+		&image->endian
+	);
 }
 
 void	init_images(t_game *game)
 {
-	set_image(game->mlx.mlx, &game->textures[NO], game->map.types_info[NO]);
-	set_image(game->mlx.mlx, &game->textures[SO], game->map.types_info[SO]);
-	set_image(game->mlx.mlx, &game->textures[WE], game->map.types_info[WE]);
-	set_image(game->mlx.mlx, &game->textures[EA], game->map.types_info[EA]);
-	set_image(game->mlx.mlx, &game->door[0], "./src/textures/closed.xpm");
-	set_image(game->mlx.mlx, &game->door[1], "./src/textures/closed1.xpm");
-	set_image(game->mlx.mlx, &game->door[2], "./src/textures/closed2.xpm");
-	set_image(game->mlx.mlx, &game->door[3], "./src/textures/closed3.xpm");
-	set_image(game->mlx.mlx, &game->door[4], "./src/textures/open.xpm");
+	set_image(game, &game->textures[NO], game->map.types_info[NO]);
+	set_image(game, &game->textures[SO], game->map.types_info[SO]);
+	set_image(game, &game->textures[WE], game->map.types_info[WE]);
+	set_image(game, &game->textures[EA], game->map.types_info[EA]);
+	set_image(game, &game->door[0], "./src/textures/closed.xpm");
+	set_image(game, &game->door[1], "./src/textures/closed1.xpm");
+	set_image(game, &game->door[2], "./src/textures/closed2.xpm");
+	set_image(game, &game->door[3], "./src/textures/closed3.xpm");
+	set_image(game, &game->door[4], "./src/textures/open.xpm");
 }
 
 void	new_game(t_game *game)
@@ -109,7 +129,6 @@ void	new_game(t_game *game)
 
 	dir = game->map.spawn_dir;
 	game->show_map = 1;
-	game->lock_mouse = 1;
 	game->mlx.mlx = mlx_init();
 	game->mlx.window = mlx_new_window(game->mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D!");
 	new_canvas(&game->scene, game->mlx.mlx, WIN_HEIGHT, WIN_WIDTH);

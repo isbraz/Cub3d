@@ -108,10 +108,10 @@ typedef struct s_game {
 	t_raycast	raycast;
 	long		last;
 	int			show_map;
-	int			lock_mouse;
+	int			pause;
 	int			padlock;
 	int			d;
-	long		door_time;			
+	long		door_time;
 }	t_game;
 
 typedef void	(*t_draw_walls)(t_game*, int[2], int, char);
