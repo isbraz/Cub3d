@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:07:27 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/26 21:20:16 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:07:12 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ typedef struct s_raycast {
 	int			mapy;
 	int			stepx;
 	int			stepy;
+	int			tex_x;
+	int			tex_y;
 	int			hit;
 	int			side;
 	int			c;
@@ -166,8 +168,13 @@ void	update_scene(t_game *game);
 void	new_game(t_game *game);
 
 void	raycast(t_game *game);
+void	init_calc(t_game *game, double c_x);
+void	do_steps(t_game *game);
 void	move_player(int key, t_game *game);
 void	move_vision(int key, t_game *game);
 void	update_door(t_game *game);
+double	perform_dda(t_game *game, int x);
+void	set_texture(t_game *game);
+void	create_walls(t_game game, int x);
 
 #endif

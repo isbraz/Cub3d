@@ -2,7 +2,7 @@ INC_DIR = includes
 MLX_DIR = .mlx
 CFLAGS = -g #-fsanitize=address #-Wall -Wextra -Werror
 
-SRCS = src/main.c                   \
+SRCS = src/main.c                     \
 		src/utils/ft_strjoin.c        \
 		src/utils/ft_strlen.c         \
 		src/utils/ft_split.c          \
@@ -41,6 +41,9 @@ SRCS = src/main.c                   \
 		src/game/handle_door.c        \
 		src/game/raycast.c            \
 		src/game/new_game.c           \
+		src/game/dda.c				  \
+		src/game/render.c			  \
+
 
 OBJS = $(patsubst src/%,.objs/%,$(patsubst %.c,%.o,$(SRCS)))
 
