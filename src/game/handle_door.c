@@ -27,9 +27,6 @@ static void	close_door(t_game *game)
 
 void	update_door(t_game *game)
 {
-	int	index;
-
-	index = 0;
 	if (!game->doors.lock && game->doors.index != 0)
 	{
 		close_door(game);

@@ -15,6 +15,7 @@
 
 int	mouse_listener(int x, int y, t_game *game)
 {
+	(void)y;
 	if (x == 400 || (time_now() - game->last_mouse_move) < 20 || game->pause)
 		return (0);
 	game->last_mouse_move = time_now();
