@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 19:59:25 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 12:10:17 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:12:55 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	ft_close(t_game *game)
 				mlx_destroy_image(game->mlx, game->textures[i].id);
 		i = -1;
 		while (++i < 5)
-			if (game->door[i].id)
-				mlx_destroy_image(game->mlx, game->door[i].id);
+			if (game->doors.door[i].id)
+				mlx_destroy_image(game->mlx, game->doors.door[i].id);
 	}
 	mlx_destroy_window(game->mlx, game->window);
 	mlx_destroy_display(game->mlx);

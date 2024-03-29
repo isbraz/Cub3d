@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:07:27 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 12:56:10 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:12:26 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,14 @@ typedef struct s_player
 	double		angle;
 }	t_player;
 
+typedef struct s_doors
+{
+	t_image		door[5];
+	long		time;
+	int		index;
+	int		lock;
+}	t_doors;
+
 typedef struct s_game {
 	void		*window;
 	void		*mlx;
@@ -76,14 +84,11 @@ typedef struct s_game {
 	t_player	player;
 	int			minimap_pos[2];
 	t_image		textures[4];
-	t_image		door[5];
 	t_raycast	raycast;
 	long		last;
 	int			show_map;
 	int			pause;
-	int			padlock;
-	int			d;
-	long		door_time;
+	t_doors		doors;
 }	t_game;
 
 typedef void	(*t_draw_walls)(t_game*, int[2], int, char);

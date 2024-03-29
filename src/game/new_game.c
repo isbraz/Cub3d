@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:31:20 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 12:56:53 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:16:13 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ static void	init_images(t_game *game)
 	new_image(game, &game->textures[SO], game->map.types_info[SO]);
 	new_image(game, &game->textures[WE], game->map.types_info[WE]);
 	new_image(game, &game->textures[EA], game->map.types_info[EA]);
-	new_image(game, &game->door[0], "./src/textures/closed.xpm");
-	new_image(game, &game->door[1], "./src/textures/closed1.xpm");
-	new_image(game, &game->door[2], "./src/textures/closed2.xpm");
-	new_image(game, &game->door[3], "./src/textures/closed3.xpm");
-	new_image(game, &game->door[4], "./src/textures/open.xpm");
+	new_image(game, &game->doors.door[0], "./src/textures/closed.xpm");
+	new_image(game, &game->doors.door[1], "./src/textures/closed1.xpm");
+	new_image(game, &game->doors.door[2], "./src/textures/closed2.xpm");
+	new_image(game, &game->doors.door[3], "./src/textures/closed3.xpm");
+	new_image(game, &game->doors.door[4], "./src/textures/open.xpm");
 }
 
 static void	init_angle(double *angle, char dir)
@@ -60,7 +60,7 @@ void	new_game(t_game *game)
 	game->minimap_pos[X] = MINIMAP_MARGIN;
 	game->show_map = 1;
 	game->last = time_now();
-	game->door_time = time_now();
+	game->doors.time = time_now();
 	rotate_vector(game->map.spawn_pos, game->player.position, 0);
 	init_angle(&game->player.angle, game->map.spawn_dir);
 	init_plane(game->player.plane, game->map.spawn_dir);

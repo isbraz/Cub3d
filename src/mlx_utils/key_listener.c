@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:05:36 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 12:23:19 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:09:14 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 int	key_listener(int key, t_game *game)
 {
+	t_doors	*doors;
+
+	doors = &game->doors;
 	if (key == 65307)
 		ft_close(game);
 	if (key == 112)
@@ -25,8 +28,8 @@ int	key_listener(int key, t_game *game)
 		game->show_map ^= 1;
 	if (key == 101)
 	{
-		game->padlock ^= 1;
-		game->door_time = time_now();
+		doors->lock ^= 1;
+		doors->time = time_now();
 	}
 	move_vision(key, game);
 	move_player(key, game);

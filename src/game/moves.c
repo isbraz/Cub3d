@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:43:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/29 12:26:03 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:13:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	has_collison(t_game *game, double delta[2])
 		new_pos[Y] = game->player.position[Y] + new_delta[Y] * 0.5;
 		if (game->map.map[(int)new_pos[Y]][(int)new_pos[X]] == '1' || \
 			(game->map.map[(int)new_pos[Y]][(int)new_pos[X]] == '2' && \
-			!game->padlock))
+			!game->doors.lock))
 			return (1);
 		start -= 10;
 	}

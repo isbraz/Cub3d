@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 12:56:53 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:11:51 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	update_minimap(t_game *game)
 	draw_minimap(game, draw_space, get_trgb(0, 230, 230, 230));
 	draw_minimap(game, draw_walls, get_trgb(0, 32, 32, 28));
 	draw_minimap(game, draw_door, get_trgb(0, 200, 0, 0));
-	if (game->padlock)
+	if (game->doors.lock)
 		draw_minimap(game, draw_door, get_trgb(0, 0, 97, 0));
 	draw_player_view(game);
 }
