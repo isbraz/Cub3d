@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 12:39:24 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 12:10:17 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:56:53 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	draw_view_line(t_game *game, int finalX, int finalY)
 	int	temp;
 	int	pixel[2];
 
-	pixel[X] = game->map.minimap_pos[X] + (MINIMAP_WIDTH / 2) + 2;
-	pixel[Y] = game->map.minimap_pos[Y] + (MINIMAP_HEIGHT / 2) + 2;
+	pixel[X] = game->minimap_pos[X] + (MINIMAP_WIDTH / 2) + 2;
+	pixel[Y] = game->minimap_pos[Y] + (MINIMAP_HEIGHT / 2) + 2;
 	err = abs(finalX - pixel[X]) - abs(finalY - pixel[Y]);
 	while (pixel[X] != finalX || pixel[Y] != finalY)
 	{

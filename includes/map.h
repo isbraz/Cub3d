@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:50:07 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 12:55:36 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:55:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_map {
 	int			map_start;
 	char		spawn_dir;
 	double		spawn_pos[2];
-	int			minimap_pos[2];
 }	t_map;
 
 void	exit_parsing_error(t_map *map, int status);

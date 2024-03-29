@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 16:55:34 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 12:25:46 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:56:53 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static void	draw_minimap_square(t_game *game, int vec[2], int color, int size)
 		temp_x = vec[X];
 		while (temp_x < final_x && (temp_x >= 0 && temp_x < MINIMAP_WIDTH))
 			put_pixel(&game->scene, \
-								(temp_x++) + game->map.minimap_pos[X], \
-								vec[Y] + game->map.minimap_pos[Y], \
+								(temp_x++) + game->minimap_pos[X], \
+								vec[Y] + game->minimap_pos[Y], \
 								color);
 		vec[Y]++;
 	}

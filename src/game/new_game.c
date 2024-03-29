@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:31:20 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 12:26:28 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:56:53 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	new_game(t_game *game)
 {
 	game->mlx = mlx_init();
 	game->window = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D!");
-	game->map.minimap_pos[Y] = WIN_HEIGHT - MINIMAP_HEIGHT - MINIMAP_MARGIN;
-	game->map.minimap_pos[X] = MINIMAP_MARGIN;
+	game->minimap_pos[Y] = WIN_HEIGHT - MINIMAP_HEIGHT - MINIMAP_MARGIN;
+	game->minimap_pos[X] = MINIMAP_MARGIN;
 	game->show_map = 1;
 	game->last = time_now();
 	game->door_time = time_now();
