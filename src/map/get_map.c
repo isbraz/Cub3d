@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 08:06:12 by user              #+#    #+#             */
-/*   Updated: 2024/03/26 21:16:43 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:51:51 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,17 @@ static char	*get_file(char *argv[])
 	if (fd == -1)
 		return (NULL);
 	while (read(fd, buffer, 1) != 0)
+	{
+		if (buffer[0] == '\t')
+		{
+			if (input)
+				free(input);
+			close(fd);
+			return (NULL);
+		}
 		input = ft_strjoin(input, buffer);
+	}
+	close(fd);
 	return (input);
 }
 
