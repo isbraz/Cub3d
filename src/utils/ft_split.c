@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>           +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>           +#+  +:+       +#+       */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:36:06 by llopes-d          #+#    #+#             */
 /*   Updated: 2024/03/29 15:30:45 by user             ###   ########.fr       */

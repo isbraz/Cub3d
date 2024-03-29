@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>           +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>           +#+  +:+       +#+       */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:08:38 by user              #+#    #+#             */
 /*   Updated: 2024/03/29 15:30:45 by user             ###   ########.fr       */
