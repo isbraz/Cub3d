@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:07:27 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 15:27:30 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 15:28:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_game {
 	t_image		scene;
 	t_map		map;
 	int			minimap_pos[2];
-	long		last;
+	long		last_mouse_move;
 	int			show_map;
 	int			pause;
 }	t_game;
