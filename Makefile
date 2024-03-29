@@ -26,6 +26,7 @@ SRCS = src/main.c                     \
 		src/mlx_utils/put_pixel.c     \
 		src/mlx_utils/get_trgb.c      \
 		src/map/exit_parsing_error.c  \
+		src/map/free_map.c            \
 		src/map/verify_breaks.c       \
 		src/map/verify_walls.c        \
 		src/map/verify_map.c          \

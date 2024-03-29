@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include <unistd.h>
 #include <utils.h>
 #include <fcntl.h>
-#include <unistd.h>
+#include <map.h>
 
 static int	is_map_start(char *input)
 {
@@ -43,18 +43,30 @@ static int	get_map_start(char *input)
 	return (index);
 }
 
+static int	valid_extension(char *path)
+{
+	int	path_len;
+	path_len = ft_strlen(path);
+
+	if (path_len < 5 || ft_strcmp(&path[path_len - 4], ".cub"))
+		return (0);
+	return (1);
+}
+
 static char	*get_file(char *argv[])
 {
-	int		fd;
 	char	buffer[2];
 	char	*input;
+	int		fd;
 
 	input = NULL;
 	buffer[1] = '\0';
+	if (!valid_extension(argv[1]))
+		return (NULL);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-	while (read(fd, buffer, 1) != 0)
+	while (read(fd, buffer, 1) > 0)
 	{
 		if (buffer[0] == '\t')
 		{
@@ -67,27 +79,6 @@ static char	*get_file(char *argv[])
 	}
 	close(fd);
 	return (input);
-}
-
-void	free_map(t_map *map)
-{
-	int	index;
-
-	index = 0;
-	if (!map)
-		return ;
-	if (map->input)
-		free(map->input);
-	if (map->map)
-		free_double(map->map);
-	if (map->types)
-		free_double(map->types);
-	while (index < 6)
-	{
-		if (map->types_info[index])
-			free(map->types_info[index]);
-		index++;
-	}
 }
 
 void	get_map(t_map *map, char *argv[])
