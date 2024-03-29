@@ -9,7 +9,6 @@ SRCS = src/main.c                     \
 		src/utils/ft_nsplit.c         \
 		src/utils/ft_strdup.c         \
 		src/utils/free_double.c       \
-		src/utils/exit_parsing_error.c\
 		src/utils/ft_isnumeric.c      \
 		src/utils/ft_atoi.c           \
 		src/utils/is_floor.c          \
@@ -26,12 +25,13 @@ SRCS = src/main.c                     \
 		src/mlx_utils/get_pixel.c     \
 		src/mlx_utils/put_pixel.c     \
 		src/mlx_utils/get_trgb.c      \
-		src/map/get_map.c             \
-		src/map/verify_map.c          \
-		src/map/verify_walls.c        \
+		src/map/exit_parsing_error.c  \
 		src/map/verify_breaks.c       \
+		src/map/verify_walls.c        \
+		src/map/verify_map.c          \
 		src/map/get_types.c           \
 		src/map/get_spawn.c           \
+		src/map/get_map.c             \
 		src/minimap/minimap.c         \
 		src/minimap/draw_view_line.c  \
 		src/minimap/draw_minimap.c    \
