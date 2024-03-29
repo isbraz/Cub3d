@@ -6,11 +6,12 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:06:10 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 12:10:17 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:44:52 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
+#include <minimap.h>
 
 int	ft_loop(t_game *game)
 {

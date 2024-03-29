@@ -6,11 +6,12 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 13:11:51 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:45:18 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
+#include <minimap.h>
 
 static void	draw_minimap_background(t_game *game)
 {
