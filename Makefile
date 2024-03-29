@@ -12,7 +12,6 @@ SRCS = src/main.c                     \
 		src/utils/ft_isnumeric.c      \
 		src/utils/ft_atoi.c           \
 		src/utils/is_floor.c          \
-		src/utils/rotate_vector.c     \
 		src/utils/get_degree.c        \
 		src/utils/get_radian.c        \
 		src/utils/ft_memset.c         \

@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:00:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 12:34:31 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:59:34 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 
-void	rotate_vector(double vec[2], double dest[2], double degree);
 void	ft_memset(void *var, int value, long n);
 void	free_double(char **array);
 char	**ft_nsplit(char const *s, char c, size_t n);

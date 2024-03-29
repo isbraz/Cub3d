@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:31:20 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 13:45:38 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:58:10 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	new_game(t_game *game)
 	game->show_map = 1;
 	game->last = time_now();
 	game->doors.time = time_now();
-	rotate_vector(game->map.spawn_pos, game->player.position, 0);
+	game->player.position[X] = game->map.spawn_pos[X];
+	game->player.position[Y] = game->map.spawn_pos[Y];
 	init_angle(&game->player.angle, game->map.spawn_dir);
 	init_plane(game->player.plane, game->map.spawn_dir);
 	init_delta(game->player.delta, game->player.angle);

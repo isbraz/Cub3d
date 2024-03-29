@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 13:36:32 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 13:38:51 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:53:10 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RAYCAST_H
 
 # include "cub3D.h"
+# include <math.h>
 
 typedef struct s_raycast {
 	double	raydirx;

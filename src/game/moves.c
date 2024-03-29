@@ -6,12 +6,18 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:43:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/29 13:13:25 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:59:21 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 #include <utils.h>
+
+static void	rotate_vector(double vec[2], double dest[2], double degree)
+{
+	dest[X] = vec[X] * cos(degree * PI / 180) - vec[Y] * sin(degree * PI / 180);
+	dest[Y] = vec[X] * sin(degree * PI / 180) + vec[Y] * cos(degree * PI / 180);
+}
 
 void	move_vision(int key, t_game *game)
 {
