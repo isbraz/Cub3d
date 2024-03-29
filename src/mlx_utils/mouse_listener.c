@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_listener.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:04:07 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/26 20:04:19 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:10:17 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3D.h>
 
 int	mouse_listener(int x, int y, t_game *game)
 {

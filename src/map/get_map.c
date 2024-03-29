@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 08:06:12 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 11:51:51 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:10:17 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3D.h>
 
 static int	is_map_start(char *input)
 {

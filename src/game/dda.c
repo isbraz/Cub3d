@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:41:42 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/28 13:02:30 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:10:17 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3D.h>
 
 void	init_calc(t_game *game, double c_x)
 {

@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:55:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/29 11:24:46 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:10:17 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3D.h>
 
 static void	draw_wall_line(t_game *game, int draw_start, int draw_end, int x)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_types.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:58:26 by user              #+#    #+#             */
-/*   Updated: 2024/03/26 20:49:58 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:10:17 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3D.h>
 
 static int	file_exist(char *file_name)
 {

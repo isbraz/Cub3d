@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:19:20 by user              #+#    #+#             */
-/*   Updated: 2024/02/17 16:14:40 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:10:17 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3D.h>
 
 void	new_canvas(t_image *canvas, void *mlx, int height, int width)
 {

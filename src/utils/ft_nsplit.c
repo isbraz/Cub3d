@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_nsplit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:36:06 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/16 18:20:35 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:10:17 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include <cub3D.h>
 
 static size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {

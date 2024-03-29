@@ -48,7 +48,7 @@ SRCS = src/main.c                     \
 OBJS = $(patsubst src/%,.objs/%,$(patsubst %.c,%.o,$(SRCS)))
 
 NAME = cub3D
-NAME_MAP1 = cub3D testmap.cub
+NAME_MAP1 = cub3D maps/small.cub
 
 all: $(NAME)
 

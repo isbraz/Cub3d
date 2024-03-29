@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:07:27 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 11:24:46 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:11:32 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 # include <sys/time.h>
 
 # include <mlx.h>
+
+# include "mlx_utils.h"
+# include "utils.h"
+
 
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
@@ -124,31 +128,6 @@ typedef struct s_game {
 typedef void	(*t_draw_walls)(t_game*, int[2], int, char);
 
 void	exit_parsing_error(t_map *map, int status);
-int		ft_strlen(const char *s);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strdup(char const *s1);
-void	free_double(char **array);
-char	**ft_split(char const *s, char c);
-char	**ft_nsplit(char const *s, char c, size_t n);
-int		ft_isnumeric(char *str);
-int		ft_atoi(const char *str);
-int		is_floor(char c);
-void	rotate_vector(double vec[2], double dest[2], double degree);
-double	get_degree(double radian);
-double	get_radian(double degree);
-void	ft_memset(void *var, int value, long n);
-long	time_now(void);
-
-int		get_trgb(int t, int r, int g, int b);
-void	put_pixel(t_image *image, int x, int y, int pixel);
-int		get_pixel(t_image *image, int x, int y);
-void	new_canvas(t_image *canvas, void *mlx, int height, int width);
-void	new_image(t_game *game, t_image *image, char *path);
-int		ft_close(t_game *game);
-int		mouse_listener(int x, int y, t_game *game);
-int		key_listener(int key, t_game *game);
-int		ft_loop(t_game *game);
-
 void	get_map(t_map *map, char *argv[]);
 void	free_map(t_map *map);
 void	verify_map(t_map *map);
