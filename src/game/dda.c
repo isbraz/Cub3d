@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:41:42 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/29 12:10:17 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:34:50 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,25 @@ void	do_steps(t_game *game)
 	if (game->raycast.raydirx < 0)
 	{
 		game->raycast.stepx = -1;
-		game->raycast.sidedistx = (game->player.position[X] - 
+		game->raycast.sidedistx = (game->player.position[X] - \
 				game->raycast.mapx) * game->raycast.deltadistx;
 	}
 	else
 	{
 		game->raycast.stepx = 1;
-		game->raycast.sidedistx = (game->raycast.mapx + 1.0 - 
+		game->raycast.sidedistx = (game->raycast.mapx + 1.0 - \
 				game->player.position[X]) * game->raycast.deltadistx;
 	}
 	if (game->raycast.raydiry < 0)
 	{
 		game->raycast.stepy = -1;
-		game->raycast.sidedisty = (game->player.position[Y] - 
+		game->raycast.sidedisty = (game->player.position[Y] - \
 				game->raycast.mapy) * game->raycast.deltadisty;
 	}
 	else
 	{
 		game->raycast.stepy = 1;
-		game->raycast.sidedisty = (game->raycast.mapy + 1.0 - 
+		game->raycast.sidedisty = (game->raycast.mapy + 1.0 - \
 				game->player.position[Y]) * game->raycast.deltadisty;
 	}
 }

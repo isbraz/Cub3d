@@ -6,11 +6,22 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:55:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/29 13:21:17 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:32:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
+
+static void	get_raycast_door_config(t_game *game, int d, int *color)
+{
+	t_image		door;
+	t_raycast	*raycast;
+
+	raycast = &game->raycast;
+	door = game->doors.door[game->doors.index];
+	raycast->tex_y = ((d * door.height) / raycast->lineheight) / 256;
+	*color = get_pixel(&door, raycast->tex_x * 0.15, raycast->tex_y);
+}
 
 static void	draw_wall_line(t_game *game, int draw_start, int draw_end, int x)
 {
@@ -29,12 +40,7 @@ static void	draw_wall_line(t_game *game, int draw_start, int draw_end, int x)
 			color = get_pixel(&game->textures[game->raycast.c], \
 			game->raycast.tex_x, game->raycast.tex_y);
 		if (game->map.map[game->raycast.mapy][game->raycast.mapx] == '2')
-		{
-			game->raycast.tex_y = ((d * game->doors.door[game->doors.index].height) / \
-			game->raycast.lineheight) / 256;
-			color = get_pixel(&game->doors.door[game->doors.index], \
-			game->raycast.tex_x * 0.15, game->raycast.tex_y);
-		}
+			get_raycast_door_config(game, d, &color);
 		put_pixel(&game->scene, x, draw_start, color);
 		draw_start++;
 	}
