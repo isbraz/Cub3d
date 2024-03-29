@@ -46,8 +46,8 @@ static int	get_map_start(char *input)
 static int	valid_extension(char *path)
 {
 	int	path_len;
-	path_len = ft_strlen(path);
 
+	path_len = ft_strlen(path);
 	if (path_len < 5 || ft_strcmp(&path[path_len - 4], ".cub"))
 		return (0);
 	return (1);
