@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:07:27 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 13:24:12 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:25:00 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_raycast {
 
 typedef struct s_image	t_image;
 typedef struct s_map	t_map;
-typedef void			(*t_draw_walls)(t_game*, int[2], int, char);
 
 typedef struct s_player
 {
@@ -92,6 +91,7 @@ typedef struct s_game {
 	t_doors		doors;
 }	t_game;
 
+typedef void			(*t_draw_walls)(t_game*, int[2], int, char);
 void	draw_space(t_game *game, int vec[2], int color, char c);
 void	draw_walls(t_game *game, int vec[2], int color, char c);
 void	draw_door(t_game *game, int vec[2], int color, char c);
