@@ -49,7 +49,7 @@ SRCS = src/main.c                     \
 OBJS = $(patsubst src/%,.objs/%,$(patsubst %.c,%.o,$(SRCS)))
 
 NAME = cub3D
-NAME_MAP1 = cub3D maps/small.cub
+NAME_MAP1 = cub3D maps/explore.cub
 
 all: $(NAME)
 
@@ -67,7 +67,7 @@ clean:
 	@rm -rf .objs
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -rf $(NAME)
 
 v: $(NAME)
 	@valgrind --leak-check=full ./$(NAME_MAP1)
