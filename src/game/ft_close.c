@@ -6,11 +6,12 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 19:59:25 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 13:12:55 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 15:05:51 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
+#include <stdlib.h>
 
 int	ft_close(t_game *game)
 {

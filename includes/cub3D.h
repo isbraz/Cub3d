@@ -6,28 +6,25 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:07:27 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 15:02:19 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 15:08:26 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <unistd.h>
-# include <stdlib.h>
-
 # include <mlx.h>
 # include "mlx_utils.h"
 # include "raycast.h"
 # include "map.h"
+
+# define PI 3.1415926535f
 
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 
 # define X 0
 # define Y 1
-
-# define PI 3.1415926535f
 
 typedef struct s_raycast	t_raycast;
 typedef struct s_image		t_image;

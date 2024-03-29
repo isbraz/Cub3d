@@ -6,13 +6,14 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 08:06:12 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 12:28:18 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 15:07:00 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 #include <utils.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 static int	is_map_start(char *input)
 {
