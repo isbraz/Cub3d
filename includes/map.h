@@ -6,11 +6,12 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:50:07 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 12:55:56 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:59:58 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#ifndef MAP_H
+# define MAP_H
 
 #define ARGUMENTS_ERROR 400
 #define OPENING_ERROR 401
@@ -47,3 +48,5 @@ int		verify_breaks(t_map *map);
 int		verify_walls(t_map *map);
 int		get_types(t_map *map);
 int		get_spawn(t_map *map);
+
+#endif
