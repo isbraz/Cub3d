@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:58:26 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 12:30:24 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:35:13 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,17 @@ static int	is_types_correct(t_map *map)
 
 static int	valid_type(char *word)
 {
-	if (!strcmp(word, "NO"))
+	if (!ft_strcmp(word, "NO"))
 		return (NO);
-	if (!strcmp(word, "SO"))
+	if (!ft_strcmp(word, "SO"))
 		return (SO);
-	if (!strcmp(word, "WE"))
+	if (!ft_strcmp(word, "WE"))
 		return (WE);
-	if (!strcmp(word, "EA"))
+	if (!ft_strcmp(word, "EA"))
 		return (EA);
-	if (!strcmp(word, "F"))
+	if (!ft_strcmp(word, "F"))
 		return (F);
-	if (!strcmp(word, "C"))
+	if (!ft_strcmp(word, "C"))
 		return (C);
 	return (INVALID_TYPE);
 }

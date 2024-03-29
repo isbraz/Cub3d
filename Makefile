@@ -16,6 +16,7 @@ SRCS = src/main.c                     \
 		src/utils/get_degree.c        \
 		src/utils/get_radian.c        \
 		src/utils/ft_memset.c         \
+		src/utils/ft_strcmp.c         \
 		src/utils/time_now.c          \
 		src/mlx_utils/ft_loop.c       \
 		src/mlx_utils/mouse_listener.c\
