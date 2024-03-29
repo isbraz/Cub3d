@@ -18,7 +18,6 @@ SRCS = src/main.c                     \
 		src/utils/get_radian.c        \
 		src/utils/ft_memset.c         \
 		src/utils/time_now.c          \
-		src/mlx_utils/ft_close.c      \
 		src/mlx_utils/ft_loop.c       \
 		src/mlx_utils/mouse_listener.c\
 		src/mlx_utils/key_listener.c  \
@@ -36,6 +35,7 @@ SRCS = src/main.c                     \
 		src/minimap/minimap.c         \
 		src/minimap/draw_view_line.c  \
 		src/minimap/draw_minimap.c    \
+		src/game/ft_close.c           \
 		src/game/scene.c              \
 		src/game/moves.c              \
 		src/game/handle_door.c        \
