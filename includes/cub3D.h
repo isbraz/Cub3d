@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:07:27 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 15:08:26 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 15:27:30 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ typedef struct s_game {
 	void		*mlx;
 	t_raycast	raycast;
 	t_player	player;
+	t_image		wall[4];
 	t_doors		doors;
 	t_image		scene;
 	t_map		map;
-	t_image		textures[4];
 	int			minimap_pos[2];
 	long		last;
 	int			show_map;

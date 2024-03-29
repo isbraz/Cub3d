@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:31:20 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 15:00:20 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 15:26:53 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 static void	init_images(t_game *game)
 {
 	new_canvas(&game->scene, game->mlx, WIN_HEIGHT, WIN_WIDTH);
-	new_image(game, &game->textures[NO], game->map.types_info[NO]);
-	new_image(game, &game->textures[SO], game->map.types_info[SO]);
-	new_image(game, &game->textures[WE], game->map.types_info[WE]);
-	new_image(game, &game->textures[EA], game->map.types_info[EA]);
+	new_image(game, &game->wall[NO], game->map.types_info[NO]);
+	new_image(game, &game->wall[SO], game->map.types_info[SO]);
+	new_image(game, &game->wall[WE], game->map.types_info[WE]);
+	new_image(game, &game->wall[EA], game->map.types_info[EA]);
 	new_image(game, &game->doors.door[0], "./src/textures/closed.xpm");
 	new_image(game, &game->doors.door[1], "./src/textures/closed1.xpm");
 	new_image(game, &game->doors.door[2], "./src/textures/closed2.xpm");

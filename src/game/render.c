@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:55:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/29 13:32:22 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 15:26:53 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ static void	draw_wall_line(t_game *game, int draw_start, int draw_end, int x)
 	{
 		d = draw_start * 256 - WIN_HEIGHT * 128 + \
 		game->raycast.lineheight * 128;
-		game->raycast.tex_y = ((d * game->textures->height) / \
+		game->raycast.tex_y = ((d * game->wall->height) / \
 		game->raycast.lineheight) / 256;
 		if (game->raycast.tex_y <= -1 || game->raycast.tex_x <= -1)
 			return ;
 		if (game->map.map[game->raycast.mapy][game->raycast.mapx] == '1')
-			color = get_pixel(&game->textures[game->raycast.c], \
+			color = get_pixel(&game->wall[game->raycast.c], \
 			game->raycast.tex_x, game->raycast.tex_y);
 		if (game->map.map[game->raycast.mapy][game->raycast.mapx] == '2')
 			get_raycast_door_config(game, d, &color);
@@ -85,10 +85,10 @@ void	create_walls(t_game game, int x)
 		wall_x = game.player.position[X] + distance * game.raycast.raydirx;
 	wall_x -= floor((wall_x));
 	game.raycast.tex_x = (int)(wall_x * \
-	(double)(game.textures[game.raycast.c].width));
+	(double)(game.wall[game.raycast.c].width));
 	if (game.raycast.side == 0 && game.raycast.raydirx > 0)
-		game.raycast.tex_x = game.textures[0].width - game.raycast.tex_x - 1;
+		game.raycast.tex_x = game.wall[0].width - game.raycast.tex_x - 1;
 	if (game.raycast.side == 1 && game.raycast.raydiry < 0)
-		game.raycast.tex_x = game.textures[0].width - game.raycast.tex_x - 1;
+		game.raycast.tex_x = game.wall[0].width - game.raycast.tex_x - 1;
 	draw_wall_line(&game, draw_start, draw_end, x);
 }
