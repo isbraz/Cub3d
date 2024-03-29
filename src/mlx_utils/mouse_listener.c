@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_listener.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:04:07 by llopes-d          #+#    #+#             */
 /*   Updated: 2024/03/29 15:30:45 by user             ###   ########.fr       */
