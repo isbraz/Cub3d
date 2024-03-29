@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:07:27 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 12:31:27 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:54:27 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # include <mlx.h>
 # include "mlx_utils.h"
+# include "map.h"
 
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
@@ -30,58 +31,12 @@
 
 # define RAY_COLOR 16724787
 
-# define INVALID_TYPE 6
-# define NO 0
-# define SO 1
-# define WE 2
-# define EA 3
-# define F 4
-# define C 5
-
 # define X 0
 # define Y 1
 
-# define ARGUMENTS_ERROR 400
-# define OPENING_ERROR 401
-# define BREAKS_ERROR 402
-# define SPAWN_ERROR 403
-# define TYPES_ERROR 404
-# define WALL_ERROR 405
 # define PI 3.1415926535f
 # define SPEED 0.1f
 # define A_SPEED 0.05f
-
-typedef struct s_image
-{
-	void		*id;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	int			width;
-	int			height;
-}	t_image;
-
-typedef struct s_player
-{
-	double		position[2];
-	double		plane[2];
-	double		delta[2];
-	double		angle;
-}	t_player;
-
-typedef struct s_map {
-	char		*types_info[6];
-	int			ceiling_color;
-	int			floor_color;
-	char		**types;
-	char		*input;
-	char		**map;
-	int			map_start;
-	char		spawn_dir;
-	double		spawn_pos[2];
-	int			minimap_pos[2];
-}	t_map;
 
 typedef struct s_raycast {
 	double		raydirx;
@@ -102,6 +57,17 @@ typedef struct s_raycast {
 	int			c;
 }	t_raycast;
 
+typedef struct s_image	t_image;
+typedef struct s_map	t_map;
+
+typedef struct s_player
+{
+	double		position[2];
+	double		plane[2];
+	double		delta[2];
+	double		angle;
+}	t_player;
+
 typedef struct s_game {
 	void		*window;
 	void		*mlx;
@@ -121,33 +87,24 @@ typedef struct s_game {
 
 typedef void	(*t_draw_walls)(t_game*, int[2], int, char);
 
-void	exit_parsing_error(t_map *map, int status);
-void	get_map(t_map *map, char *argv[]);
-void	free_map(t_map *map);
-void	verify_map(t_map *map);
-int		verify_breaks(t_map *map);
-int		verify_walls(t_map *map);
-int		get_types(t_map *map);
-int		get_spawn(t_map *map);
-
-void	draw_view_line(t_game *game, int x1, int y1);
-void	update_minimap(t_game *game);
-void	draw_minimap(t_game *game, t_draw_walls f, int color);
 void	draw_space(t_game *game, int vec[2], int color, char c);
 void	draw_walls(t_game *game, int vec[2], int color, char c);
 void	draw_door(t_game *game, int vec[2], int color, char c);
+void	draw_minimap(t_game *game, t_draw_walls f, int color);
+void	draw_view_line(t_game *game, int x1, int y1);
+void	update_minimap(t_game *game);
 
+void	move_player(int key, t_game *game);
+void	move_vision(int key, t_game *game);
 void	update_scene(t_game *game);
 void	new_game(t_game *game);
 
-void	raycast(t_game *game);
-void	init_calc(t_game *game, double c_x);
-void	do_steps(t_game *game);
-void	move_player(int key, t_game *game);
-void	move_vision(int key, t_game *game);
-void	update_door(t_game *game);
 double	perform_dda(t_game *game, int x);
-void	set_texture(t_game *game);
+void	init_calc(t_game *game, double c_x);
 void	create_walls(t_game game, int x);
+void	update_door(t_game *game);
+void	set_texture(t_game *game);
+void	do_steps(t_game *game);
+void	raycast(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:03:02 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 12:09:34 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:48:32 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,17 @@
 # include "cub3D.h"
 
 typedef struct s_game	t_game;
-typedef struct s_image	t_image;
+
+typedef struct s_image
+{
+	void		*id;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			width;
+	int			height;
+}	t_image;
 
 void	new_canvas(t_image *canvas, void *mlx, int height, int width);
 void	new_image(t_game *game, t_image *image, char *path);
