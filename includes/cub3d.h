@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:07:27 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 13:53:14 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 14:51:35 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@
 # define Y 1
 
 # define PI 3.1415926535f
-# define SPEED 0.1f
-# define A_SPEED 0.05f
 
 typedef struct s_raycast	t_raycast;
 typedef struct s_image		t_image;
@@ -40,6 +38,7 @@ typedef struct s_player
 	double		position[2];
 	double		plane[2];
 	double		delta[2];
+	double		speed;
 	double		angle;
 }	t_player;
 
@@ -54,16 +53,16 @@ typedef struct s_doors
 typedef struct s_game {
 	void		*window;
 	void		*mlx;
-	t_map		map;
-	t_image		scene;
-	t_player	player;
-	int			minimap_pos[2];
-	t_image		textures[4];
 	t_raycast	raycast;
+	t_player	player;
+	t_doors		doors;
+	t_image		scene;
+	t_map		map;
+	t_image		textures[4];
+	int			minimap_pos[2];
 	long		last;
 	int			show_map;
 	int			pause;
-	t_doors		doors;
 }	t_game;
 
 void	move_player(int key, t_game *game);

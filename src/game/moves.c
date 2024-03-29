@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:43:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/29 13:59:21 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 14:46:06 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,23 @@
 
 static void	rotate_vector(double vec[2], double dest[2], double degree)
 {
-	dest[X] = vec[X] * cos(degree * PI / 180) - vec[Y] * sin(degree * PI / 180);
-	dest[Y] = vec[X] * sin(degree * PI / 180) + vec[Y] * cos(degree * PI / 180);
+	double	old[2];
+
+	old[X] = vec[X];
+	old[Y] = vec[Y];
+	dest[X] = old[X] * cos(degree * PI / 180) - old[Y] * sin(degree * PI / 180);
+	dest[Y] = old[X] * sin(degree * PI / 180) + old[Y] * cos(degree * PI / 180);
 }
 
 void	move_vision(int key, t_game *game)
 {
-	double	old[2];
 	double	speed;
 
-	speed = A_SPEED;
+	speed = game->player.speed / 2;
 	if (key != 65361 && key != 65363)
 		return ;
 	if (key == 65361)
-		speed = -A_SPEED;
-	old[X] = game->player.plane[X];
-	old[Y] = game->player.plane[Y];
+		speed = -(game->player.speed / 2);
 	game->player.angle += speed;
 	if (game->player.angle < 0)
 		game->player.angle += 2 * PI;
@@ -38,7 +39,7 @@ void	move_vision(int key, t_game *game)
 		game->player.angle -= 2 * PI;
 	game->player.delta[X] = cos(game->player.angle);
 	game->player.delta[Y] = sin(game->player.angle);
-	rotate_vector(old, game->player.plane, get_degree(speed));
+	rotate_vector(game->player.plane, game->player.plane, get_degree(speed));
 }
 
 static int	has_collison(t_game *game, double delta[2])
@@ -78,6 +79,6 @@ void	move_player(int key, t_game *game)
 		rotate_vector(game->player.delta, new, 90);
 	if (has_collison(game, new))
 		return ;
-	game->player.position[X] += (new[X] * SPEED);
-	game->player.position[Y] += (new[Y] * SPEED);
+	game->player.position[X] += (new[X] * game->player.speed);
+	game->player.position[Y] += (new[Y] * game->player.speed);
 }
