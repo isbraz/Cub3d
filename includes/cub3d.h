@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:07:27 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/28 13:07:12 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:24:46 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,8 +140,8 @@ void	ft_memset(void *var, int value, long n);
 long	time_now(void);
 
 int		get_trgb(int t, int r, int g, int b);
-void	put_pixel_canva(t_image *image, int x, int y, int pixel);
-int		get_pixel_canva(t_image *image, int x, int y);
+void	put_pixel(t_image *image, int x, int y, int pixel);
+int		get_pixel(t_image *image, int x, int y);
 void	new_canvas(t_image *canvas, void *mlx, int height, int width);
 void	new_image(t_game *game, t_image *image, char *path);
 int		ft_close(t_game *game);

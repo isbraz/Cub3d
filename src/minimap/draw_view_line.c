@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_view_line.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 12:39:24 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/26 21:18:00 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:24:46 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	is_wall(t_game *game, int pixel[2])
 {
 	int	curr;
 
-	curr = get_pixel_canva(&game->scene, pixel[X], pixel[Y]);
+	curr = get_pixel(&game->scene, pixel[X], pixel[Y]);
 	if (curr != get_trgb(0, 230, 230, 230) && curr != RAY_COLOR)
 		return (1);
 	return (0);
@@ -43,7 +43,7 @@ void	draw_view_line(t_game *game, int finalX, int finalY)
 	{
 		if (is_wall(game, pixel))
 			break ;
-		put_pixel_canva(&game->scene, pixel[X], pixel[Y], RAY_COLOR);
+		put_pixel(&game->scene, pixel[X], pixel[Y], RAY_COLOR);
 		temp = 2 * err;
 		if (temp > -abs(finalY - pixel[Y]))
 		{

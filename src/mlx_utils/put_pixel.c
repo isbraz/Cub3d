@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   put_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:09:20 by user              #+#    #+#             */
-/*   Updated: 2024/03/26 17:28:34 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:24:10 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	put_pixel_canva(t_image *image, int x, int y, int pixel)
+void	put_pixel(t_image *image, int x, int y, int pixel)
 {
 	char	*dst;
 

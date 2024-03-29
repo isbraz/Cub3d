@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 17:41:34 by user              #+#    #+#             */
-/*   Updated: 2024/03/26 19:41:27 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:24:10 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	update_scene(t_game *game)
 		x = 0;
 		if (y > WIN_HEIGHT / 2)
 			while (x < WIN_WIDTH)
-				put_pixel_canva(&game->scene, x++, y, game->map.floor_color);
+				put_pixel(&game->scene, x++, y, game->map.floor_color);
 		else
 			while (x < WIN_WIDTH)
-				put_pixel_canva(&game->scene, x++, y, game->map.ceiling_color);
+				put_pixel(&game->scene, x++, y, game->map.ceiling_color);
 		y++;
 	}
 	raycast(game);

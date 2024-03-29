@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:02:58 by user              #+#    #+#             */
-/*   Updated: 2024/03/26 21:18:19 by llopes-d         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:24:10 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	draw_minimap_background(t_game *game)
 		x = game->map.minimap_pos[X];
 		while (x < game->map.minimap_pos[X] + MINIMAP_WIDTH)
 		{
-			put_pixel_canva(&game->scene, x, y, get_trgb(0, 32, 32, 28));
+			put_pixel(&game->scene, x, y, get_trgb(0, 32, 32, 28));
 			x++;
 		}
 		y++;

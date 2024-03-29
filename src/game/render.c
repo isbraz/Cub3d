@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:55:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/28 13:07:12 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:24:46 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ static void	draw_wall_line(t_game *game, int draw_start, int draw_end, int x)
 		if (game->raycast.tex_y <= -1 || game->raycast.tex_x <= -1)
 			return ;
 		if (game->map.map[game->raycast.mapy][game->raycast.mapx] == '1')
-			color = get_pixel_canva(&game->textures[game->raycast.c], \
+			color = get_pixel(&game->textures[game->raycast.c], \
 			game->raycast.tex_x, game->raycast.tex_y);
 		if (game->map.map[game->raycast.mapy][game->raycast.mapx] == '2')
 		{
 			game->raycast.tex_y = ((d * game->door[game->d].height) / \
 			game->raycast.lineheight) / 256;
-			color = get_pixel_canva(&game->door[game->d], \
+			color = get_pixel(&game->door[game->d], \
 			game->raycast.tex_x * 0.15, game->raycast.tex_y);
 		}
-		put_pixel_canva(&game->scene, x, draw_start, color);
+		put_pixel(&game->scene, x, draw_start, color);
 		draw_start++;
 	}
 }
