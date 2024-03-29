@@ -6,27 +6,27 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:50:07 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 12:59:58 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 13:24:26 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
 
-#define ARGUMENTS_ERROR 400
-#define OPENING_ERROR 401
-#define BREAKS_ERROR 402
-#define SPAWN_ERROR 403
-#define TYPES_ERROR 404
-#define WALL_ERROR 405
+# define ARGUMENTS_ERROR 400
+# define OPENING_ERROR 401
+# define BREAKS_ERROR 402
+# define SPAWN_ERROR 403
+# define TYPES_ERROR 404
+# define WALL_ERROR 405
 
-#define INVALID_TYPE 6
-#define NO 0
-#define SO 1
-#define WE 2
-#define EA 3
-#define F 4
-#define C 5
+# define INVALID_TYPE 6
+# define NO 0
+# define SO 1
+# define WE 2
+# define EA 3
+# define F 4
+# define C 5
 
 typedef struct s_map {
 	char		*types_info[6];
