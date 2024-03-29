@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 09:02:24 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 12:10:17 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:18:50 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include <stdlib.h>
 
 char	*ft_strdup(char const *s1)
 {

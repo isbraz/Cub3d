@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 18:27:04 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 12:10:17 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:17:33 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include <stdlib.h>
 
 void	free_double(char **array)
 {

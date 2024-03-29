@@ -6,14 +6,14 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:00:45 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 12:07:22 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:17:05 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-# include "cub3D.h"
+# include <stdlib.h>
 
 void	rotate_vector(double vec[2], double dest[2], double degree);
 void	ft_memset(void *var, int value, long n);

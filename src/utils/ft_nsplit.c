@@ -6,11 +6,11 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:36:06 by llopes-d          #+#    #+#             */
-/*   Updated: 2024/03/29 12:10:17 by user             ###   ########.fr       */
+/*   Updated: 2024/03/29 12:18:32 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include <stdlib.h>
 
 static size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
