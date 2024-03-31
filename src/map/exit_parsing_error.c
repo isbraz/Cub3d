@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_parsing_error.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>           +#+  +:+       +#+       */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 07:41:59 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 15:30:45 by user             ###   ########.fr       */
+/*   Updated: 2024/03/31 14:12:59 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	exit_parsing_error(t_map *map, int status)
 	else if (status == BREAKS_ERROR)
 		write(2, "Error\nempty line in the map\n", 29);
 	else if (status == SPAWN_ERROR)
-		write(2, "Error\ninvalid player position / character\n", 43);
+		write(2, "Error\ninvalid character\n", 43);
 	else if (status == TYPES_ERROR)
 		write(2, "Error\ninvalid types info\n", 26);
 	else if (status == WALL_ERROR)
