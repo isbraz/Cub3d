@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>           +#+  +:+       +#+       */
+/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:55:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/03/29 15:30:45 by user             ###   ########.fr       */
+/*   Updated: 2024/04/02 12:08:53 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	get_raycast_door_config(t_game *game, int d, int *color)
 	raycast = &game->raycast;
 	door = game->doors.door[game->doors.index];
 	raycast->tex_y = ((d * door.height) / raycast->lineheight) / 256;
+	if (raycast->tex_x <= 0 || raycast->tex_y <= 0)
+		return ;
 	*color = get_pixel(&door, raycast->tex_x * 0.15, raycast->tex_y);
 }
 
