@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:49:26 by user              #+#    #+#             */
-/*   Updated: 2024/04/02 12:24:56 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/04/02 13:24:18 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ static int	door_closed(char **map, int x, int y)
 	int	sides_closed;
 
 	sides_closed = 0;
+	if (map[y][x - 1] == '2' || map[y][x + 1] == '2' || \
+			map[y - 1][x] == '2' || map[y + 1][x] == '2')
+		return (0);
 	if (map[y][x - 1] == '1')
 		sides_closed++;
 	if (map[y][x + 1] == '1')
