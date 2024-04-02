@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-d <llopes-d@student.42.fr>           +#+  +:+       +#+       */
+/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:49:26 by user              #+#    #+#             */
-/*   Updated: 2024/03/29 15:30:45 by user             ###   ########.fr       */
+/*   Updated: 2024/04/02 12:24:56 by isbraz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	verify_walls(t_map *map)
 		{
 			if (is_floor(map->map[y][x]) && is_open(map->map, x, y))
 				return (0);
-			if (map->map[y][x] == '2' && door_closed(map->map, x, y) != 2)
+			if (map->map[y][x] == '2' && door_closed(map->map, x, y) < 2)
 				return (0);
 			x++;
 		}
