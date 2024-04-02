@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isbraz-d <isbraz-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-d <llopes-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:55:16 by isbraz-d          #+#    #+#             */
-/*   Updated: 2024/04/02 12:08:53 by isbraz-d         ###   ########.fr       */
+/*   Updated: 2024/04/02 13:32:31 by llopes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	draw_wall_line(t_game *game, int draw_start, int draw_end, int x)
 	int	d;
 	int	color;
 
+	color = 0;
 	while (draw_start < draw_end)
 	{
 		d = draw_start * 256 - WIN_HEIGHT * 128 + \
