@@ -40,10 +40,10 @@ SRCS = src/main.c                     \
 		src/game/scene.c              \
 		src/game/moves.c              \
 		src/game/handle_door.c        \
-		src/game/raycast.c            \
 		src/game/new_game.c           \
-		src/game/dda.c				  \
-		src/game/render.c			  \
+		src/raycast/raycast.c            \
+		src/raycast/dda.c			  \
+		src/raycast/render.c		  \
 
 
 OBJS = $(patsubst src/%,.objs/%,$(patsubst %.c,%.o,$(SRCS)))
