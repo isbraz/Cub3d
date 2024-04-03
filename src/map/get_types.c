@@ -22,6 +22,11 @@ static int	get_color(char *color)
 	index = 0;
 	split = ft_split(color, ',');
 	while (split[index])
+		index++;
+	if (index != 3)
+		return (free_double(split), -1);
+	index = 0;
+	while (split[index])
 	{
 		if (!ft_isnumeric(split[index]))
 			return (free_double(split), -1);
@@ -33,8 +38,6 @@ static int	get_color(char *color)
 		index++;
 	}
 	free_double(split);
-	if (index != 3)
-		return (-1);
 	return (get_trgb(0, colors[0], colors[1], colors[2]));
 }
 
