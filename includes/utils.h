@@ -23,6 +23,7 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char const *s1);
 double	get_degree(double radian);
 double	get_radian(double degree);
+int		ft_cntchr(const char *str, char c);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strlen(const char *s);
 int		ft_atoi(const char *str);

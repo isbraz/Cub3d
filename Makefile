@@ -16,6 +16,7 @@ SRCS = src/main.c                     \
 		src/utils/get_radian.c        \
 		src/utils/ft_memset.c         \
 		src/utils/ft_strcmp.c         \
+		src/utils/ft_cntchr.c         \
 		src/utils/time_now.c          \
 		src/mlx_utils/ft_loop.c       \
 		src/mlx_utils/mouse_listener.c\
@@ -41,9 +42,9 @@ SRCS = src/main.c                     \
 		src/game/moves.c              \
 		src/game/handle_door.c        \
 		src/game/new_game.c           \
-		src/raycast/raycast.c            \
-		src/raycast/dda.c			  \
-		src/raycast/render.c		  \
+		src/raycast/raycast.c         \
+		src/raycast/dda.c             \
+		src/raycast/render.c          \
 
 
 OBJS = $(patsubst src/%,.objs/%,$(patsubst %.c,%.o,$(SRCS)))

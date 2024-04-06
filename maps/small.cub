@@ -3,9 +3,8 @@ SO ./src/textures/wall1.xpm
 WE ./src/textures/wall1.xpm
 EA ./src/textures/wall1.xpm
 
-F 75,75,75
-C 50,50,50
-
+F 12,75,01
+C 50,50,123
 
 1111
 10N1

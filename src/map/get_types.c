@@ -21,14 +21,14 @@ static int	get_color(char *color)
 
 	index = 0;
 	split = ft_split(color, ',');
-	while (split[index])
+	while (split && split[index])
 		index++;
-	if (index != 3)
+	if (index != 3 || ft_cntchr(color, ',') != 2)
 		return (free_double(split), -1);
 	index = 0;
 	while (split[index])
 	{
-		if (!ft_isnumeric(split[index]))
+		if (!ft_isnumeric(split[index]) || ft_strlen(split[index]) > 3)
 			return (free_double(split), -1);
 		colors[index] = ft_atoi(split[index]);
 		if (colors[index] == 230)
