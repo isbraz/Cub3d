@@ -23,7 +23,7 @@ void	new_image(t_game *game, t_image *image, char *path)
 	);
 	if (!image->id)
 	{
-		write(1, "Error\nxpm error.\n", 18);
+		write(2, "Error\nxpm error.\n", 18);
 		ft_close(game);
 	}
 	image->addr = mlx_get_data_addr(\
