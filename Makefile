@@ -75,4 +75,11 @@ v: $(NAME)
 
 re: fclean all
 
+map_tester:
+	@git clone https://github.com/andlukass/cub3d-map-tester.git map_tester
+
+tester: map_tester
+	@cd map_tester && make run
+	@cd ..
+
 .PHONY: all clean fclean re
