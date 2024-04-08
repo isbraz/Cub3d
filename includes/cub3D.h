@@ -13,7 +13,6 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <mlx.h>
 # include "mlx_utils.h"
 # include "raycast.h"
 # include "map.h"

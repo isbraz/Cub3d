@@ -20,12 +20,10 @@ static int	is_map_start(char *input)
 	int	index;
 
 	index = 0;
-	while (input[index] && (input[index] == ' ' || input[index] == '\n'))
-	{
-		if (input[index + 1] == '1' || input[index + 1] == '0')
-			return (1);
+	while (input[index] && input[index] == ' ')
 		index++;
-	}
+	if (input[index] == '1' || input[index] == '0')
+		return (1);
 	return (0);
 }
 

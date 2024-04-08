@@ -21,11 +21,12 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		exit_parsing_error(NULL, ARGUMENTS_ERROR);
 	get_map(&game.map, argv);
-	new_game(&game);
-	mlx_hook(game.window, 17, (1L << 3), ft_close, &game);
-	mlx_hook(game.window, 2, (1L << 0), key_listener, &game);
-	mlx_hook(game.window, 6, (1L << 6), mouse_listener, &game);
-	mlx_loop_hook(game.mlx, ft_loop, &game);
-	mlx_loop(game.mlx);
+	free_map(&game.map);
+	// new_game(&game);
+	// mlx_hook(game.window, 17, (1L << 3), ft_close, &game);
+	// mlx_hook(game.window, 2, (1L << 0), key_listener, &game);
+	// mlx_hook(game.window, 6, (1L << 6), mouse_listener, &game);
+	// mlx_loop_hook(game.mlx, ft_loop, &game);
+	// mlx_loop(game.mlx);
 	return (0);
 }

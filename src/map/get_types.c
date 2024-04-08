@@ -13,6 +13,11 @@
 #include <cub3D.h>
 #include <utils.h>
 
+int	get_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
 static int	get_color(char *color)
 {
 	char	**split;
@@ -21,11 +26,6 @@ static int	get_color(char *color)
 
 	index = 0;
 	split = ft_split(color, ',');
-	while (split && split[index])
-		index++;
-	if (index != 3 || ft_cntchr(color, ',') != 2)
-		return (free_double(split), -1);
-	index = 0;
 	while (split[index])
 	{
 		if (!ft_isnumeric(split[index]) || ft_strlen(split[index]) > 3)
@@ -37,6 +37,8 @@ static int	get_color(char *color)
 			return (free_double(split), -1);
 		index++;
 	}
+	if (index != 3)
+		return (free_double(split), -1);
 	free_double(split);
 	return (get_trgb(0, colors[0], colors[1], colors[2]));
 }

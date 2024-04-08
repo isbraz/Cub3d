@@ -1,6 +1,4 @@
 INC_DIR = includes
-MLX_DIR = .mlx
-CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
 
 SRCS = src/main.c                     \
 		src/utils/ft_strjoin.c        \
@@ -18,14 +16,6 @@ SRCS = src/main.c                     \
 		src/utils/ft_strcmp.c         \
 		src/utils/ft_cntchr.c         \
 		src/utils/time_now.c          \
-		src/mlx_utils/ft_loop.c       \
-		src/mlx_utils/mouse_listener.c\
-		src/mlx_utils/key_listener.c  \
-		src/mlx_utils/new_canvas.c    \
-		src/mlx_utils/new_image.c     \
-		src/mlx_utils/get_pixel.c     \
-		src/mlx_utils/put_pixel.c     \
-		src/mlx_utils/get_trgb.c      \
 		src/map/exit_parsing_error.c  \
 		src/map/free_map.c            \
 		src/map/verify_breaks.c       \
@@ -34,17 +24,6 @@ SRCS = src/main.c                     \
 		src/map/get_types.c           \
 		src/map/get_spawn.c           \
 		src/map/get_map.c             \
-		src/minimap/minimap.c         \
-		src/minimap/draw_view_line.c  \
-		src/minimap/draw_minimap.c    \
-		src/game/ft_close.c           \
-		src/game/scene.c              \
-		src/game/moves.c              \
-		src/game/handle_door.c        \
-		src/game/new_game.c           \
-		src/raycast/raycast.c         \
-		src/raycast/dda.c             \
-		src/raycast/render.c          \
 
 
 OBJS = $(patsubst src/%,.objs/%,$(patsubst %.c,%.o,$(SRCS)))
@@ -55,14 +34,12 @@ NAME_MAP1 = cub3D maps/explore.cub
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@cd .mlx && ./configure 2>&1 >/dev/null
-	@echo "mlx compiled!"
-	@$(CC) $(CFLAGS) $(OBJS) -L$(MLX_DIR) -lmlx -I$(MLX_DIR) -lXext -lX11 -lm -lz  -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo "cub3D compiled!"
 
 .objs/%.o: src/%.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -I$(INC_DIR) -I$(MLX_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
 clean:
 	@rm -rf .objs
